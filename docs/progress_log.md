@@ -1,0 +1,127 @@
+# Progress log
+
+Status of this repository: design only. No board has been ordered. No firmware has been modified, flashed, or deployed. No vessel wiring has been changed.
+
+## 2026-11-19 — Revision 0.8
+
+Relay-contact routing, the reed-valid proposal, and the USB enumeration note. The outline stays 80 × 69 mm. No fabrication output was written. No order was placed. The prototype firmware was not modified, flashed, or deployed. The schematic was not regenerated.
+
+`UP_COM`, `UP_NO`, `DN_COM` and `DN_NO` are routed at 0.80 mm on the bottom, in the gap between the Finder pin rows. J_CONTACT and the relays were not moved. Three vias, 0.45 mm with a 0.20 mm drill, take the lower connector pins onto that layer. The tracks do not cross either isolation barrier.
+
+DRC after the contacts, `docs/drc_rev08_contacts.txt`: 18 warnings, 274 unconnected items, no short and no clearance error. DRC after the following signal pass, `docs/drc_rev08_routed.txt`: 18 warnings, 208 unconnected items, no short, no clearance error and no isolation short. The 18 warnings are the same silk and library-copy items as revision 0.7. Fully linked nets are the four contacts, `AND_Y`, `COIL_RAIL_OK`, `TWAI_RX` and `LED_B_K`. `GND` is still the unfilled L2 plane.
+
+A valid reed-power signal is required. Direction sense does not reject a rising edge caused by the field supply falling while the windlass is moving. The spare ISO7721 channel points the wrong way, so it cannot carry that signal. The proposed second isolator is documented and not fitted. The 30 ms debounce is a chatter filter. The magnet duty is still unmeasured. Enumeration from the 12 V rail, with `USB_VBUS` isolated, is documented in `docs/routing_feasibility.md`. There is still no VBUS-detect GPIO.
+
+## 2026-11-19 — Revision 0.7
+
+Status LEDs, USB ESD, the reed startup note, silkscreen, and a first route. The outline stays 80 × 69 mm. No fabrication output was written. No order was placed. The prototype firmware was read and not modified, flashed, or deployed.
+
+D_R and D_G stay on GPIO15 and GPIO16 through 680 Ω. D_B is LTST-C190TBKT from the onboard 5 V rail through 1 kΩ and a 2N7002BK. The gate is GPIO17 and has no DC path to 5 V. U_ESD is USBLC6-2SC6 on the connector side of the 22 Ω resistors. Its VBUS pin is `USB_VBUS`, which is still separate from `+5V`.
+
+ERC is 0 errors and 1 warning, the same U5 `GND2` warning on `REED_RET`. DRC is 18 warnings, 261 unconnected items, and 0 footprint errors. There is no short and no clearance error. The route drew 23 segments. `LED_R` is the only fully linked net. Contact nets were left open because 0.80 mm did not find a clear path.
+
+## 2026-11-19 — Revision 0.6
+
+Electrical and footprint synchronisation of the 80 × 69 mm board. No copper was routed. No order was placed. The prototype was not touched.
+
+`SW_REED` is gone. `JP_REED` is a 2.54 mm 1×03 header: pin 1 `LOFRANS_NODE`, pin 2 `REED_ISO`, pin 3 `DRY_A`. `SH_REED` is one loose shunt, default on pins 1–2, and it is not a footprint. U8 and U12 are on the SOT-353 land. `R_R`, `R_G` and `R_B` are on the board. The MEJ2 hole is 0.6 mm. The pin-1 to body-end offset is still not on the drawing extract.
+
+ERC is 0 errors and 1 warning. The warning is U5 pin 5, `GND2`, on `REED_RET`. It is not joined to `GND`. The 570 off-grid warnings from revision 0.5 are gone. DRC is 0 errors, 312 warnings and 264 unconnected items. The unconnected items are unrouted nets. Details are in `docs/routing_feasibility.md`, `docs/connector_pinout.md` and `docs/component_availability.md`.
+
+## 2026-11-19 — Revision 0.5
+
+Electrical check of the instantiated schematic, then a net stamp onto the 80 × 69 mm placement. No copper was routed. No order was placed. The prototype was not touched.
+
+The outline stays 80 × 69 mm. J_SENSE is the 5-pin JST XH with pin 3 unused, so `UP_RET` and `DN_RET` are not adjacent. The reed switch graph, the stackup, the DRC and the stock readings are in `docs/connector_pinout.md`, `docs/routing_feasibility.md` and `docs/component_availability.md`.
+
+ERC is 0 errors and 571 warnings. The warnings are the millimetre grid plus the intentional `REED_RET` connection on the isolator’s side-2 ground. PCB DRC after the net stamp has no clearance and no solder-mask errors. The eight USB-C pad errors were un-netted stacked pads and they cleared once A1/B12 were both `GND` and A4/B9 were both `USB_VBUS`. Two hundred and fifty-five unconnected items remain because there are no tracks.
+
+Reports that said ERC found 0 violations, including the revision 0.4 line below, were written before KiCad instantiated the symbols. They are not the electrical result.
+
+## 2026-11-19 — Revision 0.4
+
+Six production connector footprints replace the headers. 80 × 60 mm holds those connectors and the large parts. The passives and switches need the outline to be 80 × 69 mm. Courtyard check is clear at that size. The ERC line recorded here was later found not to have instantiated the symbols. See revision 0.5. Copper is not routed. No order was placed.
+
+## 2026-11-19 — Revision 0.3 placement check
+
+MEJ2 footprint drawn from the Murata pin table. Copper keep-outs added for the antenna zone and both isolation gaps. Four 3.5 mm screw terminals fit on the 80 × 60 mm edges. The dry-contact, both direction-sense pairs, the ignition loop, the relay-power switch loop and the NMEA connector do not fit that edge. The board was not enlarged. Availability notes are in `docs/component_availability.md`. KiCad DRC on the revised 80 × 60 mm board reported 0 errors after the minimum hole was set to 0.2 mm. Twenty-six silkscreen and library-copy warnings remain in `docs/drc_placement_80x60_warnings.txt`. Schematic ERC is 0 violations. No order was placed.
+
+## 2026-11-19 — Placement, not routing
+
+Selected outline is 80 × 60 mm, four-layer, with the Finder 40.31 relays. A 90 × 60 mm arrangement of the same parts also clears and is not adopted. An Omron G5Q courtyard was placed on the 80 × 60 mm outline as a size study and was not substituted. KiCad PCB DRC reported no courtyard overlaps. The twelve reported errors are 0.2 mm drills in the ESP32-S3-WROOM-1 footprint. No copper was routed. See `docs/mechanical_plan.md`.
+
+## 2026-11-18 — Phase A inspection
+
+### Commands
+
+```text
+kicad-cli version
+```
+
+Result: `kicad-cli` is not on PATH. `where.exe kicad-cli` and `where.exe kicad` found nothing. No KiCad directory under `C:\Program Files` or `%LOCALAPPDATA%\Programs`. Winget lists `KiCad.KiCad` 10.0.8 as available and not installed. ERC/DRC cannot be run until KiCad is installed. No schematic files were invented to stand in for a KiCad project.
+
+Workspace `C:\Users\thoma\Windlass-PCB` was empty at inspection.
+
+### Read-only sources (not modified)
+
+| Source | What it established |
+| --- | --- |
+| `C:\Users\thoma\OneDrive\Desktop\WindlassProject\WindlassController\src\main.cpp` | Working controller firmware. Reed GPIO27, UP sense GPIO25, DOWN sense GPIO26. Opto outputs need 3.3 V pull-ups. `ENABLE_RELAY_CONTROL` defaults to 0. Bench relay pins GPIO32/33, active-LOW. Command TTL default 300 ms (`RUN_TTL_DEFAULT_MS`), clamp 150–1000 ms. |
+| `C:\Users\thoma\OneDrive\Desktop\WindlassProject\README.md` | PC817 input loading previously pulled the Lofrans reed idle from 3.22 V to 1.5 V. README pin text (UP GPIO26, DOWN GPIO25) disagrees with `main.cpp`. Relays must stay disconnected in that project. |
+| `C:\Users\thoma\OneDrive\Desktop\WindlassProject\WaveshareReceiver\src\main.cpp` | Separate ESP32-S3 publishes toward NMEA. TWAI pins in that tree are GPIO15/16. Not this PCB. |
+| Espressif ESP32-S3-WROOM-1/1U datasheet (documentation.espressif.com module datasheet) | N16 = 16 MB quad flash, no PSRAM, −40 to 85 °C. TWAI controller present (ISO 11898-1). GPIO35–37 unavailable only on octal-PSRAM variants. Strapping: GPIO0, GPIO3, GPIO45, GPIO46. EN must not float. USB on GPIO19/20. |
+| Espressif ESP32-S3 hardware design guidelines, PCB layout | PCB-antenna clearance at least 15 mm inside the housing. No copper in the module keepout on any layer. Power traces to the module 3.3 V pins at least 20–25 mil on the cited 4-layer example. |
+| LCSC / JLCPCB product pages retrieved 2026-11-18 | `ESP32-S3-WROOM-1-N16` is LCSC C2913199. Page showed about 1201 in stock, minimum 1, JLCPCB assembly type extended / standard PCBA only. `ISO1042BDWR` is LCSC C2671499, SOIC-16, page showed about 217 in stock. Stock is a snapshot, not a reservation. |
+
+### Not found in the inspected firmware
+
+- A hardware watchdog that removes coil power.
+- An ignition or engine-permissive input pin.
+- A measured UP/DOWN contact current, common, or freewheel arrangement.
+- A KiCad symbol, footprint, or stackup.
+
+Those items stay OPEN. See `assumptions_and_open_questions.md`.
+
+### Files written this session
+
+- `docs/architecture.md`
+- `docs/requirements.md`
+- `docs/interface_control_document.md`
+- `docs/assumptions_and_open_questions.md`
+- `docs/hazard_analysis.md`
+- `docs/pin_allocation.md`
+- `docs/traceability_matrix.md`
+- `docs/progress_log.md`
+
+## 2026-11-18 — Rev 0.1 schematic
+
+KiCad 10.0.8 installed at `%LOCALAPPDATA%\Programs\KiCad\10.0\bin\kicad-cli.exe`.
+
+```text
+python scripts\build_schematic.py
+kicad-cli sch erc --severity-all --exit-code-violations -o docs\erc_report.txt kicad\windlass.kicad_sch
+```
+
+Result: `Found 0 violations` after the test-pad rebuild. Report: `docs/erc_report.txt`. Every global label is used at least twice (`scripts/count_labels.py`). KiCad's default profile still ignores a few checks (SPICE, footprint-filter mismatch, four points joined); none of those fired as errors.
+
+Sheets: `kicad/power.kicad_sch`, `esp32`, `reed`, `direction_sense`, `relay_control_and_interlock`, `isolated_nmea2000`, `connectors_status_service`, root `windlass.kicad_sch`.
+
+Confirmed from the prototype and drawn: switched +12 V NO contacts in parallel; direction sense is two opto channels whose returns are not joined to each other or to ESP32 ground; reed is a high-Z digital isolator, not a PC817 LED; NMEA side-2 ground is not the ESP32 ground; NET-S is no-connect; no terminator.
+
+Still OPEN at the end of rev 0.1, and marked that way on the sheet: fuse, TVS, ideal-diode FET, buck, coil FET, relay MPN and current, flyback diode, direction resistor, both isolated DC-DC modules, AP2112 thermal sign-off. No Lofrans schematic was found to close those.
+
+## 2026-11-18 — Rev 0.2 schematic
+
+Same commands as rev 0.1. ERC again `Found 0 violations`. Label check: no global label used only once. Review: `docs/design_review.md`.
+
+Drawn since 0.1: 74LVC1G123 heartbeat (about 330 ms typical) AND-ed into the series coil FET, replacing the fitted 0 Ω bypass; ISO7721 bias resized for ±10 µA leakage; SPDT reed mode so the dry-contact pull-up cannot reach the Lofrans pin; MCU and coil 12 V branches split; AP2112 removed in favour of AP63203 and AP63205; both isolated supplies are Murata MEJ2 parts with the 5.2 kVDC / 2.4 kVDC figures cited. Prototype firmware was not modified. Layout was not started.
+
+Still OPEN at that point: contactor current and the coil-branch fuse, FET, TVS, and flyback; direction-sense resistor; reed source impedance; load-dump energy; PCB creepage; JLCPCB stock of the Murata modules at order time.
+
+## 2026-11-19 — Rev 0.2 coil parts and the remaining checks
+
+Same generate, label, and ERC commands. ERC report dated 2026-11-19: 0 errors, 0 warnings. No global label is used only once.
+
+Relay is Finder 40.31.7.012.0000, hand-fitted through-hole. Coil figures from the series table: 288 Ω, 42 mA, 8.8 V to 18 V, 7 ms / 3 ms. Contact figure used: DC1, 10 A at 30 V. AC15 at 230 V AC is not used as a 12 V DC inductive rating. Installation stays blocked until the Lofrans control current and inductive energy are measured.
+
+Coil path completed from that coil current: NX6008NBK drivers and series FET, SS14 flyback, 1 A fuse 0466001, DMP6023LE, SMAJ18A. SMAJ18A is still not load-dump protection. Reed load is the single 47 kΩ, about 70 µA, with 1 nF. Heartbeat contract is `docs/firmware_heartbeat_contract.md`. Placement intent is `docs/mechanical_plan.md`. Prototype firmware was not modified. No layout and no fabrication files.

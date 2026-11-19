@@ -1,0 +1,4 @@
+nets 110
+pads stamped 359
+footprints skipped 0
+schematic refs with no footprint 0

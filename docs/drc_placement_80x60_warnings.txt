@@ -1,0 +1,115 @@
+** Drc report for placement_finder.kicad_pcb **
+** Created on 2026-11-19T13:21:17 **
+** Report includes: Warnings **
+
+** Found 26 DRC violations **
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(0.0000 mm, 0.0000 mm): Segment on Edge.Cuts
+    @(3.8000 mm, -0.3500 mm): Reference field of H1
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(0.0000 mm, 0.0000 mm): Segment on Edge.Cuts
+    @(76.2000 mm, -0.3500 mm): Reference field of H2
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(80.0000 mm, 0.0000 mm): Segment on Edge.Cuts
+    @(80.7000 mm, 41.8000 mm): Reference field of U_CAN
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(0.0000 mm, 60.0000 mm): Segment on Edge.Cuts
+    @(0.6800 mm, 11.8500 mm): Reference field of J_PWR
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(0.0000 mm, 60.0000 mm): Segment on Edge.Cuts
+    @(0.6800 mm, 20.8500 mm): Reference field of J_UP_K
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(80.0000 mm, 0.0000 mm): Segment on Edge.Cuts
+    @(79.3200 mm, 13.9500 mm): Reference field of J_DN_K
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(80.0000 mm, 0.0000 mm): Segment on Edge.Cuts
+    @(79.3200 mm, 23.1500 mm): Reference field of J_REED
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(0.0000 mm, 0.0000 mm): Segment on Edge.Cuts
+    @(40.0000 mm, 0.2000 mm): Reference field of D_LED
+[lib_footprint_mismatch]: Footprint 'ESP32-S3-WROOM-1' does not match copy in library 'RF_Module'
+    Local override; warning
+    @(40.0000 mm, 32.2500 mm): Footprint U1
+[lib_footprint_issues]: The current configuration does not include the footprint library 'windlass'
+    Local override; warning
+    @(8.2000 mm, 34.2000 mm): Footprint U_REED
+[lib_footprint_issues]: The current configuration does not include the footprint library 'windlass'
+    Local override; warning
+    @(74.5000 mm, 34.2000 mm): Footprint U_CAN
+[lib_footprint_mismatch]: Footprint 'TerminalBlock_4Ucon_1x02_P3.50mm_Horizontal' does not match copy in library 'TerminalBlock_4Ucon'
+    Local override; warning
+    @(5.2000 mm, 13.6000 mm): Footprint J_PWR
+[lib_footprint_mismatch]: Footprint 'TerminalBlock_4Ucon_1x02_P3.50mm_Horizontal' does not match copy in library 'TerminalBlock_4Ucon'
+    Local override; warning
+    @(5.2000 mm, 22.6000 mm): Footprint J_UP_K
+[lib_footprint_mismatch]: Footprint 'TerminalBlock_4Ucon_1x02_P3.50mm_Horizontal' does not match copy in library 'TerminalBlock_4Ucon'
+    Local override; warning
+    @(74.8000 mm, 12.2000 mm): Footprint J_DN_K
+[lib_footprint_mismatch]: Footprint 'TerminalBlock_4Ucon_1x02_P3.50mm_Horizontal' does not match copy in library 'TerminalBlock_4Ucon'
+    Local override; warning
+    @(74.8000 mm, 21.4000 mm): Footprint J_REED
+[silk_overlap]: Silkscreen clearance
+    Rule: board setup constraints silk; warning
+    @(71.0800 mm, 12.2000 mm): Polygon of J_DN_K on F.Silkscreen
+    @(70.3700 mm, 5.0300 mm): Segment of K_DN on F.Silkscreen
+[silk_overlap]: Silkscreen clearance
+    Rule: board setup constraints silk; warning
+    @(79.3200 mm, 13.9500 mm): Reference field of J_DN_K
+    @(78.3200 mm, 9.9800 mm): Segment of J_DN_K on F.Silkscreen
+[silk_overlap]: Silkscreen clearance
+    Rule: board setup constraints silk; warning
+    @(14.4000 mm, 41.8000 mm): Reference field of U_REED
+    @(12.9000 mm, 32.4000 mm): Segment of U_REED on F.Silkscreen
+[silk_overlap]: Silkscreen clearance
+    Rule: board setup constraints silk; warning
+    @(19.0000 mm, 30.6000 mm): Reference field of L20
+    @(18.6000 mm, 31.4000 mm): Reference field of U_ISO
+[silk_overlap]: Silkscreen clearance
+    Rule: board setup constraints silk; warning
+    @(9.4900 mm, 20.1500 mm): Segment of D_TVS on F.Silkscreen
+    @(8.9200 mm, 22.6000 mm): Polygon of J_UP_K on F.Silkscreen
+[silk_overlap]: Silkscreen clearance
+    Rule: board setup constraints silk; warning
+    @(80.7000 mm, 41.8000 mm): Reference field of U_CAN
+    @(79.2000 mm, 32.4000 mm): Segment of U_CAN on F.Silkscreen
+[silk_overlap]: Silkscreen clearance
+    Rule: board setup constraints silk; warning
+    @(79.3200 mm, 23.1500 mm): Reference field of J_REED
+    @(78.3200 mm, 19.1800 mm): Segment of J_REED on F.Silkscreen
+[silk_overlap]: Silkscreen clearance
+    Rule: board setup constraints silk; warning
+    @(62.3600 mm, 30.7600 mm): Segment of U_CANISO on F.Silkscreen
+    @(58.0000 mm, 30.7000 mm): Reference field of Q_COIL
+[silk_overlap]: Silkscreen clearance
+    Rule: board setup constraints silk; warning
+    @(8.9200 mm, 13.6000 mm): Polygon of J_PWR on F.Silkscreen
+    @(9.6300 mm, 11.7500 mm): Segment of K_UP on F.Silkscreen
+[silk_overlap]: Silkscreen clearance
+    Rule: board setup constraints silk; warning
+    @(1.6800 mm, 15.8200 mm): Segment of J_PWR on F.Silkscreen
+    @(0.6800 mm, 11.8500 mm): Reference field of J_PWR
+[silk_overlap]: Silkscreen clearance
+    Rule: board setup constraints silk; warning
+    @(1.6800 mm, 24.8200 mm): Segment of J_UP_K on F.Silkscreen
+    @(0.6800 mm, 20.8500 mm): Reference field of J_UP_K
+
+** Found 0 unconnected pads **
+
+** Found 0 Footprint errors **
+
+** Ignored checks **
+    - Footprint has no courtyard defined
+    - Track endpoint not centered on via
+    - Tuning profile track geometries
+    - Footprint doesn't match symbol's footprint filters
+    - Footprint component type doesn't match footprint pads
+
+** End of Report **
