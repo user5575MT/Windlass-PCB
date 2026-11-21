@@ -2,6 +2,10 @@
 
 Status of this repository: design only. No board has been ordered. No firmware has been modified, flashed, or deployed. No vessel wiring has been changed.
 
+## 2026-11-22 — Architecture review, routing stopped
+
+The 80 × 69 mm four-layer placement is not to be routed further. The recommendation is a two-layer controller with a dry-contact reed, two optocouplers, and one isolated CAN transceiver, and a separate relay board only after measurement B1. The XOR, the AND, the fitted reed isolator supply, the second buck, the Finder relays, and the mid-mount USB-C footprint come off the first article. No schematic was regenerated and no copper was added. See `docs/design_simplification.md`.
+
 ## 2026-11-19 — Revision 0.8
 
 Relay-contact routing, the reed-valid proposal, and the USB enumeration note. The outline stays 80 × 69 mm. No fabrication output was written. No order was placed. The prototype firmware was not modified, flashed, or deployed. The schematic was not regenerated.
