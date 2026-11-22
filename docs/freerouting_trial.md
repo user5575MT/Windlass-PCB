@@ -266,3 +266,45 @@ The USB-C pads are still the GCT USB4105 land. The copper-to-NPTH gap is 0.1944 
 ### What is still in the way
 
 This board is not for fabrication. B1–B8 are still open. A DRC with no short and no clearance error is not an isolation rating. Two barrier connections are still open, for the reason above. The USB-C land misses the 0.25 mm hole clearance by 0.0556 mm. Four dangling vias and five silk warnings are unchanged from the routed copy. No Gerber, drill, or position file was written.
+
+## Validated copy
+
+`kicad11/windlass_validated.kicad_pcb` continues from the finished board and leaves that file as the checkpoint. The schematic, the relay circuit, and the firmware are unchanged. The project file keeps the 0.25 mm hole clearance. `windlass_validated.kicad_dru` keeps the six width rules and does not exempt `J_USB`.
+
+### The DRY_A via check
+
+`LOFRANS_NODE` and `REED_ISO` are still open. JP_REED pin 1 does not reach the `LOFRANS_NODE` track at D20 pin 2. R23 pin 1 does not reach JP_REED pin 2. The copper between them is the `DRY_A` segment from (94.73 mm, 122.40 mm) to (97.92 mm, 119.21 mm).
+
+`DRY_A` is the standalone dry-contact node. It sits on the field side of the reed isolator, on `REED_3V3` and `REED_RET`. The Lofrans input uses that same isolated supply. R22 pulls `DRY_A` up to `REED_3V3`. With the shunt on JP_REED pins 1–2, that pull-up stays off `REED_ISO` and `LOFRANS_NODE`. With the shunt on pins 2–3, the pull-up reaches the isolator through `DRY_A`.
+
+A two-via jump onto another layer was measured before any via was placed. The field pocket is the inner keepout from (83.06 mm, 113.59 mm) to (110.70 mm, 151.18 mm) on In1 and In2. That keepout forbids tracks, vias, and pours. The isolation slots are (81.20 mm, 117.80 mm)–(83.40 mm, 122.20 mm) at the MEJ2 and (109.30 mm, 115.40 mm)–(110.70 mm, 120.60 mm) at the ISO7720. The blocking segment is inside the keepout.
+
+`REED_3V3` runs without a break from U4 pin 7 (91.24 mm, 120.00 mm) along y = 116.06 mm to U5 pin 1. The south edge of that 0.40 mm track is y = 116.26 mm. JP_REED pin 1’s pad reaches y = 116.515 mm. The gap is 0.255 mm. A 0.25 mm track with 0.20 mm clearance on both sides needs 0.65 mm, so `DRY_A` has no F.Cu exit north of the header. West and east of the pocket, the exits are the two slots. Past either slot is the logic side of the isolator.
+
+A via outside the keepout is north of y = 113.59 mm, or outside x = 83.06–110.70 mm. The field-side ends of the segment cannot reach that via without crossing `REED_3V3` or a slot. On the logic side the In1 ground pour and the In2 3.3 V pour come within the ordinary 0.20 mm zone clearance of a barrel. The reed barrier is the 1.60 mm surface gap and the 2.20 mm inner-plane margin, not that 0.20 mm clearance. A barrel there would place the dry-contact node, and the isolated reed supply it shares, at ordinary low-voltage spacing from board ground and logic 3.3 V.
+
+No via was added. Both open nets stay on F.Cu. The segment stays, so `DRY_A` still reaches JP_REED pin 3. The two F.Cu paths that open only when that segment is removed are the ones already measured on the finished board: `LOFRANS_NODE` at x = 95.2 mm, and `REED_ISO` along y = 118.6 mm between the header pins.
+
+### USB-C land against the hole rule
+
+The connector uses KiCad’s `USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal`. The footprint cites the GCT drawing (USB4105, 4 October 2019, recommended PCB layout, tolerance ±0.05 mm): https://gct.co/files/drawings/usb4105.pdf
+
+That land, as drawn in the footprint, has two Ø0.65 mm non-plated holes at (±2.89 mm, −2.605 mm) and the ground pads A1/B12 and A12/B1 at (±3.20 mm, −3.68 mm), each 0.60 × 1.15 mm with a 0.15 mm corner radius. The gap from the rounded pad corner to the hole is 0.1944 mm. DRC measures the same 0.1944 mm on J_USB.
+
+The board hole clearance stays 0.25 mm. The land is 0.0556 mm inside that rule. A fabricator that requires 0.20 mm from a non-plated hole to copper also rejects the nominal gap. The ±0.05 mm layout tolerance can make a finished board smaller than 0.1944 mm. The pads were left at the drawing sizes. The four hole-clearance errors remain. This is a fabrication blocker.
+
+### Dangling vias and silk
+
+Four vias that connected on one layer only were removed: `QMCU_G` at (82.07 mm, 16.22 mm), `IO3_NET` at (138.84 mm, 60.72 mm), `DN_REQ` at (143.55 mm, 61.01 mm), and `VIN_COIL` at (88.05 mm, 36.98 mm). Each net still joins its pads on the copper that remains.
+
+The `+12V  GND` label moved from (12.00 mm, 140.00 mm) to (12.00 mm, 139.40 mm), above the J_PWR silk at y = 140.48 mm. The `SW  SW  IGN  IGN` label moved from (42.00 mm, 140.00 mm) to (45.50 mm, 139.40 mm). Its box is (39.15 mm, 138.61 mm)–(51.85 mm, 140.19 mm). D61 pad 2 ends at x = 38.90 mm, and the J_PERM silk starts at y = 140.48 mm. DRC reports no silk warning.
+
+### DRC and ERC
+
+DRC after a zone refill, at 7:23 am Sydney time on 23 November 2026, is `kicad11/drc_validated.rpt`. It reports 0 shorts, 0 clearance errors, 0 under-width tracks, 2 unconnected items, and 4 hole-clearance errors. No barrier net has a via. Barrier copper is on F.Cu only. The nine U3 vias stay at 0.50 mm drill and 0.80 mm pad.
+
+ERC on the unchanged schematic, the same morning, is `kicad11/erc_validated.rpt`: 0 errors and 1 warning. The warning is U5 pin 4, `GND1`, on `REED_RET`. That net is the isolated field return.
+
+### What is still in the way
+
+This board is not for fabrication. B1–B8 in `docs/assumptions_and_open_questions.md` are still open. A DRC with no short and no clearance error is not an isolation rating. The two barrier connections stay open because the via that would free them puts `DRY_A` through the logic-side planes. The USB-C land cannot meet the 0.25 mm hole rule, or a 0.20 mm non-plated-hole rule, at the drawing’s own dimensions and tolerance. No Gerber, drill, or position file was written.

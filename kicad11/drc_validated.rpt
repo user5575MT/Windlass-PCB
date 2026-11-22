@@ -1,0 +1,42 @@
+** Drc report for windlass_validated.kicad_pcb **
+** Created on 2026-11-22T20:23:12 **
+** Report includes: Errors, Warnings **
+
+** Found 4 DRC violations **
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.1944 mm)
+    Rule: board setup constraints hole; error
+    @(16.8000 mm, 12.3200 mm): Pad A1 [GND] of J_USB on F.Cu
+    @(17.1100 mm, 13.3950 mm): NPTH pad of J_USB
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.1944 mm)
+    Rule: board setup constraints hole; error
+    @(23.2000 mm, 12.3200 mm): Pad A12 [GND] of J_USB on F.Cu
+    @(22.8900 mm, 13.3950 mm): NPTH pad of J_USB
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.1944 mm)
+    Rule: board setup constraints hole; error
+    @(23.2000 mm, 12.3200 mm): Pad B1 [GND] of J_USB on F.Cu
+    @(22.8900 mm, 13.3950 mm): NPTH pad of J_USB
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.1944 mm)
+    Rule: board setup constraints hole; error
+    @(16.8000 mm, 12.3200 mm): Pad B12 [GND] of J_USB on F.Cu
+    @(17.1100 mm, 13.3950 mm): NPTH pad of J_USB
+
+** Found 2 unconnected pads **
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(102.3250 mm, 117.3650 mm): PTH pad 1 [LOFRANS_NODE] of JP_REED
+    @(95.1317 mm, 133.9180 mm): Track [LOFRANS_NODE] on F.Cu, length 0.5716 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(98.2150 mm, 119.9050 mm): Pad 1 [REED_ISO] of R23 on F.Cu
+    @(102.3250 mm, 119.9050 mm): PTH pad 2 [REED_ISO] of JP_REED
+
+** Found 0 Footprint errors **
+
+** Ignored checks **
+    - Footprint has no courtyard defined
+    - Track endpoint not centered on via
+    - Tuning profile track geometries
+    - Footprint doesn't match symbol's footprint filters
+    - Footprint component type doesn't match footprint pads
+
+** End of Report **

@@ -2,6 +2,16 @@
 
 Status of this repository: design only. No board has been ordered. No firmware has been modified, flashed, or deployed. No vessel wiring has been changed. No Gerber, drill, or position file has been written.
 
+## 2026-11-23 — Validated copy, DRY_A left on F.Cu
+
+`kicad11/windlass_validated.kicad_pcb` continues from the finished board. The finished file, the routed file, and the original `kicad11/windlass.kicad_pcb` were not overwritten. The schematic was not edited.
+
+A two-via jump of the `DRY_A` segment that blocks `LOFRANS_NODE` and `REED_ISO` was measured and rejected. The segment sits inside the reed inner keepout. The only exits that stay outside that keepout and outside the isolation slots cross onto the logic side, where a barrel would sit 0.20 mm from the inner ground pour and the inner 3.3 V pour. `DRY_A` is the standalone dry contact and shares `REED_3V3` and `REED_RET` with the Lofrans input, so that via was not added. Both nets stay unconnected, on F.Cu.
+
+The four dangling vias were removed. The `+12V  GND` and `SW  SW  IGN  IGN` labels were moved clear of the connector silk and of D61 pad 2. The GCT USB4105 land is unchanged: the drawing’s own gap is 0.1944 mm, the layout tolerance is ±0.05 mm, and the 0.25 mm hole rule still reports all four gaps.
+
+DRC at 7:23 am Sydney time is `kicad11/drc_validated.rpt`: 0 shorts, 0 clearance errors, 0 under-width tracks, 2 unconnected items, and 4 hole-clearance errors. ERC on the unchanged schematic is 0 errors and 1 warning (U5 `GND1` on `REED_RET`). This board is not for fabrication. B1–B8 are still open. The write-up is the “Validated copy” section of `docs/freerouting_trial.md`.
+
 ## 2026-11-22 — Finished copy of the routed board
 
 `kicad11/windlass_finished.kicad_pcb` continues from the FreeRouting copy. The routed file and the original `kicad11/windlass.kicad_pcb` were not overwritten. The schematic was not edited. The board was not autorouted again.
