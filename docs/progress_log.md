@@ -2,6 +2,12 @@
 
 Status of this repository: design only. No board has been ordered. No firmware has been modified, flashed, or deployed. No vessel wiring has been changed. No Gerber, drill, or position file has been written.
 
+## 2026-11-22 — FreeRouting trial, board unchanged
+
+FreeRouting 2.5.0 was run on a copy of `kicad11/windlass.kicad_pcb` with the custom-router copper removed. The schematic and `kicad11/windlass.kicad_pcb` were not modified. The native Linux CLI hangs on a GraalVM serialization error (`ComponentOutline`). The JAR, on OpenJDK 25.0.5.1, completed both trials.
+
+With every net free to use all four layers, KiCad DRC after import showed 0 shorts, 0 clearance errors, and 0 open signal nets. Fourteen isolated nets still received through vias. With those 21 nets locked to F.Cu in the Specctra file, the vias disappeared and one signal stayed open (`REED_ISO` at U5 pin 2). That import also has one short (`VIN_12` on In1.Cu against an `IGN_B` via) and one 0.166 mm clearance on the same pair. Both runs left about 100 tracks at 0.15 mm, under the 0.20 mm rule. The report is `docs/freerouting_trial.md`.
+
 ## 2026-11-22 — Integrated redesign, not for fabrication
 
 The revision 0.8 placement in `kicad/` is unchanged and is kept as the reference. A new schematic and a new four-layer board are in `kicad11/`. The outline is 200 × 160 mm. The relays stay on this board. The XOR, the AND, the second buck, the 5 V rail, and the mid-mount USB-C footprint are gone.
