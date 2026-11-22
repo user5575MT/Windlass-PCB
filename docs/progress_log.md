@@ -2,6 +2,14 @@
 
 Status of this repository: design only. No board has been ordered. No firmware has been modified, flashed, or deployed. No vessel wiring has been changed. No Gerber, drill, or position file has been written.
 
+## 2026-11-22 — Finished copy of the routed board
+
+`kicad11/windlass_finished.kicad_pcb` continues from the FreeRouting copy. The routed file and the original `kicad11/windlass.kicad_pcb` were not overwritten. The schematic was not edited. The board was not autorouted again.
+
+`GND_CAN` now reaches U10 pin 15 on F.Cu at 0.40 mm, around the pin row and the isolation slot, with no via. The seventy under-width segments were widened to their class widths. One `PG` segment between U13 pins 2 and 4 was centered so both gaps are 0.200 mm. The four `GND` zone-to-itself reports were four real pour fragments, each holding a ground pad (the two USB ground pairs, R15 pin 2, and U14 pin 3) that had no connection to the main plane. A via on each joins them to the ground pours. `LOFRANS_NODE` and `REED_ISO` are still open: the only F.Cu gap between those pads and the rest of their nets is a `DRY_A` track, and all three nets are barred from vias.
+
+DRC at 8:57 pm Sydney time is `kicad11/drc_finished.rpt`: 0 shorts, 0 clearance errors, 0 under-width tracks, 2 unconnected items, and 4 hole-clearance errors. The hole errors are the GCT USB-C land, 0.1944 mm against a 0.25 mm rule. That gap is not waived on this copy. U3’s nine 0.50 mm thermal vias are unchanged. This board is not for fabrication. B1–B8 are still open. The write-up is the “Finished copy” section of `docs/freerouting_trial.md`.
+
 ## 2026-11-22 — FreeRouting on a separate copy
 
 `kicad11/windlass_routed.kicad_pcb` is a copy of the integrated board, routed with FreeRouting 2.5.0 (the JAR on OpenJDK 25) after the net classes were set to the widths the layout already required. The original `kicad11/windlass.kicad_pcb` was not overwritten. The schematic was not edited.

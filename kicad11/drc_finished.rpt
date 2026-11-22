@@ -1,0 +1,74 @@
+** Drc report for windlass_finished.kicad_pcb **
+** Created on 2026-11-22T09:57:30 **
+** Report includes: Errors, Warnings **
+
+** Found 13 DRC violations **
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.1944 mm)
+    Rule: board setup constraints hole; error
+    @(16.8000 mm, 12.3200 mm): Pad A1 [GND] of J_USB on F.Cu
+    @(17.1100 mm, 13.3950 mm): NPTH pad of J_USB
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.1944 mm)
+    Rule: board setup constraints hole; error
+    @(23.2000 mm, 12.3200 mm): Pad A12 [GND] of J_USB on F.Cu
+    @(22.8900 mm, 13.3950 mm): NPTH pad of J_USB
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.1944 mm)
+    Rule: board setup constraints hole; error
+    @(23.2000 mm, 12.3200 mm): Pad B1 [GND] of J_USB on F.Cu
+    @(22.8900 mm, 13.3950 mm): NPTH pad of J_USB
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.1944 mm)
+    Rule: board setup constraints hole; error
+    @(16.8000 mm, 12.3200 mm): Pad B12 [GND] of J_USB on F.Cu
+    @(17.1100 mm, 13.3950 mm): NPTH pad of J_USB
+[silk_overlap]: Silkscreen clearance
+    Rule: board setup constraints silk; warning
+    @(13.7800 mm, 147.7200 mm): Segment of J_PWR on F.Silkscreen
+    @(12.0000 mm, 140.0000 mm): PCB text '+12V  GND' on F.Silkscreen
+[silk_overlap]: Silkscreen clearance
+    Rule: board setup constraints silk; warning
+    @(13.7800 mm, 140.4800 mm): Segment of J_PWR on F.Silkscreen
+    @(12.0000 mm, 140.0000 mm): PCB text '+12V  GND' on F.Silkscreen
+[silk_overlap]: Silkscreen clearance
+    Rule: board setup constraints silk; warning
+    @(43.7800 mm, 147.7200 mm): Segment of J_PERM on F.Silkscreen
+    @(42.0000 mm, 140.0000 mm): PCB text 'SW  SW  IGN  IGN' on F.Silkscreen
+[silk_overlap]: Silkscreen clearance
+    Rule: board setup constraints silk; warning
+    @(42.0000 mm, 140.0000 mm): PCB text 'SW  SW  IGN  IGN' on F.Silkscreen
+    @(43.7800 mm, 140.4800 mm): Segment of J_PERM on F.Silkscreen
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(42.0000 mm, 140.0000 mm): PCB text 'SW  SW  IGN  IGN' on F.Silkscreen
+    @(37.6500 mm, 139.6000 mm): Pad 2 [UP_NO] of D61 on F.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(82.0728 mm, 16.2150 mm): Via [QMCU_G] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(138.8447 mm, 60.7151 mm): Via [IO3_NET] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(143.5544 mm, 61.0117 mm): Via [DN_REQ] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(88.0490 mm, 36.9819 mm): Via [VIN_COIL] on F.Cu - B.Cu
+
+** Found 2 unconnected pads **
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(102.3250 mm, 117.3650 mm): PTH pad 1 [LOFRANS_NODE] of JP_REED
+    @(94.7275 mm, 133.5138 mm): Pad 2 [LOFRANS_NODE] of D20 on F.Cu
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(98.2150 mm, 119.9050 mm): Pad 1 [REED_ISO] of R23 on F.Cu
+    @(105.2296 mm, 119.9050 mm): Track [REED_ISO] on F.Cu, length 2.9046 mm
+
+** Found 0 Footprint errors **
+
+** Ignored checks **
+    - Footprint has no courtyard defined
+    - Track endpoint not centered on via
+    - Tuning profile track geometries
+    - Footprint doesn't match symbol's footprint filters
+    - Footprint component type doesn't match footprint pads
+
+** End of Report **
