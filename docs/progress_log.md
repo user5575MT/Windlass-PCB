@@ -2,6 +2,12 @@
 
 Status of this repository: design only. No board has been ordered. No firmware has been modified, flashed, or deployed. No vessel wiring has been changed. No Gerber, drill, or position file has been written.
 
+## 2026-11-22 — FreeRouting on a separate copy
+
+`kicad11/windlass_routed.kicad_pcb` is a copy of the integrated board, routed with FreeRouting 2.5.0 (the JAR on OpenJDK 25) after the net classes were set to the widths the layout already required. The original `kicad11/windlass.kicad_pcb` was not overwritten. The schematic was not edited.
+
+The route ran from 7:03 pm to 7:06 pm Sydney time. DRC after zone refill, at 7:12 pm, is in `kicad11/drc_routed.rpt`: 0 shorts, 0 clearance errors, 0 hole-clearance errors, and 0 drill errors. Three signal connections are still open (`LOFRANS_NODE`, `REED_ISO`, `GND_CAN`), all on nets that are held on F.Cu with no vias. Seventy tracks are narrower than their class. The seventeen isolator-side nets have no vias. The four relay-contact nets are 1.20 mm and may use vias. U3’s twelve 0.20 mm thermal drills were replaced, on the copy, with nine 0.50 mm drills inside the existing ground pad. The USB-C land was not redrawn. This board is not for fabrication. B1–B8 are still open. The write-up is the “Routed copy” section of `docs/freerouting_trial.md`.
+
 ## 2026-11-22 — FreeRouting trial, board unchanged
 
 FreeRouting 2.5.0 was run on a copy of `kicad11/windlass.kicad_pcb` with the custom-router copper removed. The schematic and `kicad11/windlass.kicad_pcb` were not modified. The native Linux CLI hangs on a GraalVM serialization error (`ComponentOutline`). The JAR, on OpenJDK 25.0.5.1, completed both trials.

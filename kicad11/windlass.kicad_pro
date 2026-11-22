@@ -285,6 +285,120 @@
         "pcb_color": "rgba(0, 0, 0, 0.000)",
         "priority": 2147483647,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 0.25,
+        "tuning_profile": "",
+        "via_diameter": 0.6,
+        "via_drill": 0.3,
+        "wire_width": 6
+      },
+      {
+        "bus_width": 12,
+        "clearance": 0.2,
+        "diff_pair_gap": 0.25,
+        "diff_pair_via_gap": 0.25,
+        "diff_pair_width": 0.2,
+        "line_style": 0,
+        "microvia_diameter": 0.3,
+        "microvia_drill": 0.1,
+        "name": "Coil",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": -1,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 0.5,
+        "tuning_profile": "",
+        "via_diameter": 0.6,
+        "via_drill": 0.3,
+        "wire_width": 6
+      },
+      {
+        "bus_width": 12,
+        "clearance": 0.2,
+        "diff_pair_gap": 0.25,
+        "diff_pair_via_gap": 0.25,
+        "diff_pair_width": 0.2,
+        "line_style": 0,
+        "microvia_diameter": 0.3,
+        "microvia_drill": 0.1,
+        "name": "Contact",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": -1,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 1.2,
+        "tuning_profile": "",
+        "via_diameter": 0.6,
+        "via_drill": 0.3,
+        "wire_width": 6
+      },
+      {
+        "bus_width": 12,
+        "clearance": 0.2,
+        "diff_pair_gap": 0.25,
+        "diff_pair_via_gap": 0.25,
+        "diff_pair_width": 0.2,
+        "line_style": 0,
+        "microvia_diameter": 0.3,
+        "microvia_drill": 0.1,
+        "name": "Isolated",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": -1,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 0.4,
+        "tuning_profile": "",
+        "via_diameter": 0.6,
+        "via_drill": 0.3,
+        "wire_width": 6
+      },
+      {
+        "bus_width": 12,
+        "clearance": 0.2,
+        "diff_pair_gap": 0.25,
+        "diff_pair_via_gap": 0.25,
+        "diff_pair_width": 0.2,
+        "line_style": 0,
+        "microvia_diameter": 0.3,
+        "microvia_drill": 0.1,
+        "name": "Isolated_sig",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": -1,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 0.25,
+        "tuning_profile": "",
+        "via_diameter": 0.6,
+        "via_drill": 0.3,
+        "wire_width": 6
+      },
+      {
+        "bus_width": 12,
+        "clearance": 0.2,
+        "diff_pair_gap": 0.25,
+        "diff_pair_via_gap": 0.25,
+        "diff_pair_width": 0.2,
+        "line_style": 0,
+        "microvia_diameter": 0.3,
+        "microvia_drill": 0.1,
+        "name": "Power12",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": -1,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 0.8,
+        "tuning_profile": "",
+        "via_diameter": 0.6,
+        "via_drill": 0.3,
+        "wire_width": 6
+      },
+      {
+        "bus_width": 12,
+        "clearance": 0.2,
+        "diff_pair_gap": 0.25,
+        "diff_pair_via_gap": 0.25,
+        "diff_pair_width": 0.2,
+        "line_style": 0,
+        "microvia_diameter": 0.3,
+        "microvia_drill": 0.1,
+        "name": "USB",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": -1,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
         "track_width": 0.2,
         "tuning_profile": "",
         "via_diameter": 0.6,
@@ -296,8 +410,304 @@
       "version": 5
     },
     "net_colors": {},
-    "netclass_assignments": {},
-    "netclass_patterns": []
+    "netclass_assignments": {
+      "UP_COM": [
+        "Contact"
+      ],
+      "UP_NO": [
+        "Contact"
+      ],
+      "DN_COM": [
+        "Contact"
+      ],
+      "DN_NO": [
+        "Contact"
+      ],
+      "VIN_12": [
+        "Power12"
+      ],
+      "VIN_MCU": [
+        "Power12"
+      ],
+      "+12V_MCU": [
+        "Power12"
+      ],
+      "VIN_COIL": [
+        "Power12"
+      ],
+      "+12V_COIL": [
+        "Power12"
+      ],
+      "COIL_12": [
+        "Power12"
+      ],
+      "SERIES_NODE": [
+        "Coil"
+      ],
+      "UP_LOW": [
+        "Coil"
+      ],
+      "DN_LOW": [
+        "Coil"
+      ],
+      "SW_A": [
+        "Coil"
+      ],
+      "SW_B": [
+        "Coil"
+      ],
+      "IGN_A": [
+        "Coil"
+      ],
+      "IGN_B": [
+        "Coil"
+      ],
+      "GND_CAN": [
+        "Isolated"
+      ],
+      "ISO_5V": [
+        "Isolated"
+      ],
+      "CAN_H": [
+        "Isolated"
+      ],
+      "CAN_L": [
+        "Isolated"
+      ],
+      "REED_3V3": [
+        "Isolated"
+      ],
+      "REED_RET": [
+        "Isolated"
+      ],
+      "REED_ISO": [
+        "Isolated_sig"
+      ],
+      "REED_SIG": [
+        "Isolated_sig"
+      ],
+      "LOFRANS_NODE": [
+        "Isolated_sig"
+      ],
+      "DRY_A": [
+        "Isolated_sig"
+      ],
+      "UP_RET": [
+        "Isolated_sig"
+      ],
+      "UP_FIELD": [
+        "Isolated_sig"
+      ],
+      "UP_LED_A": [
+        "Isolated_sig"
+      ],
+      "DN_RET": [
+        "Isolated_sig"
+      ],
+      "DN_FIELD": [
+        "Isolated_sig"
+      ],
+      "DN_LED_A": [
+        "Isolated_sig"
+      ],
+      "NMEA_SHIELD": [
+        "Isolated_sig"
+      ],
+      "USB_DN": [
+        "USB"
+      ],
+      "USB_DP": [
+        "USB"
+      ],
+      "USB_DN_C": [
+        "USB"
+      ],
+      "USB_DP_C": [
+        "USB"
+      ],
+      "USB_VBUS": [
+        "USB"
+      ],
+      "USB_SHIELD": [
+        "USB"
+      ],
+      "CC1": [
+        "USB"
+      ],
+      "CC2": [
+        "USB"
+      ]
+    },
+    "netclass_patterns": [
+      {
+        "netclass": "Contact",
+        "pattern": "UP_COM"
+      },
+      {
+        "netclass": "Contact",
+        "pattern": "UP_NO"
+      },
+      {
+        "netclass": "Contact",
+        "pattern": "DN_COM"
+      },
+      {
+        "netclass": "Contact",
+        "pattern": "DN_NO"
+      },
+      {
+        "netclass": "Power12",
+        "pattern": "VIN_12"
+      },
+      {
+        "netclass": "Power12",
+        "pattern": "VIN_MCU"
+      },
+      {
+        "netclass": "Power12",
+        "pattern": "+12V_MCU"
+      },
+      {
+        "netclass": "Power12",
+        "pattern": "VIN_COIL"
+      },
+      {
+        "netclass": "Power12",
+        "pattern": "+12V_COIL"
+      },
+      {
+        "netclass": "Power12",
+        "pattern": "COIL_12"
+      },
+      {
+        "netclass": "Coil",
+        "pattern": "SERIES_NODE"
+      },
+      {
+        "netclass": "Coil",
+        "pattern": "UP_LOW"
+      },
+      {
+        "netclass": "Coil",
+        "pattern": "DN_LOW"
+      },
+      {
+        "netclass": "Coil",
+        "pattern": "SW_A"
+      },
+      {
+        "netclass": "Coil",
+        "pattern": "SW_B"
+      },
+      {
+        "netclass": "Coil",
+        "pattern": "IGN_A"
+      },
+      {
+        "netclass": "Coil",
+        "pattern": "IGN_B"
+      },
+      {
+        "netclass": "Isolated",
+        "pattern": "GND_CAN"
+      },
+      {
+        "netclass": "Isolated",
+        "pattern": "ISO_5V"
+      },
+      {
+        "netclass": "Isolated",
+        "pattern": "CAN_H"
+      },
+      {
+        "netclass": "Isolated",
+        "pattern": "CAN_L"
+      },
+      {
+        "netclass": "Isolated",
+        "pattern": "REED_3V3"
+      },
+      {
+        "netclass": "Isolated",
+        "pattern": "REED_RET"
+      },
+      {
+        "netclass": "Isolated_sig",
+        "pattern": "REED_ISO"
+      },
+      {
+        "netclass": "Isolated_sig",
+        "pattern": "REED_SIG"
+      },
+      {
+        "netclass": "Isolated_sig",
+        "pattern": "LOFRANS_NODE"
+      },
+      {
+        "netclass": "Isolated_sig",
+        "pattern": "DRY_A"
+      },
+      {
+        "netclass": "Isolated_sig",
+        "pattern": "UP_RET"
+      },
+      {
+        "netclass": "Isolated_sig",
+        "pattern": "UP_FIELD"
+      },
+      {
+        "netclass": "Isolated_sig",
+        "pattern": "UP_LED_A"
+      },
+      {
+        "netclass": "Isolated_sig",
+        "pattern": "DN_RET"
+      },
+      {
+        "netclass": "Isolated_sig",
+        "pattern": "DN_FIELD"
+      },
+      {
+        "netclass": "Isolated_sig",
+        "pattern": "DN_LED_A"
+      },
+      {
+        "netclass": "Isolated_sig",
+        "pattern": "NMEA_SHIELD"
+      },
+      {
+        "netclass": "USB",
+        "pattern": "USB_DN"
+      },
+      {
+        "netclass": "USB",
+        "pattern": "USB_DP"
+      },
+      {
+        "netclass": "USB",
+        "pattern": "USB_DN_C"
+      },
+      {
+        "netclass": "USB",
+        "pattern": "USB_DP_C"
+      },
+      {
+        "netclass": "USB",
+        "pattern": "USB_VBUS"
+      },
+      {
+        "netclass": "USB",
+        "pattern": "USB_SHIELD"
+      },
+      {
+        "netclass": "USB",
+        "pattern": "CC1"
+      },
+      {
+        "netclass": "USB",
+        "pattern": "CC2"
+      }
+    ]
   },
   "pcbnew": {
     "last_paths": {

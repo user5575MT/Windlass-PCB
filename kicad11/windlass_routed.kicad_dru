@@ -1,0 +1,36 @@
+(version 1)
+
+(rule "Hole clearance except the GCT USB4105 land"
+	(constraint hole_clearance (min 0.25mm))
+	(condition "!(A.memberOfFootprint('J_USB') && B.memberOfFootprint('J_USB'))")
+)
+
+(rule "Signal track width"
+	(constraint track_width (min 0.25mm))
+	(condition "A.hasNetclass('Default') || A.hasNetclass('Isolated_sig')")
+)
+
+(rule "USB track width"
+	(constraint track_width (min 0.2mm))
+	(condition "A.hasNetclass('USB')")
+)
+
+(rule "Isolated supply track width"
+	(constraint track_width (min 0.4mm))
+	(condition "A.hasNetclass('Isolated')")
+)
+
+(rule "Coil path track width"
+	(constraint track_width (min 0.5mm))
+	(condition "A.hasNetclass('Coil')")
+)
+
+(rule "12 V track width"
+	(constraint track_width (min 0.8mm))
+	(condition "A.hasNetclass('Power12')")
+)
+
+(rule "Contact track width"
+	(constraint track_width (min 1.2mm))
+	(condition "A.hasNetclass('Contact')")
+)
