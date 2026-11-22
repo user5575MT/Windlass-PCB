@@ -2,6 +2,16 @@
 
 Status of this repository: design only. No board has been ordered. No firmware has been modified, flashed, or deployed. No vessel wiring has been changed. No Gerber, drill, or position file has been written.
 
+## 2026-11-23 — Complete copy, reed nets joined on F.Cu
+
+`kicad11/windlass_complete.kicad_pcb` continues from the validated board. The validated file, the finished file, the routed file, and the original `kicad11/windlass.kicad_pcb` were not overwritten. The schematic was not edited, and the board was not autorouted again.
+
+JP_REED moved to (104.00 mm, 137.58 mm) and turned 180°, so the dry contact is the north pin, and C22 moved 2 mm north. `LOFRANS_NODE`, `REED_ISO`, and `DRY_A` now each join their pads on F.Cu: JP_REED pin 1 to D20 pin 2, JP_REED pin 2 to R23 pin 1, and JP_REED pin 3 to J_REED pin 3. The `REED_RET` wall is split and rejoined east of the header so it stays clear of those new tracks. `REED_3V3` keeps its original link. No barrier net has a via, and barrier copper stays on F.Cu. The slots and the inner keepouts are unchanged.
+
+The connector stays the GCT USB4105. No horizontal top-mount USB 2.0 footprint in the KiCad library both matches a manufacturer drawing and clears the 0.25 mm hole rule on a 1.6 mm board. The lands that do clear it are mid-mount, vertical, power-only, or made for a thinner board. The four 0.1944 mm hole-clearance errors remain, and the hole rule stays 0.25 mm.
+
+DRC at 8:51 am Sydney time is `kicad11/drc_complete.rpt`: 0 shorts, 0 clearance errors, 0 under-width tracks, 0 unconnected items, and 4 hole-clearance errors. ERC is the validated run on the unchanged schematic: 0 errors and 1 warning. This board is not for fabrication. B1–B8 are still open. The write-up is the “Complete copy” section of `docs/freerouting_trial.md`.
+
 ## 2026-11-23 — Validated copy, DRY_A left on F.Cu
 
 `kicad11/windlass_validated.kicad_pcb` continues from the finished board. The finished file, the routed file, and the original `kicad11/windlass.kicad_pcb` were not overwritten. The schematic was not edited.

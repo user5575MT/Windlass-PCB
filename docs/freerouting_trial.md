@@ -308,3 +308,37 @@ ERC on the unchanged schematic, the same morning, is `kicad11/erc_validated.rpt`
 ### What is still in the way
 
 This board is not for fabrication. B1–B8 in `docs/assumptions_and_open_questions.md` are still open. A DRC with no short and no clearance error is not an isolation rating. The two barrier connections stay open because the via that would free them puts `DRY_A` through the logic-side planes. The USB-C land cannot meet the 0.25 mm hole rule, or a 0.20 mm non-plated-hole rule, at the drawing’s own dimensions and tolerance. No Gerber, drill, or position file was written.
+
+## Complete copy
+
+`kicad11/windlass_complete.kicad_pcb` continues from the validated board and leaves that file as the checkpoint. The routed file, the finished file, and the original `kicad11/windlass.kicad_pcb` were not overwritten. The schematic was not edited. No net was autorouted again. `windlass_complete.kicad_pro` keeps the 0.25 mm hole clearance, and `windlass_complete.kicad_dru` keeps the six width rules with no `J_USB` exemption.
+
+### Reed header
+
+JP_REED moved so its pin 1 anchor is (104.00 mm, 137.58 mm) and then turned 180°, which puts the dry contact on the north pin. The pins are now pin 3 `DRY_A` at (104.00 mm, 132.50 mm), pin 2 `REED_ISO` at (104.00 mm, 135.04 mm), and pin 1 `LOFRANS_NODE` at (104.00 mm, 137.58 mm). All three stay inside the reed inner keepout and clear of both isolation slots. C22 moved 2 mm north, to (105.522 mm, 121.582 mm) and (106.482 mm, 121.582 mm). U4, U5, J_REED, R24, D20, D21, the slots, and the inner keepouts did not move.
+
+With the header turned, the three field nets route on F.Cu and none of them takes a via:
+
+- `LOFRANS_NODE` runs from JP_REED pin 1 to D20 pin 2, and on to D21 pin 1 and R20 pin 2.
+- `REED_ISO` runs from JP_REED pin 2 east to x = 108.85 mm, west of the ISO7720 slot, then north to U5 pin 2, C22 pin 1, and R23 pin 1. The loop to R23 passes north of that resistor, because the gap between its pads is too narrow for a 0.25 mm track.
+- `DRY_A` runs from JP_REED pin 3 to R22 pin 2 and to J_REED pin 3.
+
+The new `DRY_A` and `LOFRANS_NODE` tracks cross the line of the old `REED_RET` wall at x = 98.15 mm. That wall is split and rejoined on the east side of the header, weaving between the three header pads at y = 131.20 mm, 133.77 mm, and 136.31 mm, then around the `LOFRANS_NODE` track at y = 139.70 mm. `REED_3V3` keeps its original link from R24 pin 1 through (93.08 mm, 131.86 mm) to D20 pin 1. `REED_RET` and `REED_3V3` are each one piece of copper. No barrier net has a via, and barrier copper is on F.Cu only. `REED_RET`, `UP_RET`, `DN_RET`, and `GND_CAN` are not joined to `GND` or to each other.
+
+### USB-C connector
+
+The connector stays the GCT USB4105. Every `USB_C_Receptacle` footprint in the KiCad library was measured for the true gap from a pad to a foreign hole, treating oval drills as stadiums. A part was only a candidate if that gap is at least 0.25 mm and the copper-to-copper gap is at least 0.20 mm, and if the footprint matches a manufacturer drawing for a horizontal top-mount USB 2.0 receptacle on a 1.6 mm board.
+
+No footprint meets all of those. The horizontal top-mount 16-pin lands that match a drawing (USB4105 and USB4110) miss the hole rule: USB4105 by 0.1944 mm, and the drawing’s ±0.05 mm tolerance can make the finished gap smaller. The lands that clear 0.25 mm are a different part. Amphenol 12401948E412A is mid-mount and marked not for new designs. HRO TYPE-C-31-M-12 is the mid-mount footprint this board already replaced. Molex 105450-0101 is specified for a 0.80 mm board. GCT USB4085 and G-Switch GT-USB-7025 leave less than 0.20 mm between pads. GCT USB4125 and USB4135 are power-only and have no D+ or D−. GCT USB4115-03-C clears the hole rule (0.47 mm, and still above 0.25 mm after the ±0.05 mm tolerance) but it is a vertical USB 3.2 receptacle, 9.30 mm tall, with SuperSpeed pins the schematic symbol does not carry. The enclosure is still unknown (B6), and the design chose a side-exit plug so every pad sits on the board. It was not fitted.
+
+The USB4105 pads were not redrawn, and the hole clearance stays 0.25 mm. The four hole-clearance errors remain, each 0.1944 mm. They are a fabrication blocker, not a waived error.
+
+### DRC and ERC
+
+DRC after a zone refill, at 8:51 am Sydney time on 23 November 2026, is `kicad11/drc_complete.rpt`. It reports 0 shorts, 0 clearance errors, 0 under-width tracks, 0 unconnected items, and the 4 USB4105 hole-clearance errors. The nine U3 vias stay at 0.50 mm drill and 0.80 mm pad.
+
+The schematic is unchanged, so ERC is the validated run, `kicad11/erc_validated.rpt`: 0 errors and 1 warning. The warning is U5 pin 4, `GND1`, on `REED_RET`.
+
+### What is still in the way
+
+This board is not for fabrication. B1–B8 in `docs/assumptions_and_open_questions.md` are still open. A DRC with no short and no clearance error is not an isolation rating. The USB-C land cannot meet the 0.25 mm hole rule at the drawing’s own dimensions and tolerance, and no replacement in the library is both electrically and mechanically suitable. No Gerber, drill, or position file was written.
