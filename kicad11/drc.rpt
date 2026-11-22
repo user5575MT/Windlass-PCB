@@ -1,0 +1,1678 @@
+** Drc report for windlass.kicad_pcb **
+** Created on 2026-11-21T23:58:30 **
+** Report includes: Errors, Warnings **
+
+** Found 351 DRC violations **
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(179.5000 mm, 74.6250 mm): Track [GND_CAN] on F.Cu, length 1.5000 mm
+    @(178.6500 mm, 74.0950 mm): Pad 14 [<no net>] of U10 on F.Cu
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(100.9000 mm, 73.4000 mm): Track [+3V3] on F.Cu, length 2.2000 mm
+    @(100.9000 mm, 74.7000 mm): Pad 4 [NQ] of U14 on F.Cu
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(16.8000 mm, 12.3200 mm): Track [GND] on F.Cu, length 2.2000 mm
+    @(15.6800 mm, 12.8950 mm): PTH pad SH [USB_SHIELD] of J_USB
+[drill_out_of_range]: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm)
+    Rule: board setup constraints; error
+    @(145.1000 mm, 47.7600 mm): PTH pad 41 [GND] of U3
+[drill_out_of_range]: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm)
+    Rule: board setup constraints; error
+    @(145.1000 mm, 49.1600 mm): PTH pad 41 [GND] of U3
+[drill_out_of_range]: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm)
+    Rule: board setup constraints; error
+    @(145.8000 mm, 47.0600 mm): PTH pad 41 [GND] of U3
+[drill_out_of_range]: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm)
+    Rule: board setup constraints; error
+    @(145.8000 mm, 48.4600 mm): PTH pad 41 [GND] of U3
+[drill_out_of_range]: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm)
+    Rule: board setup constraints; error
+    @(145.8000 mm, 49.8600 mm): PTH pad 41 [GND] of U3
+[drill_out_of_range]: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm)
+    Rule: board setup constraints; error
+    @(146.5000 mm, 47.7600 mm): PTH pad 41 [GND] of U3
+[drill_out_of_range]: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm)
+    Rule: board setup constraints; error
+    @(146.5000 mm, 49.1600 mm): PTH pad 41 [GND] of U3
+[drill_out_of_range]: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm)
+    Rule: board setup constraints; error
+    @(147.2000 mm, 47.0600 mm): PTH pad 41 [GND] of U3
+[drill_out_of_range]: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm)
+    Rule: board setup constraints; error
+    @(147.2000 mm, 48.4600 mm): PTH pad 41 [GND] of U3
+[drill_out_of_range]: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm)
+    Rule: board setup constraints; error
+    @(147.2000 mm, 49.8600 mm): PTH pad 41 [GND] of U3
+[drill_out_of_range]: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm)
+    Rule: board setup constraints; error
+    @(147.9000 mm, 47.7600 mm): PTH pad 41 [GND] of U3
+[drill_out_of_range]: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm)
+    Rule: board setup constraints; error
+    @(147.9000 mm, 49.1600 mm): PTH pad 41 [GND] of U3
+[clearance]: Clearance violation ( clearance 0.2000 mm; actual 0.0750 mm)
+    Local override; error
+    @(116.3750 mm, 98.7500 mm): Via [OR_R] on F.Cu - B.Cu
+    @(117.0000 mm, 99.2500 mm): Track [NOT_PG] on F.Cu, length 5.3750 mm
+[tracks_crossing]: Tracks crossing
+    Local override; error
+    @(100.8750 mm, 74.7500 mm): Track [NQ] on F.Cu, length 1.1250 mm
+    @(100.9000 mm, 73.4000 mm): Track [+3V3] on F.Cu, length 2.2000 mm
+[clearance]: Clearance violation ( clearance 0.2000 mm; actual 0.1872 mm)
+    Local override; error
+    @(106.3556 mm, 101.5080 mm): Pad 4 [BLOCKED] of U13 on F.Cu
+    @(105.7500 mm, 100.8750 mm): Via [NQ] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.0000 mm)
+    Rule: board setup constraints hole; error
+    @(22.3750 mm, 13.3750 mm): Via [USB_VBUS] on F.Cu - B.Cu
+    @(22.8900 mm, 13.3950 mm): NPTH pad of J_USB
+[clearance]: Clearance violation ( clearance 0.2000 mm; actual 0.0500 mm)
+    Local override; error
+    @(21.7500 mm, 12.3200 mm): Pad B5 [CC2] of J_USB on F.Cu
+    @(22.2500 mm, 12.0000 mm): Via [USB_VBUS] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.0000 mm)
+    Rule: board setup constraints hole; error
+    @(22.3750 mm, 13.3750 mm): Via [USB_VBUS] on F.Cu - B.Cu
+    @(22.8900 mm, 13.3950 mm): NPTH pad of J_USB
+[clearance]: Clearance violation ( clearance 0.2000 mm; actual 0.0750 mm)
+    Local override; error
+    @(17.7500 mm, 12.0000 mm): Via [USB_VBUS] on F.Cu - B.Cu
+    @(18.2500 mm, 12.3750 mm): Track [unconnected-(J_USB-SBU2-PadB8)] on F.Cu, length 1.1250 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.0000 mm)
+    Rule: board setup constraints hole; error
+    @(22.3750 mm, 13.3750 mm): Via [USB_VBUS] on F.Cu - B.Cu
+    @(22.8900 mm, 13.3950 mm): NPTH pad of J_USB
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.0000 mm)
+    Rule: board setup constraints hole; error
+    @(22.3750 mm, 13.3750 mm): Via [USB_VBUS] on F.Cu - B.Cu
+    @(22.8900 mm, 13.3950 mm): NPTH pad of J_USB
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.0000 mm)
+    Rule: board setup constraints hole; error
+    @(17.6250 mm, 13.3750 mm): Via [USB_VBUS] on F.Cu - B.Cu
+    @(17.1100 mm, 13.3950 mm): NPTH pad of J_USB
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.0000 mm)
+    Rule: board setup constraints hole; error
+    @(17.6250 mm, 13.3750 mm): Via [USB_VBUS] on F.Cu - B.Cu
+    @(17.1100 mm, 13.3950 mm): NPTH pad of J_USB
+[clearance]: Clearance violation ( clearance 0.2000 mm; actual 0.1250 mm)
+    Local override; error
+    @(21.7500 mm, 12.3200 mm): Pad B5 [CC2] of J_USB on F.Cu
+    @(22.1250 mm, 12.0000 mm): Track [USB_VBUS] on F.Cu, length 0.1250 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.0000 mm)
+    Rule: board setup constraints hole; error
+    @(17.6250 mm, 13.3750 mm): Via [USB_VBUS] on F.Cu - B.Cu
+    @(17.1100 mm, 13.3950 mm): NPTH pad of J_USB
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.0000 mm)
+    Rule: board setup constraints hole; error
+    @(17.5000 mm, 13.1250 mm): Track [USB_VBUS] on F.Cu, length 0.1250 mm
+    @(17.1100 mm, 13.3950 mm): NPTH pad of J_USB
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.0000 mm)
+    Rule: board setup constraints hole; error
+    @(17.3750 mm, 13.1250 mm): Track [USB_VBUS] on F.Cu, length 0.1250 mm
+    @(17.1100 mm, 13.3950 mm): NPTH pad of J_USB
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.0000 mm)
+    Rule: board setup constraints hole; error
+    @(17.3750 mm, 13.2500 mm): Track [USB_VBUS] on F.Cu, length 0.8750 mm
+    @(17.1100 mm, 13.3950 mm): NPTH pad of J_USB
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.0000 mm)
+    Rule: board setup constraints hole; error
+    @(17.6250 mm, 13.3750 mm): Via [USB_VBUS] on F.Cu - B.Cu
+    @(17.1100 mm, 13.3950 mm): NPTH pad of J_USB
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.0904 mm)
+    Rule: board setup constraints hole; error
+    @(22.3750 mm, 12.3750 mm): Track [USB_VBUS] on F.Cu, length 1.0000 mm
+    @(22.8900 mm, 13.3950 mm): NPTH pad of J_USB
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.1850 mm)
+    Rule: board setup constraints hole; error
+    @(16.5000 mm, 13.2500 mm): Track [USB_VBUS] on F.Cu, length 1.0000 mm
+    @(17.1100 mm, 13.3950 mm): NPTH pad of J_USB
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.0904 mm)
+    Rule: board setup constraints hole; error
+    @(17.6250 mm, 12.3750 mm): Track [USB_VBUS] on F.Cu, length 1.0000 mm
+    @(17.1100 mm, 13.3950 mm): NPTH pad of J_USB
+[shorting_items]: Items shorting two nets (nets USB_VBUS and CC2)
+    Local override; error
+    @(22.0000 mm, 12.0000 mm): Track [USB_VBUS] on F.Cu, length 0.1250 mm
+    @(21.7500 mm, 12.3200 mm): Pad B5 [CC2] of J_USB on F.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.0493 mm)
+    Rule: board setup constraints hole; error
+    @(17.5000 mm, 12.7500 mm): Track [USB_VBUS] on F.Cu, length 0.3750 mm
+    @(17.1100 mm, 13.3950 mm): NPTH pad of J_USB
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.0000 mm)
+    Rule: board setup constraints hole; error
+    @(23.0000 mm, 14.0000 mm): Track [USB_SHIELD] on B.Cu, length 0.3750 mm
+    @(22.8900 mm, 13.3950 mm): NPTH pad of J_USB
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.0000 mm)
+    Rule: board setup constraints hole; error
+    @(23.0000 mm, 13.6250 mm): Track [USB_SHIELD] on B.Cu, length 1.1250 mm
+    @(22.8900 mm, 13.3950 mm): NPTH pad of J_USB
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.1800 mm)
+    Rule: board setup constraints hole; error
+    @(17.3750 mm, 14.0000 mm): Track [USB_SHIELD] on B.Cu, length 5.6250 mm
+    @(22.8900 mm, 13.3950 mm): NPTH pad of J_USB
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2355 mm)
+    Rule: board setup constraints hole; error
+    @(17.3750 mm, 15.5000 mm): Track [USB_SHIELD] on B.Cu, length 1.5000 mm
+    @(17.1100 mm, 13.3950 mm): NPTH pad of J_USB
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.0000 mm)
+    Rule: board setup constraints hole; error
+    @(16.7500 mm, 11.2500 mm): Track [USB_DP] on B.Cu, length 46.0000 mm
+    @(17.1100 mm, 13.3950 mm): NPTH pad of J_USB
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.1800 mm)
+    Rule: board setup constraints hole; error
+    @(20.5000 mm, 14.0000 mm): Track [USB_DN_C] on F.Cu, length 3.0000 mm
+    @(22.8900 mm, 13.3950 mm): NPTH pad of J_USB
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.1800 mm)
+    Rule: board setup constraints hole; error
+    @(18.2500 mm, 14.0000 mm): Track [USB_DN_C] on F.Cu, length 1.2500 mm
+    @(17.1100 mm, 13.3950 mm): NPTH pad of J_USB
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.1899 mm)
+    Rule: board setup constraints hole; error
+    @(17.0000 mm, 14.0000 mm): Track [USB_DN_C] on F.Cu, length 0.7500 mm
+    @(17.1100 mm, 13.3950 mm): NPTH pad of J_USB
+[tracks_crossing]: Tracks crossing
+    Local override; error
+    @(118.7500 mm, 103.2500 mm): Track [REED_DATA] on F.Cu, length 4.0000 mm
+    @(114.7971 mm, 101.9013 mm): Track [GND] on F.Cu, length 3.1113 mm
+[clearance]: Clearance violation ( clearance 0.2000 mm; actual 0.1481 mm)
+    Local override; error
+    @(78.5000 mm, 39.2500 mm): Track [QCOIL_G] on F.Cu, length 1.3750 mm
+    @(78.1250 mm, 38.6250 mm): Track [+12V_COIL] on F.Cu, length 0.1250 mm
+[clearance]: Clearance violation ( clearance 0.2000 mm; actual 0.1481 mm)
+    Local override; error
+    @(78.7500 mm, 39.2500 mm): Track [QCOIL_G] on F.Cu, length 0.2500 mm
+    @(78.1250 mm, 38.6250 mm): Track [+12V_COIL] on F.Cu, length 0.1250 mm
+[clearance]: Clearance violation ( clearance 0.2000 mm; actual 0.1821 mm)
+    Local override; error
+    @(78.7500 mm, 39.1250 mm): Track [QCOIL_G] on F.Cu, length 0.1250 mm
+    @(78.1250 mm, 38.6250 mm): Track [+12V_COIL] on F.Cu, length 0.1250 mm
+[clearance]: Clearance violation ( clearance 0.2000 mm; actual 0.1821 mm)
+    Local override; error
+    @(78.8750 mm, 39.1250 mm): Track [QCOIL_G] on F.Cu, length 0.1250 mm
+    @(78.1250 mm, 38.6250 mm): Track [+12V_COIL] on F.Cu, length 0.1250 mm
+[clearance]: Clearance violation ( clearance 0.2000 mm; actual 0.1700 mm)
+    Local override; error
+    @(139.2500 mm, 52.1700 mm): Pad 10 [unconnected-(U3-IO17-Pad10)] of U3 on F.Cu
+    @(138.7500 mm, 51.2500 mm): Via [LED_G] on F.Cu - B.Cu
+[shorting_items]: Items shorting two nets (nets <no net> and GND_CAN)
+    Local override; error
+    @(178.6500 mm, 74.0950 mm): Pad 14 [<no net>] of U10 on F.Cu
+    @(179.5000 mm, 74.6250 mm): Track [GND_CAN] on F.Cu, length 1.5000 mm
+[clearance]: Clearance violation ( clearance 0.2000 mm; actual 0.0300 mm)
+    Local override; error
+    @(178.6500 mm, 74.0950 mm): Pad 14 [<no net>] of U10 on F.Cu
+    @(180.0000 mm, 74.6250 mm): Track [GND_CAN] on F.Cu, length 0.5000 mm
+[shorting_items]: Items shorting two nets (nets GND and USB_SHIELD)
+    Local override; error
+    @(16.8000 mm, 12.3200 mm): Track [GND] on F.Cu, length 2.2000 mm
+    @(15.6800 mm, 12.8950 mm): PTH pad SH [USB_SHIELD] of J_USB
+[tracks_crossing]: Tracks crossing
+    Local override; error
+    @(103.1250 mm, 74.0000 mm): Track [BLOCKED] on F.Cu, length 3.5000 mm
+    @(100.9000 mm, 73.4000 mm): Track [+3V3] on F.Cu, length 2.2000 mm
+[tracks_crossing]: Tracks crossing
+    Local override; error
+    @(106.3556 mm, 100.2080 mm): Track [+3V3] on F.Cu, length 1.6000 mm
+    @(107.1250 mm, 99.6250 mm): Track [PG] on F.Cu, length 2.0000 mm
+[shorting_items]: Items shorting two nets (nets +3V3 and NQ)
+    Local override; error
+    @(100.9000 mm, 73.4000 mm): Track [+3V3] on F.Cu, length 2.2000 mm
+    @(100.9000 mm, 74.7000 mm): Pad 4 [NQ] of U14 on F.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.0404 mm)
+    Rule: board setup constraints hole; error
+    @(17.1100 mm, 13.3950 mm): NPTH pad of J_USB
+    @(17.6250 mm, 13.3750 mm): Via [USB_VBUS] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.0404 mm)
+    Rule: board setup constraints hole; error
+    @(17.1100 mm, 13.3950 mm): NPTH pad of J_USB
+    @(17.6250 mm, 13.3750 mm): Via [USB_VBUS] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.0404 mm)
+    Rule: board setup constraints hole; error
+    @(17.1100 mm, 13.3950 mm): NPTH pad of J_USB
+    @(17.6250 mm, 13.3750 mm): Via [USB_VBUS] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.0404 mm)
+    Rule: board setup constraints hole; error
+    @(17.1100 mm, 13.3950 mm): NPTH pad of J_USB
+    @(17.6250 mm, 13.3750 mm): Via [USB_VBUS] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.0404 mm)
+    Rule: board setup constraints hole; error
+    @(22.8900 mm, 13.3950 mm): NPTH pad of J_USB
+    @(22.3750 mm, 13.3750 mm): Via [USB_VBUS] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.0404 mm)
+    Rule: board setup constraints hole; error
+    @(22.8900 mm, 13.3950 mm): NPTH pad of J_USB
+    @(22.3750 mm, 13.3750 mm): Via [USB_VBUS] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.0404 mm)
+    Rule: board setup constraints hole; error
+    @(22.8900 mm, 13.3950 mm): NPTH pad of J_USB
+    @(22.3750 mm, 13.3750 mm): Via [USB_VBUS] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.0404 mm)
+    Rule: board setup constraints hole; error
+    @(22.8900 mm, 13.3950 mm): NPTH pad of J_USB
+    @(22.3750 mm, 13.3750 mm): Via [USB_VBUS] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.1944 mm)
+    Rule: board setup constraints hole; error
+    @(16.8000 mm, 12.3200 mm): Pad A1 [GND] of J_USB on F.Cu
+    @(17.1100 mm, 13.3950 mm): NPTH pad of J_USB
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.1944 mm)
+    Rule: board setup constraints hole; error
+    @(23.2000 mm, 12.3200 mm): Pad A12 [GND] of J_USB on F.Cu
+    @(22.8900 mm, 13.3950 mm): NPTH pad of J_USB
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.1944 mm)
+    Rule: board setup constraints hole; error
+    @(23.2000 mm, 12.3200 mm): Pad B1 [GND] of J_USB on F.Cu
+    @(22.8900 mm, 13.3950 mm): NPTH pad of J_USB
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2000 mm)
+    Rule: board setup constraints hole; error
+    @(21.7500 mm, 12.3200 mm): Pad B5 [CC2] of J_USB on F.Cu
+    @(22.2500 mm, 12.0000 mm): Via [USB_VBUS] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2000 mm)
+    Rule: board setup constraints hole; error
+    @(18.2500 mm, 12.3200 mm): Pad B8 [unconnected-(J_USB-SBU2-PadB8)] of J_USB on F.Cu
+    @(17.7500 mm, 12.0000 mm): Via [USB_VBUS] on F.Cu - B.Cu
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.1944 mm)
+    Rule: board setup constraints hole; error
+    @(16.8000 mm, 12.3200 mm): Pad B12 [GND] of J_USB on F.Cu
+    @(17.1100 mm, 13.3950 mm): NPTH pad of J_USB
+[items_not_allowed]: Items not allowed (keepout area)
+    Rule: keepout area; error
+    @(40.2500 mm, 142.5000 mm): Via [+12V_COIL] on F.Cu - B.Cu
+[items_not_allowed]: Items not allowed (keepout area)
+    Rule: keepout area; error
+    @(41.2500 mm, 139.7500 mm): Via [+12V_COIL] on F.Cu - B.Cu
+[items_not_allowed]: Items not allowed (keepout area)
+    Rule: keepout area; error
+    @(43.7500 mm, 65.2500 mm): Via [DN_REQ] on F.Cu - B.Cu
+[items_not_allowed]: Items not allowed (keepout area)
+    Rule: keepout area; error
+    @(35.2500 mm, 74.7500 mm): Via [UP_REQ] on F.Cu - B.Cu
+[silk_overlap]: Silkscreen clearance
+    Rule: board setup constraints silk; warning
+    @(13.7800 mm, 147.7200 mm): Segment of J_PWR on F.Silkscreen
+    @(12.0000 mm, 140.0000 mm): PCB text '+12V  GND' on F.Silkscreen
+[silk_overlap]: Silkscreen clearance
+    Rule: board setup constraints silk; warning
+    @(13.7800 mm, 140.4800 mm): Segment of J_PWR on F.Silkscreen
+    @(12.0000 mm, 140.0000 mm): PCB text '+12V  GND' on F.Silkscreen
+[silk_overlap]: Silkscreen clearance
+    Rule: board setup constraints silk; warning
+    @(43.7800 mm, 147.7200 mm): Segment of J_PERM on F.Silkscreen
+    @(42.0000 mm, 140.0000 mm): PCB text 'SW  SW  IGN  IGN' on F.Silkscreen
+[silk_overlap]: Silkscreen clearance
+    Rule: board setup constraints silk; warning
+    @(42.0000 mm, 140.0000 mm): PCB text 'SW  SW  IGN  IGN' on F.Silkscreen
+    @(43.7800 mm, 140.4800 mm): Segment of J_PERM on F.Silkscreen
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(42.0000 mm, 140.0000 mm): PCB text 'SW  SW  IGN  IGN' on F.Silkscreen
+    @(37.6500 mm, 139.6000 mm): Pad 2 [UP_NO] of D61 on F.Cu
+[hole_to_hole]: Drilled hole too close to other hole (board setup constraints min 0.2500 mm; actual 0.0000 mm)
+    Rule: board setup constraints; warning
+    @(149.8750 mm, 59.5000 mm): Via [COIL_RAIL_OK] on F.Cu - B.Cu
+    @(149.7500 mm, 59.7500 mm): Via [COIL_RAIL_OK] on F.Cu - B.Cu
+[hole_to_hole]: Drilled hole too close to other hole (board setup constraints min 0.2500 mm; actual 0.2303 mm)
+    Rule: board setup constraints; warning
+    @(37.6250 mm, 95.3750 mm): Via [DN_GATE] on F.Cu - B.Cu
+    @(38.0000 mm, 95.7500 mm): Via [DN_GATE] on F.Cu - B.Cu
+[hole_to_hole]: Drilled hole too close to other hole (board setup constraints min 0.2500 mm; actual 0.0000 mm)
+    Rule: board setup constraints; warning
+    @(43.5000 mm, 96.3750 mm): Via [UP_GATE] on F.Cu - B.Cu
+    @(43.3750 mm, 96.6250 mm): Via [UP_GATE] on F.Cu - B.Cu
+[hole_to_hole]: Drilled hole too close to other hole (board setup constraints min 0.2500 mm; actual 0.1507 mm)
+    Rule: board setup constraints; warning
+    @(13.2500 mm, 103.8750 mm): Via [UP_LOW] on F.Cu - B.Cu
+    @(13.6250 mm, 104.1250 mm): Via [UP_LOW] on F.Cu - B.Cu
+[hole_to_hole]: Drilled hole too close to other hole (board setup constraints min 0.2500 mm; actual 0.0000 mm)
+    Rule: board setup constraints; warning
+    @(44.7500 mm, 96.2500 mm): Via [UP_REQ] on F.Cu - B.Cu
+    @(44.5000 mm, 96.3750 mm): Via [UP_REQ] on F.Cu - B.Cu
+[hole_to_hole]: Drilled hole too close to other hole (board setup constraints min 0.2500 mm; actual 0.0404 mm)
+    Rule: board setup constraints; warning
+    @(17.6250 mm, 13.3750 mm): Via [USB_VBUS] on F.Cu - B.Cu
+    @(17.1100 mm, 13.3950 mm): NPTH pad of J_USB
+[hole_to_hole]: Drilled hole too close to other hole (board setup constraints min 0.2500 mm; actual 0.0404 mm)
+    Rule: board setup constraints; warning
+    @(22.3750 mm, 13.3750 mm): Via [USB_VBUS] on F.Cu - B.Cu
+    @(22.8900 mm, 13.3950 mm): NPTH pad of J_USB
+[hole_to_hole]: Drilled hole too close to other hole (board setup constraints min 0.2500 mm; actual 0.0404 mm)
+    Rule: board setup constraints; warning
+    @(17.6250 mm, 13.3750 mm): Via [USB_VBUS] on F.Cu - B.Cu
+    @(17.1100 mm, 13.3950 mm): NPTH pad of J_USB
+[hole_to_hole]: Drilled hole too close to other hole (board setup constraints min 0.2500 mm; actual 0.0404 mm)
+    Rule: board setup constraints; warning
+    @(22.3750 mm, 13.3750 mm): Via [USB_VBUS] on F.Cu - B.Cu
+    @(22.8900 mm, 13.3950 mm): NPTH pad of J_USB
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(109.3000 mm, 115.4000 mm): Segment on Edge.Cuts
+    @(107.9400 mm, 115.4400 mm): Segment of U5 on F.Silkscreen
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(110.7000 mm, 115.4000 mm): Segment on Edge.Cuts
+    @(112.0600 mm, 120.5600 mm): Segment of U5 on F.Silkscreen
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(131.2000 mm, 119.6000 mm): Segment on Edge.Cuts
+    @(129.6150 mm, 116.5900 mm): Segment of U6 on F.Silkscreen
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(131.2000 mm, 119.6000 mm): Segment on Edge.Cuts
+    @(134.3850 mm, 119.4100 mm): Segment of U6 on F.Silkscreen
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(153.2000 mm, 119.6000 mm): Segment on Edge.Cuts
+    @(151.6150 mm, 116.5900 mm): Segment of U7 on F.Silkscreen
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(153.2000 mm, 119.6000 mm): Segment on Edge.Cuts
+    @(156.3850 mm, 119.4100 mm): Segment of U7 on F.Silkscreen
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(40.2500 mm, 142.5000 mm): Via [+12V_COIL] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(85.8750 mm, 38.2500 mm): Via [+12V_COIL] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(76.0000 mm, 21.8750 mm): Via [+12V_MCU] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(85.8750 mm, 18.2500 mm): Via [+12V_MCU] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(79.0000 mm, 18.2500 mm): Via [+12V_MCU] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(54.8750 mm, 30.0000 mm): Via [+12V_MCU] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(98.1250 mm, 74.0000 mm): Via [BLOCKED] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(107.3750 mm, 101.5000 mm): Via [BLOCKED] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(104.7500 mm, 74.0000 mm): Via [BLOCKED] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(53.0000 mm, 24.5000 mm): Via [BST_3V3] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(58.2500 mm, 27.0000 mm): Via [BST_3V3] on F.Cu - B.Cu
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(178.6250 mm, 75.3750 mm): Track [CAN_H] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(178.6250 mm, 76.6250 mm): Track [CAN_L] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(161.0000 mm, 107.2500 mm): Track [CAN_VIN] on F.Cu, length 0.1250 mm
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(163.2500 mm, 110.1250 mm): Via [CAN_VIN] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(159.6250 mm, 106.5000 mm): Via [CAN_VIN] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(159.6250 mm, 110.2500 mm): Via [CAN_VIN] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(18.2500 mm, 9.7500 mm): Via [CC1] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(20.2500 mm, 8.7500 mm): Via [CC2] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(10.8750 mm, 99.3750 mm): Via [COIL_12] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(12.3750 mm, 96.8750 mm): Via [COIL_12] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(10.3750 mm, 91.6250 mm): Via [COIL_12] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(10.3750 mm, 95.7500 mm): Via [COIL_12] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(14.0000 mm, 99.3750 mm): Via [COIL_DIV] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(105.8750 mm, 83.3750 mm): Via [COIL_DIV] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(97.3750 mm, 82.2500 mm): Via [COIL_DIV] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(103.7500 mm, 78.6250 mm): Via [COIL_DIV] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(100.5000 mm, 82.2500 mm): Via [COIL_RAIL_OK] on F.Cu - B.Cu
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(50.0000 mm, 130.0000 mm): Track [DN_COM] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(148.2500 mm, 142.7500 mm): Track [DN_FIELD] on F.Cu, length 2.3750 mm
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(39.6250 mm, 92.8750 mm): Via [DN_GATE] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(30.1250 mm, 95.7500 mm): Via [DN_GATE] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(19.7500 mm, 89.6250 mm): Via [DN_GATE] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(38.0000 mm, 95.7500 mm): Via [DN_GATE] on F.Cu - B.Cu
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(152.3750 mm, 142.7500 mm): Track [DN_LED_A] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(149.2500 mm, 142.7500 mm): Track [DN_LED_A] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(150.7500 mm, 117.3750 mm): Track [DN_LED_A] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(158.7500 mm, 142.7500 mm): Track [DN_LED_A] on F.Cu, length 2.3750 mm
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(21.6250 mm, 90.6250 mm): Via [DN_LOW] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(14.3750 mm, 91.6250 mm): Via [DN_LOW] on F.Cu - B.Cu
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(54.2500 mm, 130.0000 mm): Track [DN_NO] on F.Cu, length 2.3750 mm
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(41.6250 mm, 95.3750 mm): Via [DN_REQ] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(144.8750 mm, 59.5000 mm): Via [DN_REQ] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(36.5000 mm, 92.8750 mm): Via [DN_REQ] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(127.0000 mm, 63.2500 mm): Via [DN_REQ] on F.Cu - B.Cu
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(150.7500 mm, 118.6250 mm): Track [DN_RET] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(155.6250 mm, 142.7500 mm): Track [DN_RET] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(159.7500 mm, 142.7500 mm): Track [DN_RET] on F.Cu, length 2.3750 mm
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(159.2500 mm, 117.3750 mm): Via [DN_SENSE] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(140.2500 mm, 54.7500 mm): Via [DN_SENSE] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(158.2500 mm, 117.3750 mm): Via [DN_SENSE] on F.Cu - B.Cu
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(94.5000 mm, 136.0000 mm): Track [DRY_A] on F.Cu, length 2.3750 mm
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(131.7500 mm, 64.3750 mm): Via [EN_NET] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(144.7500 mm, 64.3750 mm): Via [EN_NET] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(140.2500 mm, 43.2500 mm): Via [EN_NET] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(138.3750 mm, 64.3750 mm): Via [EN_NET] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(131.2500 mm, 68.0000 mm): Via [EN_NET] on F.Cu - B.Cu
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(181.6250 mm, 84.3750 mm): Track [GND_CAN] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(191.5000 mm, 138.7500 mm): Track [GND_CAN] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(178.6250 mm, 80.5000 mm): Track [GND_CAN] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(176.1250 mm, 88.0000 mm): Track [GND_CAN] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(178.6250 mm, 72.8750 mm): Track [GND_CAN] on F.Cu, length 2.3750 mm
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(52.2500 mm, 151.1250 mm): Via [IGN_A] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(7.2500 mm, 95.7500 mm): Via [IGN_B] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(157.7500 mm, 57.2500 mm): Via [IO0_NET] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(138.0000 mm, 71.1250 mm): Via [IO0_NET] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(131.7500 mm, 71.1250 mm): Via [IO0_NET] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(144.2500 mm, 71.1250 mm): Via [IO0_NET] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(140.0000 mm, 58.5000 mm): Via [IO3_NET] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(132.7500 mm, 61.0000 mm): Via [IO3_NET] on F.Cu - B.Cu
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(177.2500 mm, 79.2500 mm): Track [ISO_5V] on F.Cu, length 0.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(178.6250 mm, 71.5000 mm): Track [ISO_5V] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(178.6250 mm, 77.8750 mm): Track [ISO_5V] on F.Cu, length 2.3750 mm
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(98.7500 mm, 71.3750 mm): Via [LED_G] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(140.2500 mm, 50.8750 mm): Via [LED_G] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(94.6250 mm, 71.3750 mm): Via [LED_G] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(106.5000 mm, 71.3750 mm): Via [LED_G_A] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(101.8750 mm, 71.3750 mm): Via [LED_G_A] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(104.1250 mm, 82.1250 mm): Via [LED_PWR_A] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(107.1250 mm, 84.6250 mm): Via [LED_PWR_A] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(106.8750 mm, 88.2500 mm): Via [LED_R] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(102.7500 mm, 87.1250 mm): Via [LED_R] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(140.2500 mm, 49.6250 mm): Via [LED_R] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(102.8750 mm, 84.6250 mm): Via [LED_R_A] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(105.8750 mm, 87.1250 mm): Via [LED_R_A] on F.Cu - B.Cu
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(89.2500 mm, 148.0000 mm): Track [LOFRANS_NODE] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(94.8750 mm, 142.7500 mm): Track [LOFRANS_NODE] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(190.5000 mm, 138.7500 mm): Track [NMEA_SHIELD] on F.Cu, length 2.3750 mm
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(120.6250 mm, 98.2500 mm): Via [NOT_PG] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(121.6250 mm, 98.2500 mm): Via [NOT_PG] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(112.0000 mm, 101.7500 mm): Via [NOT_PG] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(105.7500 mm, 100.8750 mm): Via [NQ] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(102.0000 mm, 74.7500 mm): Via [NQ] on F.Cu - B.Cu
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(116.5000 mm, 100.8750 mm): Track [OR_R] on F.Cu, length 0.3750 mm
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(118.8750 mm, 101.8750 mm): Via [OR_R] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(99.2500 mm, 72.3750 mm): Via [OR_R] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(113.7500 mm, 103.0000 mm): Via [OR_R] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(117.2500 mm, 98.2500 mm): Via [OR_R] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(111.3750 mm, 118.6250 mm): Via [PG] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(103.6250 mm, 100.2500 mm): Via [PG] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(110.1250 mm, 100.8750 mm): Via [PG] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(162.7500 mm, 106.5000 mm): Via [PUBLISH_EN] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(140.2500 mm, 53.5000 mm): Via [PUBLISH_EN] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(77.2500 mm, 40.8750 mm): Via [QCOIL_G] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(85.8750 mm, 33.7500 mm): Via [QCOIL_G] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(82.3750 mm, 38.2500 mm): Via [QCOIL_G] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(77.2500 mm, 15.7500 mm): Via [QMCU_G] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(85.8750 mm, 13.7500 mm): Via [QMCU_G] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(82.3750 mm, 18.2500 mm): Via [QMCU_G] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(22.5000 mm, 94.2500 mm): Via [QSERIES_G] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(25.5000 mm, 91.7500 mm): Via [QSERIES_G] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(25.0000 mm, 94.2500 mm): Via [QSERIES_G] on F.Cu - B.Cu
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(107.5000 mm, 116.1250 mm): Track [REED_3V3] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(93.1250 mm, 128.3750 mm): Track [REED_3V3] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(88.3750 mm, 136.0000 mm): Track [REED_3V3] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(90.2500 mm, 119.5000 mm): Track [REED_3V3] on F.Cu, length 0.2500 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(103.6250 mm, 118.1250 mm): Track [REED_3V3] on F.Cu, length 0.2500 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(93.5000 mm, 136.0000 mm): Track [REED_3V3] on F.Cu, length 2.3750 mm
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(111.3750 mm, 117.3750 mm): Via [REED_DATA] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(122.2500 mm, 101.8750 mm): Via [REED_DATA] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(123.2500 mm, 101.8750 mm): Via [REED_DATA] on F.Cu - B.Cu
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(108.7500 mm, 74.0000 mm): Track [REED_GPIO] on F.Cu, length 0.5000 mm
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(110.2500 mm, 75.0000 mm): Via [REED_GPIO] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(107.6250 mm, 71.3750 mm): Via [REED_GPIO] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(140.2500 mm, 47.1250 mm): Via [REED_GPIO] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(126.3750 mm, 101.8750 mm): Via [REED_GPIO] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(106.6250 mm, 75.0000 mm): Via [REED_GPIO] on F.Cu - B.Cu
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(98.2500 mm, 119.8750 mm): Track [REED_ISO] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(107.5000 mm, 117.3750 mm): Track [REED_ISO] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(105.5000 mm, 123.6250 mm): Track [REED_ISO] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(98.1250 mm, 142.7500 mm): Track [REED_RET] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(99.0000 mm, 128.3750 mm): Track [REED_RET] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(99.2500 mm, 119.8750 mm): Track [REED_RET] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(107.5000 mm, 119.8750 mm): Track [REED_RET] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(89.3750 mm, 136.0000 mm): Track [REED_RET] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(106.5000 mm, 123.6250 mm): Track [REED_RET] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(88.2500 mm, 148.0000 mm): Track [REED_SIG] on F.Cu, length 2.3750 mm
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(19.7500 mm, 91.5000 mm): Via [SERIES_NODE] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(24.3750 mm, 95.2500 mm): Via [SERIES_NODE] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(11.7500 mm, 105.0000 mm): Via [SERIES_NODE] on F.Cu - B.Cu
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(58.8750 mm, 26.2500 mm): Track [SW_3V3] on F.Cu, length 0.1250 mm
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(56.1250 mm, 24.5000 mm): Via [SW_3V3] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(58.2500 mm, 28.0000 mm): Via [SW_3V3] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(61.8750 mm, 28.0000 mm): Via [SW_3V3] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(42.3750 mm, 144.0000 mm): Via [SW_A] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(49.2500 mm, 151.1250 mm): Via [SW_B] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(140.2500 mm, 45.8750 mm): Via [TWAI_RX] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(168.2500 mm, 76.6250 mm): Via [TWAI_RX] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(139.6250 mm, 89.5000 mm): Via [TWAI_TX] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(140.2500 mm, 44.5000 mm): Via [TWAI_TX] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(168.2500 mm, 74.1250 mm): Via [TXD_NODE] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(140.2500 mm, 85.8750 mm): Via [TXD_NODE] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(142.7500 mm, 89.5000 mm): Via [TXD_NODE] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(157.7500 mm, 45.8750 mm): Via [UART_RX] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(117.0000 mm, 48.0000 mm): Via [UART_RX] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(121.0000 mm, 48.0000 mm): Via [UART_TX] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(157.7500 mm, 44.5000 mm): Via [UART_TX] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(11.7500 mm, 103.1250 mm): Via [UP_GATE] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(40.8750 mm, 92.7500 mm): Via [UP_GATE] on F.Cu - B.Cu
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(123.0000 mm, 113.7500 mm): Track [UP_LED_A] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(128.7500 mm, 117.3750 mm): Track [UP_LED_A] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(125.1250 mm, 116.2500 mm): Track [UP_LED_A] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(127.1250 mm, 113.7500 mm): Track [UP_LED_A] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(126.1250 mm, 112.6250 mm): Track [UP_LED_A] on F.Cu, length 0.1250 mm
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(16.3750 mm, 96.8750 mm): Via [UP_LOW] on F.Cu - B.Cu
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(37.6250 mm, 139.6250 mm): Track [UP_NO] on F.Cu, length 2.3750 mm
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(143.5000 mm, 59.5000 mm): Via [UP_REQ] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(36.1250 mm, 94.8750 mm): Via [UP_REQ] on F.Cu - B.Cu
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(130.3750 mm, 113.7500 mm): Track [UP_RET] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(128.7500 mm, 118.6250 mm): Track [UP_RET] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(124.0000 mm, 113.7500 mm): Track [UP_RET] on F.Cu, length 2.3750 mm
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(140.2500 mm, 48.3750 mm): Via [UP_SENSE] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(137.2500 mm, 117.3750 mm): Via [UP_SENSE] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(136.2500 mm, 117.3750 mm): Via [UP_SENSE] on F.Cu - B.Cu
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(139.2500 mm, 56.0000 mm): Track [USB_DN] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(27.0000 mm, 12.3750 mm): Track [USB_DN] on F.Cu, length 2.3750 mm
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(140.2500 mm, 56.0000 mm): Via [USB_DN] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(25.8750 mm, 12.3750 mm): Via [USB_DN] on F.Cu - B.Cu
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(19.2500 mm, 12.3750 mm): Track [USB_DN_C] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(12.0000 mm, 15.7500 mm): Track [USB_DN_C] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(9.7500 mm, 15.7500 mm): Track [USB_DN_C] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(20.2500 mm, 12.3750 mm): Track [USB_DN_C] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(28.0000 mm, 12.3750 mm): Track [USB_DN_C] on F.Cu, length 2.3750 mm
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(19.2500 mm, 13.3750 mm): Via [USB_DN_C] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(13.0000 mm, 15.7500 mm): Via [USB_DN_C] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(10.7500 mm, 15.7500 mm): Via [USB_DN_C] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(20.2500 mm, 13.3750 mm): Via [USB_DN_C] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(29.0000 mm, 12.3750 mm): Via [USB_DN_C] on F.Cu - B.Cu
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(15.6250 mm, 8.6250 mm): Track [USB_DP] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(139.2500 mm, 57.2500 mm): Track [USB_DP] on F.Cu, length 2.3750 mm
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(14.5000 mm, 8.6250 mm): Via [USB_DP] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(140.2500 mm, 57.2500 mm): Via [USB_DP] on F.Cu - B.Cu
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(9.7500 mm, 13.8750 mm): Track [USB_DP_C] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(16.6250 mm, 8.6250 mm): Track [USB_DP_C] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(20.7500 mm, 12.3750 mm): Track [USB_DP_C] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(12.0000 mm, 13.8750 mm): Track [USB_DP_C] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(16.8750 mm, 10.5000 mm): Track [USB_DP_C] on F.Cu, length 6.6250 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(19.7500 mm, 12.3750 mm): Track [USB_DP_C] on F.Cu, length 2.3750 mm
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(13.0000 mm, 13.8750 mm): Via [USB_DP_C] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(10.7500 mm, 13.8750 mm): Via [USB_DP_C] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(20.7500 mm, 11.2500 mm): Via [USB_DP_C] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(19.7500 mm, 11.2500 mm): Via [USB_DP_C] on F.Cu - B.Cu
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(13.3750 mm, 16.3750 mm): Track [USB_SHIELD] on F.Cu, length 0.2500 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(11.5000 mm, 9.2500 mm): Track [USB_SHIELD] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(11.6250 mm, 19.1250 mm): Track [USB_SHIELD] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(14.3750 mm, 16.5000 mm): Track [USB_SHIELD] on F.Cu, length 0.8750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(13.6250 mm, 13.7500 mm): Track [USB_SHIELD] on F.Cu, length 0.6250 mm
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(10.5000 mm, 19.1250 mm): Via [USB_SHIELD] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(10.5000 mm, 9.2500 mm): Via [USB_SHIELD] on F.Cu - B.Cu
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(12.0000 mm, 14.7500 mm): Track [USB_VBUS] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(17.6250 mm, 12.3750 mm): Track [USB_VBUS] on F.Cu, length 2.3750 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(22.3750 mm, 12.3750 mm): Track [USB_VBUS] on F.Cu, length 2.3750 mm
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(17.6250 mm, 13.3750 mm): Via [USB_VBUS] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(13.0000 mm, 14.7500 mm): Via [USB_VBUS] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(22.3750 mm, 13.3750 mm): Via [USB_VBUS] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(80.8750 mm, 46.7500 mm): Via [VIN_12] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(87.3750 mm, 46.7500 mm): Via [VIN_12] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(85.8750 mm, 36.0000 mm): Via [VIN_COIL] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(84.1250 mm, 44.1250 mm): Via [VIN_COIL] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(90.2500 mm, 46.7500 mm): Via [VIN_COIL] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(92.2500 mm, 36.0000 mm): Via [VIN_COIL] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(83.6250 mm, 46.7500 mm): Via [VIN_MCU] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(84.1250 mm, 24.1250 mm): Via [VIN_MCU] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(85.8750 mm, 16.0000 mm): Via [VIN_MCU] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(92.2500 mm, 16.0000 mm): Via [VIN_MCU] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(157.7500 mm, 42.0000 mm): Via [WDI_FUTURE] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(91.2500 mm, 67.6250 mm): Via [WDI_FUTURE] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(88.7500 mm, 71.2500 mm): Via [WDI_FUTURE] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(94.8750 mm, 67.6250 mm): Via [WDI_FUTURE] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(97.1250 mm, 68.3750 mm): Via [WDT_C] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(99.7500 mm, 68.3750 mm): Via [WDT_C] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(98.1250 mm, 70.0000 mm): Via [WDT_Q] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(22.3750 mm, 91.7500 mm): Via [WDT_Q] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(107.8750 mm, 68.3750 mm): Via [WDT_RC] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(103.7500 mm, 68.3750 mm): Via [WDT_RC] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(96.2500 mm, 67.6250 mm): Via [WDT_RC] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(21.2500 mm, 13.3750 mm): Via [unconnected-(J_USB-SBU1-PadA8)] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(18.2500 mm, 11.2500 mm): Via [unconnected-(J_USB-SBU2-PadB8)] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(157.7500 mm, 43.2500 mm): Via [unconnected-(U3-IO2-Pad38)] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(146.1250 mm, 59.5000 mm): Via [unconnected-(U3-IO11-Pad19)] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(147.3750 mm, 59.5000 mm): Via [unconnected-(U3-IO12-Pad20)] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(148.6250 mm, 59.5000 mm): Via [unconnected-(U3-IO13-Pad21)] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(140.2500 mm, 52.1250 mm): Via [unconnected-(U3-IO17-Pad10)] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(151.1250 mm, 59.5000 mm): Via [unconnected-(U3-IO21-Pad23)] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(157.7500 mm, 56.0000 mm): Via [unconnected-(U3-IO35-Pad28)] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(157.7500 mm, 54.7500 mm): Via [unconnected-(U3-IO36-Pad29)] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(157.7500 mm, 53.5000 mm): Via [unconnected-(U3-IO37-Pad30)] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(157.7500 mm, 52.1250 mm): Via [unconnected-(U3-IO38-Pad31)] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(157.7500 mm, 50.8750 mm): Via [unconnected-(U3-IO39-Pad32)] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(157.7500 mm, 49.6250 mm): Via [unconnected-(U3-IO40-Pad33)] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(157.7500 mm, 48.3750 mm): Via [unconnected-(U3-IO41-Pad34)] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(157.7500 mm, 47.1250 mm): Via [unconnected-(U3-IO42-Pad35)] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(156.0000 mm, 58.5000 mm): Via [unconnected-(U3-IO45-Pad26)] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(142.2500 mm, 59.5000 mm): Via [unconnected-(U3-IO46-Pad16)] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(152.5000 mm, 59.5000 mm): Via [unconnected-(U3-IO47-Pad24)] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(153.7500 mm, 59.5000 mm): Via [unconnected-(U3-IO48-Pad25)] on F.Cu - B.Cu
+
+** Found 27 unconnected pads **
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(0.4000 mm, 0.4000 mm): Zone [GND] on F.Cu, priority 0
+    @(0.4000 mm, 0.4000 mm): Zone [GND] on F.Cu, priority 0
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(86.9200 mm, 130.0000 mm): Pad 1 [+3V3] of C24 on F.Cu
+    @(87.9744 mm, 132.5456 mm): Pad 1 [+3V3] of C21 on F.Cu
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(86.9200 mm, 130.0000 mm): Pad 1 [+3V3] of C24 on F.Cu
+    @(76.0000 mm, 120.0000 mm): PTH pad 1 [+3V3] of U4
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(93.8500 mm, 68.3250 mm): Pad 3 [+3V3] of U11 on F.Cu
+    @(98.1500 mm, 67.0250 mm): Track [+3V3] on F.Cu, length 1.1000 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(112.4750 mm, 116.0950 mm): Pad 8 [+3V3] of U5 on F.Cu
+    @(106.3556 mm, 100.2080 mm): Track [+3V3] on F.Cu, length 1.6000 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(125.8627 mm, 61.0468 mm): Track [+3V3] on F.Cu, length 1.1000 mm
+    @(139.2500 mm, 42.0100 mm): Pad 2 [+3V3] of U3 on F.Cu
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(91.4275 mm, 133.5138 mm): Pad 1 [REED_3V3] of D20 on F.Cu
+    @(93.5000 mm, 136.0000 mm): Track [REED_3V3] on F.Cu, length 2.3750 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(18.2500 mm, 8.7500 mm): Track [CC1] on F.Cu, length 1.0000 mm
+    @(18.7500 mm, 12.3200 mm): Pad A5 [CC1] of J_USB on F.Cu
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(143.2500 mm, 71.1250 mm): Track [IO0_NET] on F.Cu, length 1.0000 mm
+    @(156.7500 mm, 57.2500 mm): Track [IO0_NET] on F.Cu, length 1.0000 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(18.8750 mm, 10.5000 mm): Track [USB_DP_C] on B.Cu, length 2.1250 mm
+    @(16.8750 mm, 10.5000 mm): Track [USB_DP_C] on F.Cu, length 6.6250 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(102.3250 mm, 119.9050 mm): PTH pad 2 [REED_ISO] of JP_REED
+    @(98.2500 mm, 119.8750 mm): Track [REED_ISO] on F.Cu, length 2.3750 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(107.5000 mm, 117.3750 mm): Track [REED_ISO] on F.Cu, length 2.3750 mm
+    @(102.3250 mm, 119.9050 mm): PTH pad 2 [REED_ISO] of JP_REED
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(139.2500 mm, 56.0000 mm): Track [USB_DN] on F.Cu, length 2.3750 mm
+    @(27.0000 mm, 12.3750 mm): Track [USB_DN] on F.Cu, length 1.1250 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(128.0036 mm, 63.2895 mm): Pad 1 [DN_REQ] of R14 on F.Cu
+    @(91.2500 mm, 65.2500 mm): Track [DN_REQ] on B.Cu, length 44.5000 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(23.5000 mm, 91.7500 mm): Track [WDT_Q] on F.Cu, length 1.1250 mm
+    @(98.1250 mm, 69.0000 mm): Track [WDT_Q] on F.Cu, length 1.0000 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(100.8750 mm, 74.7500 mm): Track [NQ] on F.Cu, length 1.1250 mm
+    @(104.6806 mm, 100.8580 mm): Pad 2 [NQ] of U13 on F.Cu
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(141.1250 mm, 86.1250 mm): Track [TXD_NODE] on F.Cu, length 0.2500 mm
+    @(169.3750 mm, 74.1250 mm): Track [TXD_NODE] on F.Cu, length 1.1250 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(39.0000 mm, 130.0000 mm): PTH pad 3 [DN_COM] of J_CONTACT
+    @(30.2500 mm, 140.2500 mm): Track [DN_COM] on F.Cu, length 8.0000 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(41.5000 mm, 109.5000 mm): PTH pad 14 [DN_NO] of K_DN
+    @(42.5000 mm, 130.0000 mm): PTH pad 4 [DN_NO] of J_CONTACT
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(42.5000 mm, 130.0000 mm): PTH pad 4 [DN_NO] of J_CONTACT
+    @(54.2500 mm, 130.0000 mm): Pad 2 [DN_NO] of D71 on F.Cu
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(94.5000 mm, 136.0000 mm): Track [DRY_A] on F.Cu, length 2.3750 mm
+    @(99.0000 mm, 148.0000 mm): PTH pad 3 [DRY_A] of J_REED
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(102.3250 mm, 122.4450 mm): PTH pad 3 [DRY_A] of JP_REED
+    @(94.5000 mm, 136.0000 mm): Track [DRY_A] on F.Cu, length 2.3750 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(188.5000 mm, 144.0000 mm): PTH pad 2 [CAN_L] of J_NMEA
+    @(178.6500 mm, 76.6350 mm): Pad 12 [CAN_L] of U10 on F.Cu
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(178.6250 mm, 75.3750 mm): Track [CAN_H] on F.Cu, length 2.3750 mm
+    @(193.5000 mm, 144.0000 mm): PTH pad 4 [CAN_H] of J_NMEA
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(21.7500 mm, 12.3200 mm): Pad B5 [CC2] of J_USB on F.Cu
+    @(21.2500 mm, 8.7500 mm): Track [CC2] on F.Cu, length 1.0000 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(13.6250 mm, 13.7500 mm): Track [USB_SHIELD] on F.Cu, length 0.6250 mm
+    @(13.6250 mm, 13.6250 mm): Track [USB_SHIELD] on B.Cu, length 1.6250 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(13.6250 mm, 16.3750 mm): Track [USB_SHIELD] on F.Cu, length 0.1250 mm
+    @(13.6250 mm, 16.3750 mm): Track [USB_SHIELD] on B.Cu, length 2.7500 mm
+
+** Found 140 Footprint errors **
+[footprint_symbol_mismatch]: C_0805_2012Metric doesn't match footprint given by symbol (Capacitor_SMD:C_0805_2012Metric)
+    Local override; warning
+    @(82.6000 mm, 29.0000 mm): Footprint C30A
+[footprint_symbol_mismatch]: C_0402_1005Metric doesn't match footprint given by symbol (Capacitor_SMD:C_0402_1005Metric)
+    Local override; warning
+    @(54.5919 mm, 24.5044 mm): Footprint C30B
+[footprint_symbol_mismatch]: C_0805_2012Metric doesn't match footprint given by symbol (Capacitor_SMD:C_0805_2012Metric)
+    Local override; warning
+    @(79.0000 mm, 32.6000 mm): Footprint C30C
+[footprint_symbol_mismatch]: C_0805_2012Metric doesn't match footprint given by symbol (Capacitor_SMD:C_0805_2012Metric)
+    Local override; warning
+    @(78.0000 mm, 21.9000 mm): Footprint C30I
+[footprint_symbol_mismatch]: D_SMA doesn't match footprint given by symbol (Diode_SMD:D_SMA)
+    Local override; warning
+    @(86.1003 mm, 43.0906 mm): Footprint D_TVS_COIL
+[footprint_symbol_mismatch]: D_SMA doesn't match footprint given by symbol (Diode_SMD:D_SMA)
+    Local override; warning
+    @(86.1003 mm, 23.0906 mm): Footprint D_TVS_MCU
+[footprint_symbol_mismatch]: D_SOD-123 doesn't match footprint given by symbol (Diode_SMD:D_SOD-123)
+    Local override; warning
+    @(79.6500 mm, 38.3000 mm): Footprint D_Z_COIL
+[footprint_symbol_mismatch]: D_SOD-123 doesn't match footprint given by symbol (Diode_SMD:D_SOD-123)
+    Local override; warning
+    @(79.6500 mm, 18.3000 mm): Footprint D_Z_MCU
+[footprint_symbol_mismatch]: Fuse_1206_3216Metric doesn't match footprint given by symbol (Fuse:Fuse_1206_3216Metric)
+    Local override; warning
+    @(87.7772 mm, 46.7676 mm): Footprint F_COIL
+[footprint_symbol_mismatch]: Fuse_1206_3216Metric doesn't match footprint given by symbol (Fuse:Fuse_1206_3216Metric)
+    Local override; warning
+    @(81.1772 mm, 46.7676 mm): Footprint F_MCU
+[footprint_symbol_mismatch]: L_Bourns-SRN4018 doesn't match footprint given by symbol (Inductor_SMD:L_Bourns-SRN4018)
+    Local override; warning
+    @(62.3375 mm, 28.0000 mm): Footprint L20
+[footprint_symbol_mismatch]: SOT-223-3_TabPin2 doesn't match footprint given by symbol (Package_TO_SOT_SMD:SOT-223-3_TabPin2)
+    Local override; warning
+    @(88.0000 mm, 36.0000 mm): Footprint Q_COIL
+[footprint_symbol_mismatch]: SOT-223-3_TabPin2 doesn't match footprint given by symbol (Package_TO_SOT_SMD:SOT-223-3_TabPin2)
+    Local override; warning
+    @(88.0000 mm, 16.0000 mm): Footprint Q_MCU
+[footprint_symbol_mismatch]: R_0402_1005Metric doesn't match footprint given by symbol (Resistor_SMD:R_0402_1005Metric)
+    Local override; warning
+    @(78.7544 mm, 40.8456 mm): Footprint R_COIL_G
+[footprint_symbol_mismatch]: R_0402_1005Metric doesn't match footprint given by symbol (Resistor_SMD:R_0402_1005Metric)
+    Local override; warning
+    @(78.7544 mm, 15.7544 mm): Footprint R_MCU_G
+[footprint_symbol_mismatch]: TSOT-23-6 doesn't match footprint given by symbol (Package_TO_SOT_SMD:TSOT-23-6)
+    Local override; warning
+    @(56.0000 mm, 28.0000 mm): Footprint U20
+[footprint_symbol_mismatch]: C_0805_2012Metric doesn't match footprint given by symbol (Capacitor_SMD:C_0805_2012Metric)
+    Local override; warning
+    @(133.7452 mm, 64.3463 mm): Footprint C10
+[footprint_symbol_mismatch]: C_0805_2012Metric doesn't match footprint given by symbol (Capacitor_SMD:C_0805_2012Metric)
+    Local override; warning
+    @(119.5423 mm, 53.8677 mm): Footprint C11
+[footprint_symbol_mismatch]: C_0402_1005Metric doesn't match footprint given by symbol (Capacitor_SMD:C_0402_1005Metric)
+    Local override; warning
+    @(75.4000 mm, 29.0000 mm): Footprint C12
+[footprint_symbol_mismatch]: C_0402_1005Metric doesn't match footprint given by symbol (Capacitor_SMD:C_0402_1005Metric)
+    Local override; warning
+    @(12.0800 mm, 19.1304 mm): Footprint C13
+[footprint_symbol_mismatch]: USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal doesn't match footprint given by symbol (Connector_USB:USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal)
+    Local override; warning
+    @(20.0000 mm, 16.0000 mm): Footprint J_USB
+[footprint_symbol_mismatch]: R_0402_1005Metric doesn't match footprint given by symbol (Resistor_SMD:R_0402_1005Metric)
+    Local override; warning
+    @(132.7952 mm, 67.9463 mm): Footprint R10
+[footprint_symbol_mismatch]: R_0402_1005Metric doesn't match footprint given by symbol (Resistor_SMD:R_0402_1005Metric)
+    Local override; warning
+    @(133.3021 mm, 71.1671 mm): Footprint R11
+[footprint_symbol_mismatch]: R_0402_1005Metric doesn't match footprint given by symbol (Resistor_SMD:R_0402_1005Metric)
+    Local override; warning
+    @(134.2492 mm, 60.9625 mm): Footprint R12
+[footprint_symbol_mismatch]: R_0402_1005Metric doesn't match footprint given by symbol (Resistor_SMD:R_0402_1005Metric)
+    Local override; warning
+    @(129.2537 mm, 67.6909 mm): Footprint R13
+[footprint_symbol_mismatch]: R_0402_1005Metric doesn't match footprint given by symbol (Resistor_SMD:R_0402_1005Metric)
+    Local override; warning
+    @(128.5136 mm, 63.2895 mm): Footprint R14
+[footprint_symbol_mismatch]: R_0402_1005Metric doesn't match footprint given by symbol (Resistor_SMD:R_0402_1005Metric)
+    Local override; warning
+    @(18.7500 mm, 8.7200 mm): Footprint R15
+[footprint_symbol_mismatch]: R_0402_1005Metric doesn't match footprint given by symbol (Resistor_SMD:R_0402_1005Metric)
+    Local override; warning
+    @(21.7500 mm, 8.7200 mm): Footprint R16
+[footprint_symbol_mismatch]: R_0402_1005Metric doesn't match footprint given by symbol (Resistor_SMD:R_0402_1005Metric)
+    Local override; warning
+    @(16.0730 mm, 8.6430 mm): Footprint R17
+[footprint_symbol_mismatch]: R_0402_1005Metric doesn't match footprint given by symbol (Resistor_SMD:R_0402_1005Metric)
+    Local override; warning
+    @(27.4500 mm, 12.3200 mm): Footprint R18
+[footprint_symbol_mismatch]: R_0402_1005Metric doesn't match footprint given by symbol (Resistor_SMD:R_0402_1005Metric)
+    Local override; warning
+    @(12.0030 mm, 9.2180 mm): Footprint R19
+[footprint_symbol_mismatch]: SW_SPST_TL3342 doesn't match footprint given by symbol (Button_Switch_SMD:SW_SPST_TL3342)
+    Local override; warning
+    @(140.0521 mm, 73.0671 mm): Footprint SW_BOOT
+[footprint_symbol_mismatch]: SW_SPST_TL3342 doesn't match footprint given by symbol (Button_Switch_SMD:SW_SPST_TL3342)
+    Local override; warning
+    @(140.4952 mm, 66.2463 mm): Footprint SW_RST
+[footprint_symbol_mismatch]: TestPoint_Pad_D1.5mm doesn't match footprint given by symbol (TestPoint:TestPoint_Pad_D1.5mm)
+    Local override; warning
+    @(95.8000 mm, 75.0000 mm): Footprint TP_3V3
+[footprint_symbol_mismatch]: Footprint attributes don't match symbol: 'Exclude from bill of materials' settings differ
+    Local override; warning
+    @(95.8000 mm, 75.0000 mm): Footprint TP_3V3
+[footprint_symbol_mismatch]: TestPoint_Pad_D1.5mm doesn't match footprint given by symbol (TestPoint:TestPoint_Pad_D1.5mm)
+    Local override; warning
+    @(106.5155 mm, 79.6281 mm): Footprint TP_GND
+[footprint_symbol_mismatch]: Footprint attributes don't match symbol: 'Exclude from bill of materials' settings differ
+    Local override; warning
+    @(106.5155 mm, 79.6281 mm): Footprint TP_GND
+[footprint_symbol_mismatch]: TestPoint_Pad_D1.5mm doesn't match footprint given by symbol (TestPoint:TestPoint_Pad_D1.5mm)
+    Local override; warning
+    @(109.1375 mm, 75.0000 mm): Footprint TP_REED
+[footprint_symbol_mismatch]: Footprint attributes don't match symbol: 'Exclude from bill of materials' settings differ
+    Local override; warning
+    @(109.1375 mm, 75.0000 mm): Footprint TP_REED
+[footprint_symbol_mismatch]: TestPoint_Pad_D1.5mm doesn't match footprint given by symbol (TestPoint:TestPoint_Pad_D1.5mm)
+    Local override; warning
+    @(116.0000 mm, 48.0000 mm): Footprint TP_RX
+[footprint_symbol_mismatch]: Footprint attributes don't match symbol: 'Exclude from bill of materials' settings differ
+    Local override; warning
+    @(116.0000 mm, 48.0000 mm): Footprint TP_RX
+[footprint_symbol_mismatch]: TestPoint_Pad_D1.5mm doesn't match footprint given by symbol (TestPoint:TestPoint_Pad_D1.5mm)
+    Local override; warning
+    @(120.0000 mm, 48.0000 mm): Footprint TP_TX
+[footprint_symbol_mismatch]: Footprint attributes don't match symbol: 'Exclude from bill of materials' settings differ
+    Local override; warning
+    @(120.0000 mm, 48.0000 mm): Footprint TP_TX
+[footprint_symbol_mismatch]: TestPoint_Pad_D1.5mm doesn't match footprint given by symbol (TestPoint:TestPoint_Pad_D1.5mm)
+    Local override; warning
+    @(90.2500 mm, 67.6750 mm): Footprint TP_WDI
+[footprint_symbol_mismatch]: Footprint attributes don't match symbol: 'Exclude from bill of materials' settings differ
+    Local override; warning
+    @(90.2500 mm, 67.6750 mm): Footprint TP_WDI
+[footprint_symbol_mismatch]: ESP32-S3-WROOM-1 doesn't match footprint given by symbol (RF_Module:ESP32-S3-WROOM-1)
+    Local override; warning
+    @(148.0000 mm, 46.0000 mm): Footprint U3
+[footprint_symbol_mismatch]: SOT-23-6 doesn't match footprint given by symbol (Package_TO_SOT_SMD:SOT-23-6)
+    Local override; warning
+    @(10.8342 mm, 14.7825 mm): Footprint U_ESD
+[footprint_symbol_mismatch]: C_0402_1005Metric doesn't match footprint given by symbol (Capacitor_SMD:C_0402_1005Metric)
+    Local override; warning
+    @(88.8819 mm, 136.0594 mm): Footprint C20
+[footprint_symbol_mismatch]: C_0402_1005Metric doesn't match footprint given by symbol (Capacitor_SMD:C_0402_1005Metric)
+    Local override; warning
+    @(88.4544 mm, 132.5456 mm): Footprint C21
+[footprint_symbol_mismatch]: C_0402_1005Metric doesn't match footprint given by symbol (Capacitor_SMD:C_0402_1005Metric)
+    Local override; warning
+    @(106.0020 mm, 123.5820 mm): Footprint C22
+[footprint_symbol_mismatch]: C_0402_1005Metric doesn't match footprint given by symbol (Capacitor_SMD:C_0402_1005Metric)
+    Local override; warning
+    @(87.4000 mm, 130.0000 mm): Footprint C24
+[footprint_symbol_mismatch]: C_0402_1005Metric doesn't match footprint given by symbol (Capacitor_SMD:C_0402_1005Metric)
+    Local override; warning
+    @(94.2342 mm, 77.4625 mm): Footprint C25
+[footprint_symbol_mismatch]: D_SOD-123 doesn't match footprint given by symbol (Diode_SMD:D_SOD-123)
+    Local override; warning
+    @(93.0775 mm, 133.5138 mm): Footprint D20
+[footprint_symbol_mismatch]: D_SOD-123 doesn't match footprint given by symbol (Diode_SMD:D_SOD-123)
+    Local override; warning
+    @(96.5000 mm, 142.8000 mm): Footprint D21
+[footprint_symbol_mismatch]: D_SOD-123 doesn't match footprint given by symbol (Diode_SMD:D_SOD-123)
+    Local override; warning
+    @(119.5371 mm, 101.9013 mm): Footprint D22
+[footprint_symbol_mismatch]: D_SOD-123 doesn't match footprint given by symbol (Diode_SMD:D_SOD-123)
+    Local override; warning
+    @(117.8871 mm, 98.3013 mm): Footprint D23
+[footprint_symbol_mismatch]: PinHeader_1x03_P2.54mm_Vertical doesn't match footprint given by symbol (Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical)
+    Local override; warning
+    @(102.3250 mm, 117.3650 mm): Footprint JP_REED
+[footprint_symbol_mismatch]: SOT-23 doesn't match footprint given by symbol (Package_TO_SOT_SMD:SOT-23)
+    Local override; warning
+    @(104.6000 mm, 75.0000 mm): Footprint Q_BLK
+[footprint_symbol_mismatch]: SOT-23 doesn't match footprint given by symbol (Package_TO_SOT_SMD:SOT-23)
+    Local override; warning
+    @(110.0556 mm, 101.8080 mm): Footprint Q_NPG
+[footprint_symbol_mismatch]: R_0402_1005Metric doesn't match footprint given by symbol (Resistor_SMD:R_0402_1005Metric)
+    Local override; warning
+    @(88.8000 mm, 148.0000 mm): Footprint R20
+[footprint_symbol_mismatch]: R_0402_1005Metric doesn't match footprint given by symbol (Resistor_SMD:R_0402_1005Metric)
+    Local override; warning
+    @(93.9731 mm, 136.0594 mm): Footprint R22
+[footprint_symbol_mismatch]: R_0402_1005Metric doesn't match footprint given by symbol (Resistor_SMD:R_0402_1005Metric)
+    Local override; warning
+    @(98.7250 mm, 119.9050 mm): Footprint R23
+[footprint_symbol_mismatch]: R_2512_6332Metric doesn't match footprint given by symbol (Resistor_SMD:R_2512_6332Metric)
+    Local override; warning
+    @(96.0400 mm, 128.3138 mm): Footprint R24
+[footprint_symbol_mismatch]: R_0402_1005Metric doesn't match footprint given by symbol (Resistor_SMD:R_0402_1005Metric)
+    Local override; warning
+    @(123.1371 mm, 98.3013 mm): Footprint R25
+[footprint_symbol_mismatch]: R_0402_1005Metric doesn't match footprint given by symbol (Resistor_SMD:R_0402_1005Metric)
+    Local override; warning
+    @(114.2871 mm, 101.9013 mm): Footprint R26
+[footprint_symbol_mismatch]: R_0402_1005Metric doesn't match footprint given by symbol (Resistor_SMD:R_0402_1005Metric)
+    Local override; warning
+    @(124.7871 mm, 101.9013 mm): Footprint R27
+[footprint_symbol_mismatch]: R_0402_1005Metric doesn't match footprint given by symbol (Resistor_SMD:R_0402_1005Metric)
+    Local override; warning
+    @(109.2145 mm, 71.3230 mm): Footprint R28
+[footprint_symbol_mismatch]: Murata_MEJ2SxxxxSC doesn't match footprint given by symbol (windlass:Murata_MEJ2SxxxxSC)
+    Local override; warning
+    @(76.0000 mm, 120.0000 mm): Footprint U4
+[footprint_symbol_mismatch]: SOIC-8_3.9x4.9mm_P1.27mm doesn't match footprint given by symbol (Package_SO:SOIC-8_3.9x4.9mm_P1.27mm)
+    Local override; warning
+    @(110.0000 mm, 118.0000 mm): Footprint U5
+[footprint_symbol_mismatch]: SOT-353_SC-70-5 doesn't match footprint given by symbol (Package_TO_SOT_SMD:SOT-353_SC-70-5)
+    Local override; warning
+    @(105.5181 mm, 100.8580 mm): Footprint U13
+[footprint_symbol_mismatch]: SOT-353_SC-70-5 doesn't match footprint given by symbol (Package_TO_SOT_SMD:SOT-353_SC-70-5)
+    Local override; warning
+    @(100.0625 mm, 74.0500 mm): Footprint U14
+[footprint_symbol_mismatch]: C_0402_1005Metric doesn't match footprint given by symbol (Capacitor_SMD:C_0402_1005Metric)
+    Local override; warning
+    @(123.5000 mm, 113.7650 mm): Footprint C31
+[footprint_symbol_mismatch]: C_0402_1005Metric doesn't match footprint given by symbol (Capacitor_SMD:C_0402_1005Metric)
+    Local override; warning
+    @(159.2500 mm, 142.8000 mm): Footprint C41
+[footprint_symbol_mismatch]: D_SOD-123 doesn't match footprint given by symbol (Diode_SMD:D_SOD-123)
+    Local override; warning
+    @(128.7500 mm, 113.7650 mm): Footprint D30
+[footprint_symbol_mismatch]: D_SOD-123 doesn't match footprint given by symbol (Diode_SMD:D_SOD-123)
+    Local override; warning
+    @(154.0000 mm, 142.8000 mm): Footprint D40
+[footprint_symbol_mismatch]: R_0402_1005Metric doesn't match footprint given by symbol (Resistor_SMD:R_0402_1005Metric)
+    Local override; warning
+    @(124.5544 mm, 116.3106 mm): Footprint R30
+[footprint_symbol_mismatch]: R_0402_1005Metric doesn't match footprint given by symbol (Resistor_SMD:R_0402_1005Metric)
+    Local override; warning
+    @(138.8500 mm, 117.3650 mm): Footprint R30P
+[footprint_symbol_mismatch]: R_0402_1005Metric doesn't match footprint given by symbol (Resistor_SMD:R_0402_1005Metric)
+    Local override; warning
+    @(148.7500 mm, 142.8000 mm): Footprint R40
+[footprint_symbol_mismatch]: R_0402_1005Metric doesn't match footprint given by symbol (Resistor_SMD:R_0402_1005Metric)
+    Local override; warning
+    @(160.8500 mm, 117.3650 mm): Footprint R40P
+[footprint_symbol_mismatch]: SOIC-4_4.55x2.6mm_P1.27mm doesn't match footprint given by symbol (Package_SO:SOIC-4_4.55x2.6mm_P1.27mm)
+    Local override; warning
+    @(132.0000 mm, 118.0000 mm): Footprint U6
+[footprint_symbol_mismatch]: SOIC-4_4.55x2.6mm_P1.27mm doesn't match footprint given by symbol (Package_SO:SOIC-4_4.55x2.6mm_P1.27mm)
+    Local override; warning
+    @(154.0000 mm, 118.0000 mm): Footprint U7
+[footprint_symbol_mismatch]: C_0805_2012Metric doesn't match footprint given by symbol (Capacitor_SMD:C_0805_2012Metric)
+    Local override; warning
+    @(101.7500 mm, 68.3250 mm): Footprint C50
+[footprint_symbol_mismatch]: C_0402_1005Metric doesn't match footprint given by symbol (Capacitor_SMD:C_0402_1005Metric)
+    Local override; warning
+    @(126.3427 mm, 61.0468 mm): Footprint C51
+[footprint_symbol_mismatch]: D_SMA doesn't match footprint given by symbol (Diode_SMD:D_SMA)
+    Local override; warning
+    @(14.4000 mm, 95.7646 mm): Footprint D60
+[footprint_symbol_mismatch]: D_SMB doesn't match footprint given by symbol (Diode_SMD:D_SMB)
+    Local override; warning
+    @(35.5000 mm, 139.6000 mm): Footprint D61
+[footprint_symbol_mismatch]: D_SMA doesn't match footprint given by symbol (Diode_SMD:D_SMA)
+    Local override; warning
+    @(12.4000 mm, 90.5646 mm): Footprint D70
+[footprint_symbol_mismatch]: D_SMB doesn't match footprint given by symbol (Diode_SMD:D_SMB)
+    Local override; warning
+    @(52.1000 mm, 130.0000 mm): Footprint D71
+[footprint_symbol_mismatch]: D_SOD-123 doesn't match footprint given by symbol (Diode_SMD:D_SOD-123)
+    Local override; warning
+    @(101.0000 mm, 78.6000 mm): Footprint D80
+[footprint_symbol_mismatch]: Relay_SPDT_Finder_40.31 doesn't match footprint given by symbol (Relay_THT:Relay_SPDT_Finder_40.31)
+    Local override; warning
+    @(18.0000 mm, 102.0000 mm): Footprint K_DN
+[footprint_symbol_mismatch]: Relay_SPDT_Finder_40.31 doesn't match footprint given by symbol (Relay_THT:Relay_SPDT_Finder_40.31)
+    Local override; warning
+    @(18.0000 mm, 64.0000 mm): Footprint K_UP
+[footprint_symbol_mismatch]: SOT-23 doesn't match footprint given by symbol (Package_TO_SOT_SMD:SOT-23)
+    Local override; warning
+    @(36.0000 mm, 95.8000 mm): Footprint Q_CLAMP_DN
+[footprint_symbol_mismatch]: SOT-23 doesn't match footprint given by symbol (Package_TO_SOT_SMD:SOT-23)
+    Local override; warning
+    @(41.5155 mm, 96.3719 mm): Footprint Q_CLAMP_UP
+[footprint_symbol_mismatch]: SOT-23 doesn't match footprint given by symbol (Package_TO_SOT_SMD:SOT-23)
+    Local override; warning
+    @(19.6000 mm, 90.5646 mm): Footprint Q_DN
+[footprint_symbol_mismatch]: SOT-23 doesn't match footprint given by symbol (Package_TO_SOT_SMD:SOT-23)
+    Local override; warning
+    @(22.3395 mm, 95.1916 mm): Footprint Q_SERIES
+[footprint_symbol_mismatch]: SOT-23 doesn't match footprint given by symbol (Package_TO_SOT_SMD:SOT-23)
+    Local override; warning
+    @(11.6000 mm, 104.0785 mm): Footprint Q_UP
+[footprint_symbol_mismatch]: R_0402_1005Metric doesn't match footprint given by symbol (Resistor_SMD:R_0402_1005Metric)
+    Local override; warning
+    @(23.9475 mm, 91.6960 mm): Footprint R50
+[footprint_symbol_mismatch]: R_0402_1005Metric doesn't match footprint given by symbol (Resistor_SMD:R_0402_1005Metric)
+    Local override; warning
+    @(26.6020 mm, 94.2416 mm): Footprint R51
+[footprint_symbol_mismatch]: R_0402_1005Metric doesn't match footprint given by symbol (Resistor_SMD:R_0402_1005Metric)
+    Local override; warning
+    @(106.3000 mm, 68.3250 mm): Footprint R52
+[footprint_symbol_mismatch]: R_0402_1005Metric doesn't match footprint given by symbol (Resistor_SMD:R_0402_1005Metric)
+    Local override; warning
+    @(90.2500 mm, 71.2750 mm): Footprint R53
+[footprint_symbol_mismatch]: R_0402_1005Metric doesn't match footprint given by symbol (Resistor_SMD:R_0402_1005Metric)
+    Local override; warning
+    @(46.0530 mm, 96.3719 mm): Footprint R60
+[footprint_symbol_mismatch]: R_0402_1005Metric doesn't match footprint given by symbol (Resistor_SMD:R_0402_1005Metric)
+    Local override; warning
+    @(42.4530 mm, 92.7719 mm): Footprint R61
+[footprint_symbol_mismatch]: R_0402_1005Metric doesn't match footprint given by symbol (Resistor_SMD:R_0402_1005Metric)
+    Local override; warning
+    @(38.0324 mm, 92.8763 mm): Footprint R70
+[footprint_symbol_mismatch]: R_0402_1005Metric doesn't match footprint given by symbol (Resistor_SMD:R_0402_1005Metric)
+    Local override; warning
+    @(31.7375 mm, 95.8000 mm): Footprint R71
+[footprint_symbol_mismatch]: R_0402_1005Metric doesn't match footprint given by symbol (Resistor_SMD:R_0402_1005Metric)
+    Local override; warning
+    @(12.4000 mm, 99.3646 mm): Footprint R80
+[footprint_symbol_mismatch]: R_0402_1005Metric doesn't match footprint given by symbol (Resistor_SMD:R_0402_1005Metric)
+    Local override; warning
+    @(106.3270 mm, 82.2770 mm): Footprint R81
+[footprint_symbol_mismatch]: R_0402_1005Metric doesn't match footprint given by symbol (Resistor_SMD:R_0402_1005Metric)
+    Local override; warning
+    @(98.9730 mm, 82.2770 mm): Footprint R82
+[footprint_symbol_mismatch]: R_0402_1005Metric doesn't match footprint given by symbol (Resistor_SMD:R_0402_1005Metric)
+    Local override; warning
+    @(8.8000 mm, 95.7646 mm): Footprint R_COILFEED
+[footprint_symbol_mismatch]: TSSOP-8_3x3mm_P0.65mm doesn't match footprint given by symbol (Package_SO:TSSOP-8_3x3mm_P0.65mm)
+    Local override; warning
+    @(96.0000 mm, 68.0000 mm): Footprint U11
+[footprint_symbol_mismatch]: C_0402_1005Metric doesn't match footprint given by symbol (Capacitor_SMD:C_0402_1005Metric)
+    Local override; warning
+    @(76.4544 mm, 26.4544 mm): Footprint C90
+[footprint_symbol_mismatch]: C_0402_1005Metric doesn't match footprint given by symbol (Capacitor_SMD:C_0402_1005Metric)
+    Local override; warning
+    @(175.6875 mm, 87.9750 mm): Footprint C91
+[footprint_symbol_mismatch]: C_0402_1005Metric doesn't match footprint given by symbol (Capacitor_SMD:C_0402_1005Metric)
+    Local override; warning
+    @(191.0000 mm, 138.8000 mm): Footprint C92
+[footprint_symbol_mismatch]: C_0402_1005Metric doesn't match footprint given by symbol (Capacitor_SMD:C_0402_1005Metric)
+    Local override; warning
+    @(161.1230 mm, 110.2170 mm): Footprint C93
+[footprint_symbol_mismatch]: PinHeader_1x02_P2.54mm_Vertical doesn't match footprint given by symbol (Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical)
+    Local override; warning
+    @(164.8000 mm, 104.0000 mm): Footprint JP1
+[footprint_symbol_mismatch]: R_0402_1005Metric doesn't match footprint given by symbol (Resistor_SMD:R_0402_1005Metric)
+    Local override; warning
+    @(164.8000 mm, 110.1400 mm): Footprint R90
+[footprint_symbol_mismatch]: R_0402_1005Metric doesn't match footprint given by symbol (Resistor_SMD:R_0402_1005Metric)
+    Local override; warning
+    @(161.2000 mm, 106.5400 mm): Footprint R91
+[footprint_symbol_mismatch]: R_0402_1005Metric doesn't match footprint given by symbol (Resistor_SMD:R_0402_1005Metric)
+    Local override; warning
+    @(141.7506 mm, 85.8540 mm): Footprint R92
+[footprint_symbol_mismatch]: R_0402_1005Metric doesn't match footprint given by symbol (Resistor_SMD:R_0402_1005Metric)
+    Local override; warning
+    @(141.2406 mm, 89.4540 mm): Footprint R93
+[footprint_symbol_mismatch]: R_2512_6332Metric doesn't match footprint given by symbol (Resistor_SMD:R_2512_6332Metric)
+    Local override; warning
+    @(178.6500 mm, 84.3750 mm): Footprint R94
+[footprint_symbol_mismatch]: Murata_MEJ2SxxxxSC doesn't match footprint given by symbol (windlass:Murata_MEJ2SxxxxSC)
+    Local override; warning
+    @(170.0000 mm, 104.0000 mm): Footprint U9
+[footprint_symbol_mismatch]: SOIC-16W_7.5x10.3mm_P1.27mm doesn't match footprint given by symbol (Package_SO:SOIC-16W_7.5x10.3mm_P1.27mm)
+    Local override; warning
+    @(174.0000 mm, 76.0000 mm): Footprint U10
+[footprint_symbol_mismatch]: LED_0603_1608Metric doesn't match footprint given by symbol (LED_SMD:LED_0603_1608Metric)
+    Local override; warning
+    @(104.6770 mm, 71.3230 mm): Footprint D_G
+[footprint_symbol_mismatch]: LED_0603_1608Metric doesn't match footprint given by symbol (LED_SMD:LED_0603_1608Metric)
+    Local override; warning
+    @(102.2503 mm, 82.0906 mm): Footprint D_PWR
+[footprint_symbol_mismatch]: LED_0603_1608Metric doesn't match footprint given by symbol (LED_SMD:LED_0603_1608Metric)
+    Local override; warning
+    @(101.0000 mm, 84.6000 mm): Footprint D_R
+[footprint_symbol_mismatch]: KF350-3.5-1x04 doesn't match footprint given by symbol (windlass:KF350-3.5-1x04)
+    Local override; warning
+    @(32.0000 mm, 130.0000 mm): Footprint J_CONTACT
+[footprint_symbol_mismatch]: JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical doesn't match footprint given by symbol (Connector_JST:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical)
+    Local override; warning
+    @(186.0000 mm, 144.0000 mm): Footprint J_NMEA
+[footprint_symbol_mismatch]: KF350-3.5-1x04 doesn't match footprint given by symbol (windlass:KF350-3.5-1x04)
+    Local override; warning
+    @(46.0000 mm, 144.0000 mm): Footprint J_PERM
+[footprint_symbol_mismatch]: KF350-3.5-1x02 doesn't match footprint given by symbol (windlass:KF350-3.5-1x02)
+    Local override; warning
+    @(16.0000 mm, 144.0000 mm): Footprint J_PWR
+[footprint_symbol_mismatch]: JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical doesn't match footprint given by symbol (Connector_JST:JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical)
+    Local override; warning
+    @(94.0000 mm, 148.0000 mm): Footprint J_REED
+[footprint_symbol_mismatch]: JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical doesn't match footprint given by symbol (Connector_JST:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical)
+    Local override; warning
+    @(144.0000 mm, 148.0000 mm): Footprint J_SENSE
+[footprint_symbol_mismatch]: R_0402_1005Metric doesn't match footprint given by symbol (Resistor_SMD:R_0402_1005Metric)
+    Local override; warning
+    @(100.2645 mm, 71.3230 mm): Footprint R_G
+[footprint_symbol_mismatch]: R_0402_1005Metric doesn't match footprint given by symbol (Resistor_SMD:R_0402_1005Metric)
+    Local override; warning
+    @(96.1545 mm, 71.3230 mm): Footprint R_GPD
+[footprint_symbol_mismatch]: R_0402_1005Metric doesn't match footprint given by symbol (Resistor_SMD:R_0402_1005Metric)
+    Local override; warning
+    @(50.7503 mm, 151.0906 mm): Footprint R_IGNLINK
+[footprint_symbol_mismatch]: R_0402_1005Metric doesn't match footprint given by symbol (Resistor_SMD:R_0402_1005Metric)
+    Local override; warning
+    @(105.5834 mm, 84.6362 mm): Footprint R_PWR
+[footprint_symbol_mismatch]: R_0402_1005Metric doesn't match footprint given by symbol (Resistor_SMD:R_0402_1005Metric)
+    Local override; warning
+    @(104.3331 mm, 87.1456 mm): Footprint R_R
+[footprint_symbol_mismatch]: R_0402_1005Metric doesn't match footprint given by symbol (Resistor_SMD:R_0402_1005Metric)
+    Local override; warning
+    @(107.4231 mm, 87.1456 mm): Footprint R_RPD
+[footprint_symbol_mismatch]: R_0402_1005Metric doesn't match footprint given by symbol (Resistor_SMD:R_0402_1005Metric)
+    Local override; warning
+    @(40.8000 mm, 144.0000 mm): Footprint R_SWLINK
+[extra_footprint]: Extra footprint
+    Local override; warning
+    @(6.0000 mm, 154.0000 mm): Footprint H3
+[extra_footprint]: Extra footprint
+    Local override; warning
+    @(6.0000 mm, 6.0000 mm): Footprint H1
+[extra_footprint]: Extra footprint
+    Local override; warning
+    @(194.0000 mm, 6.0000 mm): Footprint H2
+[extra_footprint]: Extra footprint
+    Local override; warning
+    @(194.0000 mm, 154.0000 mm): Footprint H4
+
+** Ignored checks **
+    - Footprint has no courtyard defined
+    - Track endpoint not centered on via
+    - Tuning profile track geometries
+    - Footprint doesn't match symbol's footprint filters
+    - Footprint component type doesn't match footprint pads
+
+** End of Report **

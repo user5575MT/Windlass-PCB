@@ -1,6 +1,14 @@
 # Progress log
 
-Status of this repository: design only. No board has been ordered. No firmware has been modified, flashed, or deployed. No vessel wiring has been changed.
+Status of this repository: design only. No board has been ordered. No firmware has been modified, flashed, or deployed. No vessel wiring has been changed. No Gerber, drill, or position file has been written.
+
+## 2026-11-22 — Integrated redesign, not for fabrication
+
+The revision 0.8 placement in `kicad/` is unchanged and is kept as the reference. A new schematic and a new four-layer board are in `kicad11/`. The outline is 200 × 160 mm. The relays stay on this board. The XOR, the AND, the second buck, the 5 V rail, and the mid-mount USB-C footprint are gone.
+
+ERC on `kicad11/windlass.kicad_sch` is 0 errors and 1 warning. The warning is U5 pin 4, `GND1`, on `REED_RET`. That net is not joined to `GND`.
+
+DRC on `kicad11/windlass.kicad_pcb`, after a zone refill at 10:58 Sydney time on 22 November 2026, is not clean. The report is `kicad11/drc.rpt`: 351 violations, 27 unconnected items, 4 shorts, 11 clearance errors, 4 crossing tracks, and 180 dangling vias. The shorts join `USB_VBUS` to `CC2`, `GND` to `USB_SHIELD`, `+3V3` to `NQ`, and `GND_CAN` to an unconnected pad of U10. This board is not for fabrication. Measurements B1–B8 are still open. No production file was written.
 
 ## 2026-11-22 — Architecture review, routing stopped
 

@@ -1,6 +1,8 @@
 # Design simplification
 
-19 November 2026 review of the revision 0.8 schematic and the routing record in `docs/progress_log.md`. No schematic was regenerated. No copper was added. No board was ordered. The prototype firmware was not modified.
+19 November 2026 review of the revision 0.8 schematic and the routing record in `docs/progress_log.md`. No schematic was regenerated for that review. No copper was added then. No board was ordered. The prototype firmware was not modified.
+
+The review below recommended a separate relay board. That recommendation stands as the record of the review. The build that followed it is the single integrated board in `kicad11/`, because the controller is required to carry both relays on the same PCB. See `docs/integrated_design.md`.
 
 Routing of the 80 × 69 mm four-layer board should stop. The placement is the wrong shape for the circuit that was drawn, and the circuit is larger than the job requires before the boat measurements exist.
 
