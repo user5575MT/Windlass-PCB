@@ -342,3 +342,7 @@ The schematic is unchanged, so ERC is the validated run, `kicad11/erc_validated.
 ### What is still in the way
 
 This board is not for fabrication. B1–B8 in `docs/assumptions_and_open_questions.md` are still open. A DRC with no short and no clearance error is not an isolation rating. The USB-C land cannot meet the 0.25 mm hole rule at the drawing’s own dimensions and tolerance, and no replacement in the library is both electrically and mechanically suitable. No Gerber, drill, or position file was written.
+
+## JLCPCB and the USB4105 land
+
+Checked on 23 November 2026 without editing the board. JLCPCB’s capability table lists NPTH-to-track clearance as 0.2 mm. The USB4105 recommended land is 0.1944 mm, so it is already under that published number, and the ±0.075 mm hole-position tolerance can make a finished hole closer. The table does not mention this connector, and JLCPCB has not reviewed the file. The four DRC errors stay. Lowering the KiCad hole rule to 0.20 mm would not remove them. The comparison, the tolerance arithmetic, and the next question for JLCPCB are in `docs/usb4105_jlcpcb.md`.

@@ -2,6 +2,10 @@
 
 Status of this repository: design only. No board has been ordered. No firmware has been modified, flashed, or deployed. No vessel wiring has been changed. No Gerber, drill, or position file has been written.
 
+## 2026-11-23 — JLCPCB has not accepted the USB4105 land
+
+The PCB and the schematic were not edited. JLCPCB’s capability table, retrieved the same day, lists NPTH-to-track clearance as 0.2 mm, hole position as ±0.075 mm, and through-hole size as +0.13 / −0.08 mm. A 1.6 mm FR-4 thickness is on that list, and the Ø0.65 mm holes are above the 0.50 mm NPTH minimum. The GCT recommended land is 0.1944 mm from pad to hole, which is under the published 0.2 mm row before those tolerances. The table has no USB4105 exception. Lowering the KiCad rule from 0.25 mm to 0.20 mm would not clear the four errors. No horizontal 16-pin replacement in the KiCad library keeps 0.20 mm after a 0.075 mm hole shift on a 1.6 mm board. The write-up is `docs/usb4105_jlcpcb.md`. The next action is to ask JLCPCB whether they will build this land. The board is not for fabrication.
+
 ## 2026-11-23 — Complete copy, reed nets joined on F.Cu
 
 `kicad11/windlass_complete.kicad_pcb` continues from the validated board. The validated file, the finished file, the routed file, and the original `kicad11/windlass.kicad_pcb` were not overwritten. The schematic was not edited, and the board was not autorouted again.
