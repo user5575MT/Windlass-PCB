@@ -2,6 +2,14 @@
 
 Status of this repository: design only. No board has been ordered. No firmware has been modified, flashed, or deployed. No vessel wiring has been changed. No Gerber, drill, or position file has been written.
 
+## 2026-11-23 — USB4105 ground-pad corners relieved
+
+`kicad11/windlass_cleared.kicad_pcb` continues from the complete board. That file was not overwritten. The schematic was not edited. The connector stays the GCT USB4105.
+
+A larger corner radius cannot make 0.25 mm. The corner of each ground pad that faces a locating hole was cut back so the copper is 0.28 mm from the hole. KiCad measures 0.280 mm. The cut is 0.0184 mm², about 2.7 percent of the pad. The tail width on the drawing is 0.45 mm inside a 0.60 mm pad. The shell stakes and the peg holes were not moved. Paste and mask use the same outline.
+
+DRC at 12:33 pm Sydney time is `kicad11/drc_cleared.rpt`: 0 violations and 0 unconnected items. ERC is `kicad11/erc_cleared.rpt`: 0 errors and 1 warning. The hole rule stays 0.25 mm. JLCPCB has not reviewed the board. A hole shifted by their published ±0.075 mm still leaves about 0.205 mm. Adding the through-hole oversize as well is arithmetic on a separate row and can leave about 0.140 mm. This board is not for fabrication. B1–B8 are open. The write-up is the “Decision” section of `docs/usb4105_jlcpcb.md`.
+
 ## 2026-11-23 — JLCPCB has not accepted the USB4105 land
 
 The PCB and the schematic were not edited. JLCPCB’s capability table, retrieved the same day, lists NPTH-to-track clearance as 0.2 mm, hole position as ±0.075 mm, and through-hole size as +0.13 / −0.08 mm. A 1.6 mm FR-4 thickness is on that list, and the Ø0.65 mm holes are above the 0.50 mm NPTH minimum. The GCT recommended land is 0.1944 mm from pad to hole, which is under the published 0.2 mm row before those tolerances. The table has no USB4105 exception. Lowering the KiCad rule from 0.25 mm to 0.20 mm would not clear the four errors. No horizontal 16-pin replacement in the KiCad library keeps 0.20 mm after a 0.075 mm hole shift on a 1.6 mm board. The write-up is `docs/usb4105_jlcpcb.md`. The next action is to ask JLCPCB whether they will build this land. The board is not for fabrication.

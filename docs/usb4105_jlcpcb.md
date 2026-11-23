@@ -71,8 +71,16 @@ The connector stays the USB4105 until a replacement is both a horizontal top-mou
 | GCT USB4115-03-C | 0.47 mm | Vertical USB 3.2 receptacle. The enclosure is still unknown. |
 | GCT USB4125 / USB4135 | holes clear | Power only. No D+ or D−. |
 
-## Next action
+## Decision
 
-Ask JLCPCB, before any production file is made, whether a 1.6 mm 4-layer FR-4 board using the GCT recommended land will be built or will be cancelled as beyond their capabilities. Give them the drawing, the two Ø0.65 mm holes, and the 0.1944 mm gap to the ground pads.
+The connector stays the GCT USB4105. A different connector was not fitted. No horizontal 16-pin land in the KiCad library is a cleaner fix than relieving the one corner that fails the hole rule.
 
-Do not redraw the pads, do not lower the 0.25 mm hole rule, and do not treat these four errors as accepted. If JLCPCB will not build the land, the design change is a different connector: a horizontal top-mount USB 2.0 16-pin part whose drawing is for a 1.6 mm board, and whose copper stays at least 0.20 mm from the hole when the hole moves 0.075 mm toward the copper. No footprint in the KiCad library meets that description.
+Raising the corner radius of the 0.60 mm pad cannot reach 0.25 mm. At the largest radius the pad allows, 0.30 mm, the gap is 0.233 mm. The copper that fails the rule is one corner of each ground pad, the corner facing the locating hole. That corner was cut back so the copper stays 0.28 mm from the hole edge. KiCad measures 0.280 mm. The board rule stays 0.25 mm, and there is no exemption.
+
+The cut removes 0.0184 mm² from a 0.670 mm² pad, about 2.7 percent. It is deepest at the corner, about 0.10 mm, and it is about 0.02 mm at the pad centre line. The other three corners, the pad centre, and the toe stay on the drawing. The drawing’s four power tails are 0.45 mm wide, centred in the 0.60 mm pad, so the tail has 0.075 mm of pad on each side before this cut. The shell-stake slots and the Ø0.65 mm peg holes were not moved. Paste and mask follow the same outline, so paste is not printed on the copper that was removed. A1 and B12 are one pad, and A12 and B1 are the other. All four pad numbers carry the same outline. The nets are still GND.
+
+The new board is `kicad11/windlass_cleared.kicad_pcb`. `kicad11/windlass_complete.kicad_pcb` was not overwritten. The schematic was not edited, because the connector and the pin assignment did not change. Routing, the isolation slots, the inner keepouts, and the relay circuit are the same.
+
+DRC after a zone refill, at 12:33 pm Sydney time on 23 November 2026, is `kicad11/drc_cleared.rpt`: 0 violations, 0 unconnected items, and 0 footprint errors. ERC on the unchanged schematic is `kicad11/erc_cleared.rpt`: 0 errors and 1 warning, U5 pin 4 `GND1` on `REED_RET`.
+
+What remains: JLCPCB has not reviewed this board. Their published hole-position tolerance is ±0.075 mm. A hole moved that far toward the pad leaves about 0.205 mm, which is still above their 0.20 mm NPTH-to-track row. Their through-hole size tolerance is +0.13 / −0.08 mm and is not labelled plated-only. If that oversize also applies, the radius grows by 0.065 mm and the two effects together leave about 0.140 mm. That sum is arithmetic on two separate rows, not a limit they publish. The design meets the 0.25 mm board rule and the 0.20 mm published design minimum. It does not absorb both tolerances at once. This board is still not for fabrication. B1–B8 are open. A clean DRC is not an isolation rating.
