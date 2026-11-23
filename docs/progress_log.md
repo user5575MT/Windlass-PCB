@@ -1,6 +1,18 @@
 # Progress log
 
-Status of this repository: design only. No board has been ordered. No firmware has been modified, flashed, or deployed. No vessel wiring has been changed. No Gerber, drill, or position file has been written.
+Status of this repository: design only. No board has been ordered. The prototype firmware was not modified, and nothing has been flashed or deployed. No vessel wiring has been changed. No Gerber, drill, or position file has been written. The integrated image is `firmware/s3`. It does not speak the prototype datagram, because those bytes are not in this repository. See `docs/protocol_gap.md`.
+
+## 2026-11-23 — ESP32-S3 protocol gap, NMEA address claim, heartbeat timing
+
+The text command line that an earlier draft of `firmware/s3` accepted has been removed. The prototype `main.cpp`, its password, the `WLC1` / `WLC1CMD` / `WLC1ACK` bytes, and the Pi bridge were searched for and were not available. The image opens no command socket. Host tests reject that old text line and a binary buffer. The 300 ms TTL, STOP priority, stale-RUN lock, and immediate output clear stay in the decision core.
+
+NMEA 2000 now claims an address before sending PGN 128777 and PGN 128778. Publishing stays off until GPIO18 is high. PGN 128776 is ignored. The NAME uses function 0 and manufacturer 0 because the public class-100 list has no windlass function and this project has no manufacturer code. GPIO1 stays at an 80 ms edge, inside the 264 ms short pulse of the 74LVC1G123. `make test` passed at 4:49 pm Sydney time. Nothing was flashed. The board file was not edited.
+
+## 2026-11-23 — Continuous both-request check and the ESP32-S3 image
+
+The buffers and the NX3008 clamps were checked for a continuous both-request fault. About 34 mA is inside the 74LVC1G34 ±50 mA limiting value. The 1206 is inside its 85 °C rating at 112 mW. The clamp dissipation is a few milliwatts. No part and no copper changed. The write-up is the continuous section of `docs/install_protection.md`.
+
+`firmware/s3` is a new image for the integrated GPIO map. GPIO1 is edged only during a valid UP or DOWN hold. STOP, a 300 ms expiry, a conflict, and coil-rail loss clear the requests and the heartbeat in the decision core. A retired session does not restart the windlass. Host tests passed at 4:34 pm Sydney time. The prototype tree was not in this repository and was not edited. Nothing was flashed.
 
 ## 2026-11-23 — Direction buffers
 

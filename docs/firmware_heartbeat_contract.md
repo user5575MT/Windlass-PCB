@@ -1,8 +1,10 @@
 # Future firmware heartbeat contract
 
-This contract is for a future image built for this PCB. It does not change `WindlassController` on the prototype. That image does not toggle GPIO1, `ENABLE_RELAY_CONTROL` defaults off, and it must stay that way. Do not flash it, and do not edit it to satisfy this document.
+This contract is the one implemented by `firmware/s3` on the integrated board. It does not change `WindlassController` on the prototype. That image does not toggle GPIO1, `ENABLE_RELAY_CONTROL` defaults off, and it must stay that way. Do not flash it, and do not edit it to satisfy this document. The prototype sources are not in this repository.
 
-GPIO1 is `WDI_FUTURE`. The 74LVC1G123 retriggers only on a rising edge. A high level, including a pin stuck high, does not hold `WDT_Q`. The pulse is 330 ms typical and about 475 ms in the long case. After the last edge, `Q` falls and the series MOSFET opens.
+GPIO1 is `WDI_FUTURE`. The 74LVC1G123 retriggers only on a rising edge. A high level, including a pin stuck high, does not hold `WDT_Q`. R52 is 100 kΩ and C50 is 3.3 µF. The Nexperia formula for that capacitor is tW = K × REXT(kΩ) × CEXT(pF) nanoseconds, with K about 1. The typical pulse is 330 ms. The short case used for the edge spacing is K = 1 and capacitance 20% low, 264 ms. The long case is K = 1.2 and capacitance 20% high, about 475 ms. After the last edge, `Q` falls and the series MOSFET opens.
+
+`firmware/s3` raises GPIO1 for 40 ms every 80 ms, and only while the decision core has a legal single-direction hold. Eighty milliseconds is inside the 100 ms bound below, and two edges fit inside the 264 ms short pulse. STOP, a conflicting command, loss of the command link, coil-rail loss, and expiry of the 300 ms software TTL clear GPIO1, GPIO9, and GPIO10 in the same step. The image has no prototype datagram, so the platform never reports a valid command link and the radio path never starts a hold.
 
 ## When edges are allowed
 
