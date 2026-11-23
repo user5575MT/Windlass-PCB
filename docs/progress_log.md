@@ -2,6 +2,14 @@
 
 Status of this repository: design only. No board has been ordered. No firmware has been modified, flashed, or deployed. No vessel wiring has been changed. No Gerber, drill, or position file has been written.
 
+## 2026-11-23 — Bench revision from the electrical review
+
+`kicad11/windlass_cleared.kicad_pcb` was not overwritten. The corrections are on `kicad11/windlass_bench.kicad_pcb`.
+
+U10 pin 10 is GND2 on `GND_CAN`. Pins 9 and 15 stay on `GND_CAN`. Pins 11 and 16 stay on `ISO_5V`. The join is on F.Cu, with no via. L20 is Bourns SRN6045-3R3Y. SRN4018-3R3M was not fitted: its 2.3 A saturation rating is below the AP63203 3.1 A peak-limit maximum. C30I is a 22 µF 25 V X7R 1210, C50 is a 3.3 µF 50 V X7R 1206, and C92 is a 100 nF 50 V X7R 0402. The 1 A coil fuse and the SMBJ18CA clamps were left in place and written down as bench-only restrictions.
+
+ERC at 2:53 pm Sydney time: 0 errors, 1 warning, the intentional U5 `GND1` on `REED_RET`. DRC at 2:56 pm Sydney time: 0 violations, 0 unconnected pads. The title block still says not for fabrication and not for marine installation. B1–B8 are open. No Gerber was written, no part was ordered, and the prototype firmware was not edited. The write-up is `docs/electrical_review.md`.
+
 ## 2026-11-23 — Electrical review, nothing changed
 
 The schematic, `kicad11/windlass_cleared.kicad_pcb`, and the integrated BOM were checked against the datasheets. No schematic, PCB, firmware, or part value was edited.

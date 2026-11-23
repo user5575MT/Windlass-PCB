@@ -77,12 +77,12 @@ Rev 0.2 draws the hardware timer anyway: 74LVC1G123, about 330 ms typical, 475 m
 | ID | Assumption | If wrong |
 | --- | --- | --- |
 | A1 | Module `ESP32-S3-WROOM-1-N16`, no PSRAM, is enough flash and temperature margin. | Change module before layout. Octal PSRAM parts lose GPIO35–37 and drop to 65 °C. |
-| A2 | Isolated CAN transceiver `ISO1042BDWR` plus a separate isolated 5 V DC-DC. DC-DC part not chosen. | Barrier design changes with the isolator package. |
+| A2 | Isolated CAN is `ISO1042BDWR`. On the integrated board the supply is Murata MEJ2S0305SC, 3.3 V to 5 V, fed from `+3V3` through JP1. The earlier line that the DC-DC was not chosen is closed for this board. | A different isolator package changes the barrier layout. |
 | A3 | Coil drivers will be powered only from the switched 12 V rail, and GPIO reset/Hi-Z leaves coils off. | Revisit if B1 shows the “relay” is actually a logic line into the Lofrans box rather than a contact in parallel. |
 | A4 | Chain calibration stays in firmware NVS. Hardware only conditions edges. | None expected. |
 | A5 | Four-layer stackup will be JLCPCB’s standard 4-layer (impedance profile to be copied from their current stackup page when layout starts). | Controlled-impedance notes change if they publish a different stack. |
 | A6 | Through-hole screw terminals and any relay will be hand-fitted if JLCPCB will not assemble that exact part at quantity 2. | Assembly drawing must say so. |
-| A7 | KiCad 10.0.8 from winget is the tool that will own the native project. | It is not installed yet. |
+| A7 | KiCad 10.0.8 produced the integrated netlist, the ERC, and the DRC. The earlier line that it was not installed is closed. | A different KiCad version can move a file format. |
 
 ## Explicitly not assumed
 

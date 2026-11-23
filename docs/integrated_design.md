@@ -64,11 +64,13 @@ One 12 V connector, split after the connector into an MCU fuse and a coil fuse. 
 
 ## Validation
 
+The figures in this section are the unrouted board on the morning of 22 November 2026. They are not the present board. The bench revision is `kicad11/windlass_bench.kicad_pcb`. Its ERC at 2:53 pm Sydney time on 23 November 2026 is 0 errors and 1 intentional warning, and its DRC at 2:56 pm the same afternoon is 0 violations and 0 unconnected pads. See `docs/electrical_review.md`.
+
 KiCad 10.0.8.
 
 ERC, `kicad11/erc.rpt`, 10:08 Sydney time on 22 November 2026: 0 errors, 1 warning. The warning is intentional. U5 `GND1` sits on `REED_RET`.
 
-DRC, `kicad11/drc.rpt`, after a zone refill at 10:58 Sydney time the same morning: 351 violations and 27 unconnected items. Four of the violations are shorts: `USB_VBUS` to `CC2`, `GND` to `USB_SHIELD`, `+3V3` to `NQ`, and `GND_CAN` to an unconnected pad of U10. There are also 11 clearance errors, 4 crossing tracks, and 180 dangling vias from escape vias the maze did not finish. The four extra footprints are the M3 mounting holes, which are not in the schematic.
+DRC, `kicad11/drc.rpt`, after a zone refill at 10:58 Sydney time the same morning, on the unrouted board: 351 violations and 27 unconnected items. Four of the violations are shorts: `USB_VBUS` to `CC2`, `GND` to `USB_SHIELD`, `+3V3` to `NQ`, and `GND_CAN` to an unconnected pad of U10. There are also 11 clearance errors, 4 crossing tracks, and 180 dangling vias from escape vias the maze did not finish. The four extra footprints are the M3 mounting holes, which are not in the schematic.
 
 The layout is placed and partly routed. It is not a finished board. The router in `scripts/build_board.py` does not yet keep fine-pitch escapes clear, and several isolated nets still have no complete path that stays on the top layer. Do not send this file to a manufacturer.
 

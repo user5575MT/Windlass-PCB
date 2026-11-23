@@ -1,5 +1,7 @@
 # Architecture
 
+This page is the preliminary architecture. The integrated board does not use the AP63205 or the MEJ2S0505SC named below. U9 is a Murata MEJ2S0305SC fed from 3.3 V through JP1. The parts list is `docs/integrated_bom.md`.
+
 Preliminary. Relay contact circuit, coil current, ignition wiring, and input thresholds are not frozen. They stay open until the measurements in `assumptions_and_open_questions.md` are answered. Nothing here authorises fabrication, a firmware flash, or a wiring change on the working prototype.
 
 ## Role

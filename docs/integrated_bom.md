@@ -10,15 +10,15 @@ Hand-fitted parts: both Finder relays, both genuine Murata modules, and the USB-
 | --- | --- | --- | --- |
 | J_PWR | KF350-3.5-2P | windlass:KF350-3.5-1x02 | 12 V input |
 | F_MCU | 0466002, 2 A | Fuse_1206 | MCU branch fuse |
-| F_COIL | 0466001, 1 A | Fuse_1206 | Finder coil branch fuse, not the contactor fuse |
+| F_COIL | 0466001, 1 A | Fuse_1206 | Finder coil branch fuse. Bench only: it does not protect the 270 mA NX6008, and it is not the contactor fuse |
 | D_TVS_MCU, D_TVS_COIL | SMAJ18A | SMA | 18 V unidirectional TVS, not load-dump protection |
 | Q_MCU, Q_COIL | DMP6023LE-13 | SOT-223 | reverse-polarity P-FETs |
 | D_Z_MCU, D_Z_COIL | BZT52C12 | SOD-123 | gate clamps |
 | R_MCU_G, R_COIL_G | 100 kΩ | 0402 | gate pull-downs |
 | U20 | AP63203WU-7 | TSOT-23-6 | 12 V to 3.3 V buck |
-| L20 | 3.9 µH SRN4018 | Bourns SRN4018 | buck inductor |
-| C30I | 10 µF | 0805 | buck input |
-| C30A, C30C | 22 µF | 0805 | buck output |
+| L20 | SRN6045-3R3Y, 3.3 µH | windlass:L_Bourns_SRN6045 | buck inductor. Isat 5.0 A, Irms 3.2 A. SRN4018-3R3M was rejected: Isat 2.3 A is below the AP63203 3.1 A peak-limit maximum |
+| C30I | 22 µF, 25 V, X7R, GRM32ER71E226KE15 or equivalent | 1210 | buck input. Effective capacitance at 12 V is measured on the first article |
+| C30A, C30C | 22 µF, 16 V or higher, X7R | 0805 | buck output |
 | C30B | 100 nF | 0402 | bootstrap |
 
 There is no 5 V logic rail and no second buck.
@@ -33,9 +33,9 @@ There is no 5 V logic rail and no second buck.
 | R15, R16 | 5.1 kΩ | CC pull-downs |
 | R17, R18 | 22 Ω | D+ / D− series |
 | R19 | 1 MΩ | shield to GND, with C13 100 nF |
-| C10 | 1 µF | module bulk |
-| C11 | 10 µF | module bulk |
-| C12 | 100 nF | USB |
+| C10 | 1 µF, 16 V or higher | EN delay, with R10 10 kΩ. Not module bulk |
+| C11 | 10 µF, 16 V or higher | 3.3 V rail |
+| C12 | 100 nF, 16 V or higher | 3.3 V rail. The USB shield capacitor is C13 |
 | R10, R11, R12 | 10 kΩ | EN, GPIO0, GPIO3 straps |
 | R13, R14 | 100 kΩ | request pulldowns |
 | SW_BOOT, SW_RST | TL3342F160QG | boot and reset |
@@ -84,15 +84,15 @@ No isolated supply on these channels. `UP_RET` and `DN_RET` are not joined.
 | Q_UP, Q_DN, Q_SERIES | NX6008NBK | low-side drivers and the series heartbeat FET |
 | Q_CLAMP_UP, Q_CLAMP_DN | 2N7002BK | cross-clamp, no XOR and no AND |
 | U11 | 74LVC1G123DP,125 | heartbeat, about 330 ms typical |
-| C50 | 3.3 µF | timing capacitor |
+| C50 | 3.3 µF, 50 V, X7R, GRM31CR71H335KA88L or equivalent, 1206 | timing capacitor. Nominal pulse stays about 330 ms with R52 at 100 kΩ. Measure the Q pulse |
 | R52 | 100 kΩ | timing resistor |
 | D60, D70 | SS14 | Finder coil flyback only |
-| D61, D71 | SMBJ18CA | bidirectional clamp across each COM–NO pair |
+| D61, D71 | SMBJ18CA | bidirectional clamp across each COM–NO pair. Bench only: a shorted clamp holds that contactor on |
 | J_PERM | KF350 4-pin | external relay-power switch and ignition, both in series |
 | J_CONTACT | KF350 4-pin | UP_COM, UP_NO, DN_COM, DN_NO |
 | R_SWLINK, R_IGNLINK, R_COILFEED | 0 Ω | the series links in that external path |
 
-F_COIL does not carry contactor current. The contact copper is drawn at 1.2 mm. That width is the IPC-2221 external 1 oz, 10 °C figure for 2.5 A, which is Quick’s recommended control fuse for a T6315-12 and is not a measured coil current.
+F_COIL does not carry contactor current, and at 1 A it does not protect the 270 mA NX6008. D61 and D71 can fail short and hold a contactor on. Both are accepted only for a bench article that is not wired to a windlass. The contact copper is drawn at 1.2 mm. That width is the IPC-2221 external 1 oz, 10 °C figure for 2.5 A, which is Quick’s recommended control fuse for a T6315-12 and is not a measured coil current.
 
 ## NMEA 2000
 
@@ -106,7 +106,7 @@ F_COIL does not carry contactor current. The contact copper is drawn at 1.2 mm. 
 | R91 | 10 kΩ | jumper sense to GPIO18 |
 | R92 | 10 kΩ | TXD pull-up |
 | R93 | 33 Ω | TXD series |
-| C92 | 100 nF | shield to GND_CAN only |
+| C92 | 100 nF, 50 V, X7R, GRM155R71H104KE14 or equivalent, 0402 | shield to GND_CAN only. Both nets are on the isolated side |
 | J_NMEA | B5B-XH-A | drop connector, pin 5 NET-S is not connected |
 
 No 120 Ω resistor is fitted across CANH and CANL.

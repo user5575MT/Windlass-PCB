@@ -1,5 +1,7 @@
 # Design review, revision 0.2
 
+This review describes the revision 0.2 schematic, including the XOR and the AND. Those gates are not on the integrated board. The current parts, the GPIO map, and the bench restrictions are in `docs/electrical_review.md` and `docs/integrated_bom.md`.
+
 Date: 2026-11-18. Schematic regenerated from `scripts/build_schematic.py`. KiCad 10.0.8 ERC: 0 errors, 0 warnings (`docs/erc_report.txt`). ERC checks connectivity. It does not approve current, creepage, thermal margin, or behaviour on the boat.
 
 No PCB routing has been started. No Gerbers. No order. `WindlassProject` was not edited, flashed, or deployed.

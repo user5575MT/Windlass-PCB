@@ -1,91 +1,68 @@
-# Electrical review of the cleared board
+# Electrical review, bench revision
 
-23 November 2026, afternoon Sydney time. The schematic in `kicad11/`, the netlist `kicad11/windlass.net`, `kicad11/windlass_cleared.kicad_pcb`, and `docs/integrated_bom.md` were checked against the datasheets named below. No schematic, PCB, firmware, or BOM value was changed. No Gerber was written and no part was ordered.
+23 November 2026, Sydney time. The cleared board `kicad11/windlass_cleared.kicad_pcb` is unchanged and remains the checkpoint. The corrections below are on `kicad11/windlass_bench.kicad_pcb` and in the schematic. No firmware was edited. No Gerber was written and no part was ordered.
 
-The cleared board’s DRC is clean (0 violations, 0 unconnected items, 12:33 pm Sydney time, `kicad11/drc_cleared.rpt`). That report does not include schematic parity. A clean DRC is not an electrical release and is not permission to fabricate.
+ERC at 2:53 pm Sydney time (`kicad11/erc_bench.rpt`): 0 errors, 1 warning. The warning is U5 pin 4 `GND1` on `REED_RET`, and it is intentional. DRC at 2:56 pm Sydney time (`kicad11/drc_bench.rpt`), after a zone refill: 0 violations, 0 unconnected pads. Schematic pad nets match the board. `GND_CAN`, `ISO_5V`, `CAN_H`, `CAN_L`, `REED_RET`, `UP_RET`, `DN_RET`, and the other isolated-side nets have no vias and no inner-layer copper.
+
+A clean DRC is the connectivity check. The title block says not for fabrication and not for marine installation. That stands.
 
 ## Verdict
 
-The board is not ready to fabricate. One connection is wrong and shorts the isolated CAN supply.
+There is no remaining critical copper defect on the bench revision. U10 pin 10 is `GND_CAN`. L20 is a Bourns SRN6045-3R3Y, because the SRN4018-3R3M saturation rating is below the converter’s peak current limit. C30I, C50, and C92 have voltage ratings and dielectrics. The 1 A coil fuse and the contact clamps are written down as bench-only restrictions.
 
-After that net is moved, the power input, the coil interlock, the reed input, and the ESP32 straps agree with the datasheets and can be built as a bench prototype. Capacitor voltages and a real inductor ordering code still have to be locked before parts are bought. B1–B8 are measurements. They block connecting the board to the windlass. They do not, by themselves, block etching a bench board once the short is removed.
+This is a bench-prototype design. It is not approval to install the board on the boat. B1–B8 are still the installation measurements, and they are listed separately from the items that are still unverified on the bench article.
 
-## Critical — fix before fabrication
+## Corrections applied
 
-### U10 pin 10 shorts ISO_5V to GND_CAN
+### U10 pin 10 is GND2 on GND_CAN
 
-TI ISO1042, SLLSF09F, revised August 2026, Figure 4-1 (DW, 16-pin SOIC, top view):
+TI ISO1042, SLLSF09F, revised August 2026, Figure 4-1 (DW-16, top view):
 
-| Pin | Datasheet | This board |
+| Pin | Datasheet | Bench schematic and PCB |
 | --- | --- | --- |
 | 9 | GND2 | `GND_CAN` |
-| 10 | GND2 | `ISO_5V` |
+| 10 | GND2 | `GND_CAN` |
 | 11 | VCC2, tie to pin 16 | `ISO_5V` |
 | 15 | GND2 | `GND_CAN` |
 | 16 | VCC2, tie to pin 11 | `ISO_5V` |
 
-Pins 9, 10, and 15 are the same transceiver-side ground. Pad 10 of U10 on `windlass_cleared.kicad_pcb` is at the physical pin-10 position (right-hand row, second pad up from pin 9) and its net is `ISO_5V`. The package therefore joins `ISO_5V` to `GND_CAN`. The MEJ2S0305SC output is shorted. The CAN transceiver cannot run. The short is on the isolated side only.
+The symbol in `kicad11/windlass.kicad_sym` and the copy embedded in `isolated_nmea2000.kicad_sch` now name pin 10 GND2. Pins 11 and 16 stay VCC2. Pins 4, 6, 7, and 14 stay unconnected. The PCB pad is the physical pin 10, on F.Cu, joined to pin 9. Pin 11 stays on `ISO_5V` and still feeds U9 pin 7. No via was added. No 120 Ω terminator was added. `R94` remains the preload from `ISO_5V` to `GND_CAN`.
 
-The symbol in `isolated_nmea2000.kicad_sch` names pin 10 `VCC2`. That name is the error. Pins 1–3, 5, 8, 11–13, and 16 match the datasheet, and pins 4, 6, 7, and 14 are correctly unconnected. `J_NMEA` pin 5 (NET-S) is unconnected. `R94` is from `ISO_5V` to `GND_CAN`, not across CANH and CANL. `C92` joins the shield to `GND_CAN` only.
+On the cleared checkpoint, pad 10 is still `ISO_5V`. That file is the record of the short. The bench file is the one to build from.
 
-Proposed correction, not applied: rename symbol pin 10 to GND2 and connect it to `GND_CAN`. Leave pins 11 and 16 on `ISO_5V`. Update the cleared PCB pad with the schematic, then refill and run ERC and DRC. Do not add a 120 Ω terminator while doing that.
+### L20 is SRN6045-3R3Y
 
-## Important — settle before parts are ordered
+Bourns does not list a 3.9 µH SRN4018. SRN4018-3R3M is a real part: 3.3 µH, Isat 2.3 A at 30% drop, Irms 2.2 A. It was not fitted.
 
-### The 3.9 µH SRN4018 is not a Bourns ordering code
+The AP63203 high-side peak current limit is 2.5 A minimum, 2.8 A typical, and 3.1 A maximum. Cycle-by-cycle protection turns the high-side FET off at that current. The inductor has to remain out of saturation until that limit can act. The current to design for is the 3.1 A maximum of the peak limit, plus whatever the limiter lets through during its delay. The normal board load, which is under 1 A, does not set this number. The 3.9 A valley-limit maximum is a different threshold and was not used as the saturation floor.
 
-Diodes’ AP63203 table recommends 3.9 µH, 10 µF in, two 22 µF out, and 100 nF bootstrap. The board has those values, and the pinout matches: FB (pin 1) on `+3V3`, EN (pin 2) tied to VIN, VIN (pin 3), GND (pin 4), SW (pin 5), BST (pin 6). Diodes allows EN to be tied to VIN. EN absolute maximum is 35 V. Recommended VIN is 32 V. Absolute maximum is 35 V DC and 40 V for 400 ms. The valley current limit is 2.5 A minimum, 3.2 A typical, 3.9 A maximum.
+SRN4018-3R3M Isat of 2.3 A is below the 2.5 A minimum peak limit, so the core is already at its saturation definition before the limiter is guaranteed to trip. Its 2.2 A Irms is also below 2.7 A, which is Diodes’ rule of a DC rating at least 35% above a 2 A load. Both checks fail. The part was rejected for that reason.
 
-Bourns SRN4018 (datasheet table retrieved 23 November 2026) lists SRN4018-3R3M at 3.3 µH, Isat 2.3 A, Irms 2.2 A, and SRN4018-4R7M at 4.7 µH, Isat 2.0 A. It does not list 3.9 µH. `docs/circuit_calculations.md` asks for Isat above 3.1 A. Both neighbouring parts are under that floor and under the 3.9 A limit maximum. At a normal load under 1 A, 2.3 A Isat is enough. The inductor saturates if the buck hits current limit.
+SRN6045-3R3Y, Bourns rev 01/20, is the part on the schematic and the board: 3.3 µH ±30%, Isat 5.0 A, Irms 3.2 A, DCR 30.2 mΩ maximum, body 6.0 × 6.0 × 4.5 mm. Isat is 1.9 A above the 3.1 A peak-limit maximum. Irms is above 2.7 A. At 12 V to 3.3 V and 1.1 MHz, 3.3 µH gives about 0.66 A of ripple, 33% of 2 A, inside Diodes’ 30–50% window. At the −30% inductance the ripple is about 0.94 A, still inside 50%. At 32 V and 2.31 µH the current rises about 14 A/µs, so the 1.9 A gap is about 140 ns. The datasheet does not publish the limiter delay. That 140 ns figure is the budget, and a short-circuit check on the first article is the measurement.
 
-Proposed correction: put a real ordering code on L20. SRN4018-3R3M fits the existing land and sits inside Diodes’ 2.2–10 µH range. If the 3.1 A floor is kept, the footprint has to change to a part that actually has that Isat.
+The land is the recommended layout on that drawing: each pad 2.3 mm by 6.0 mm, 2.0 mm between the facing edges. L20 moved 0.70 mm in +X so the larger pad clears the bootstrap via. The footprint is `windlass:L_Bourns_SRN6045`. It is not the SRN6045TA land in the KiCad library.
 
-### Capacitor voltage is not on the BOM
+### Capacitor ratings
 
-`C30I` is 10 µF, 0805, on the 12 V rail after the P-FET. A 6.3 V part would be over its rating. An 0805 10 µF at 25 V also loses most of its capacitance at 12 V DC bias, and Diodes asks for more than 10 µF. `C50` is 3.3 µF, 0805, on the monostable. Nexperia’s formula for Cext above 10 nF is tW = K × Rext × Cext with K about 1, so 100 kΩ and 3.3 µF is about 330 ms only if the capacitor is actually 3.3 µF. An X7R part under DC bias will be shorter. `C92` is 100 nF from the NMEA shield to `GND_CAN` with no voltage written down.
+`C30I` is Murata GRM32ER71E226KE15 or an equivalent 22 µF, 25 V, X7R, 1210, on `+12V_MCU`. Diodes asks for more than 10 µF at the buck input. An 0805 10 µF Class II part at 12 V does not remain 10 µF, so that case was removed. The Murata reference sheet confirms the marked rating and the 1210 body. It does not include this part’s DC-bias curve, and none was invented. Effective capacitance at 12 V is a first-article measurement. If it is under 10 µF, fit a second capacitor. That measurement is separate from B1–B8.
 
-Proposed correction: specify voltage and dielectric before purchase. `C30I` at least 25 V, checked on the manufacturer’s bias curve, or a larger case. `C50` measured on the first board (see Verification). `C92` at least 50 V.
+`C50` is Murata GRM31CR71H335KA88L or an equivalent 3.3 µF, ±10%, 50 V, X7R, 1206. `R52` stays 100 kΩ. Nexperia’s formula for Cext above 10 nF is tW = K × Rext × Cext with K about 1, so the nominal pulse is still about 330 ms. The voltage across the timing capacitor during the pulse is on the order of the 3.3 V rail, which is 6.6% of a 50 V rating. The ±10% tolerance alone puts the pulse between about 300 ms and 360 ms. A further 20% loss, which is a pessimistic allowance and not this part’s curve, still leaves about 240 ms, above the 100 ms edge interval and near the 300 ms firmware TTL. The resistor and the nominal capacitance were not increased. The pulse is still measured on the first board (B7).
 
-### The coil fuse is larger than the coil FET
+`C92` is Murata GRM155R71H104KE14 or an equivalent 100 nF, 50 V, X7R, 0402. It joins `NMEA_SHIELD` to `GND_CAN`. Both nets are on the isolated side of the barrier, so the capacitor is not a barrier component. The footprint stays 0402.
 
-Finder 40.31.7.012.0000, sensitive 12 V coil: 288 Ω, 42 mA, operate 8.8–18 V. Nexperia NX6008NBK: VGS maximum ±8 V, continuous drain 270 mA at VGS = 4.5 V and 25 °C, RDSon maximum 3 Ω at VGS = 2.5 V. The gates are 3.3 V, so they are inside the 8 V limit. Two FETs in series drop under about 0.26 V at 42 mA. The coil still sees more than the 8.8 V pickup at 12 V.
+`C30A` and `C30C` stay 22 µF, 0805, and are purchased as 16 V or higher, X7R. Ceramics on the 3.3 V rail are 16 V or higher. `C10` is the EN delay capacitor, 1 µF. `C11` is 10 µF on 3.3 V. `C12` is 100 nF on 3.3 V. The USB shield capacitor is `C13`.
 
-`F_COIL` is 1 A. A shorted coil lead can push the NX6008 past 270 mA before that fuse opens. One FET failing short does not energise a coil: the series FET and the low-side FET both have to conduct. Both failing short, with the ignition and the relay-power switch closed, does.
+### The 1 A coil fuse and the contact clamps are bench restrictions
 
-Proposed correction: a coil fuse above 42 mA and below 270 mA, or a low-side FET rated above the fuse. For a bench board that never leaves the bench, the present 1 A fuse only fails this fault case.
+These two circuits were not changed. They are accepted only for a bench article that is not wired to a windlass contactor.
 
-### A shorted contact clamp holds the contactor on
+`F_COIL` is 1 A (0466001). The Finder coil is 42 mA. The NX6008NBK continuous rating is 270 mA at VGS = 4.5 V and 25 °C. A shorted coil lead can take the FET past 270 mA before the fuse opens. One FET failing short does not energise a coil, because `Q_SERIES` and the low-side FET are in series. Both failing short, with the ignition and the relay-power switch closed, does. This fuse is not approved as the protection for an installed windlass.
 
-`D61` and `D71` are SMBJ18CA across each COM–NO pair. They are not connected to board ground, and `UP_COM` is not tied to `DN_COM`. The NC pins are open. A TVS that is overloaded fails short. A short from COM to NO is the same stuck-run as a welded contact (B3). Nothing on this board then opens that path. `F_COIL` and `F_MCU` do not carry contactor current.
+`D61` and `D71` are SMBJ18CA across each COM–NO pair. They are not connected to board ground, and `UP_COM` is not tied to `DN_COM`. A TVS that is overloaded fails short. A short from COM to NO holds that contactor on. Nothing on this board then opens that path. `F_COIL` and `F_MCU` do not carry contactor current. `J_CONTACT` stays off the boat until B1 is measured and the contact protection is redesigned for that current. The 1.2 mm trace is the IPC-2221 external 1 oz, 10 °C figure for 2.5 A. It is not a measured contactor current.
 
-Proposed correction, after B1 gives the current: a fuse in each contact lead, above the measured coil current and below the 1.2 mm trace. Until that measurement, do not land `J_CONTACT` on the boat. The 1.2 mm width is the IPC-2221 external 1 oz, 10 °C figure for 2.5 A. It is not a measured contactor current. Finder’s DC1 figure used here is 10 A at 30 V DC resistive. Finder’s own note is that a DC13 inductive load is about half of that unless the load already has a diode. The SMBJ is across the contact, not a diode across the contactor coil.
+### Documents brought back to the schematic
 
-### The isolated 5 V tolerance is not the 9% written on the sheet
-
-The NMEA sheet says 5 V plus a 9% envelope is 5.45 V, inside the ISO1042 VCC2 range of 4.5–5.5 V. Absolute maximum on VCC2 is 6 V. The Murata MEJ2 selection guide prints 13 and 15 in the load-regulation columns for MEJ2S0305SC. That is not 9%, and the tolerance-envelope drawing was not readable as a number in the text extract. The 42 mA preload is 10.5% of the 400 mA rating, which is the region where Murata’s regulation figure starts to apply. `R94` dissipates about 0.21 W at 5 V and about 0.25 W at 5.45 V, inside the 0.5 W part.
-
-Proposed correction: measure `ISO_5V` with JP1 fitted and only the preload, after pin 10 is fixed. If it is outside 4.5–5.5 V, add a post-regulator. Do not treat 5.45 V as shown.
-
-### Older documents will buy the wrong parts
-
-The schematic and `docs/integrated_bom.md` are the parts list. These older statements are not:
-
-- `docs/circuit_calculations.md` still describes the XOR, a second buck (AP63205), and coil FETs called `NMOS_COIL_OPEN`. The sheet has neither gate. The coil FETs are NX6008NBK.
-- `docs/pin_allocation.md` still puts a blue LED on GPIO17 and an ISO7721 on the reed. GPIO17 is open. The reed part is ISO7720FDR.
-- `docs/architecture.md` still names MEJ2S0505SC, a 5 V input. U9 pin 1 is fed from 3.3 V through JP1. The part on the sheet is MEJ2S0305SC. A 5 V-input module will not start.
-- `docs/assumptions_and_open_questions.md` A2 still says the DC-DC is not chosen, and A7 says KiCad 10 is not installed. KiCad 10.0.8 produced the netlist.
-
-`C10` is the EN capacitor (10 kΩ to 3.3 V, 1 µF to GND, button to GND). The BOM calls it module bulk. `C11` is the 10 µF on 3.3 V. `C12` is 100 nF on 3.3 V, not the USB shield capacitor. That capacitor is `C13`.
-
-Proposed correction: mark those older pages as superseded by `docs/integrated_design.md` and `docs/integrated_bom.md`, and correct the three BOM role labels. Do not change the nets.
-
-### USB4105 residual, already recorded
-
-The ground-pad relief meets the board’s 0.25 mm hole rule. JLCPCB has not reviewed the board. A hole moved by their published ±0.075 mm still leaves about 0.205 mm. Adding the through-hole oversize as well can leave about 0.140 mm. That arithmetic is in `docs/usb4105_jlcpcb.md`. It is not a new electrical defect, and it is not a fabrication approval.
-
-### The existing firmware cannot run this board
-
-The prototype image uses reed GPIO27, sense GPIO25 and GPIO26, and relay GPIO32 and GPIO33, and it does not edge GPIO1. Those GPIO numbers are not the pins of ESP32-S3-WROOM-1-N16. This board’s map, taken from the netlist and the module pad names, is TWAI GPIO4 and GPIO5, reed GPIO6, UP sense GPIO7, DOWN sense GPIO8, UP request GPIO9, DOWN request GPIO10, coil-rail GPIO14, red GPIO15, green GPIO16, publish GPIO18, USB GPIO19 and GPIO20, UART GPIO43 and GPIO44, heartbeat GPIO1. GPIO17, GPIO45, and GPIO46 are open. A board loaded with the prototype image keeps the coils off. That image was not edited. A reviewed image is required before a coil test. The 300 ms command TTL is a different mechanism and was not changed.
+The schematic and `docs/integrated_bom.md` are the parts list. `docs/circuit_calculations.md`, `docs/pin_allocation.md`, `docs/architecture.md`, `docs/component_availability.md`, `docs/connector_pinout.md`, and `docs/design_review.md` now say so at the top. Those pages still describe the earlier revision, including the XOR, the AP63205, `NMOS_COIL_OPEN`, a blue LED on GPIO17, an ISO7721, and MEJ2S0505SC. The integrated board has none of those. GPIO17 is open. The reed isolator is ISO7720FDR. U9 is MEJ2S0305SC, fed from 3.3 V through JP1. A2 and A7 in `docs/assumptions_and_open_questions.md` now say the converter is chosen and that KiCad 10.0.8 produced the netlist. The NMEA sheet no longer says that 5 V plus 9% is 5.45 V. Murata’s load-regulation columns for MEJ2S0305SC print 13 and 15. `ISO_5V` is measured at the preload.
 
 ## What matches the datasheets
 
@@ -115,7 +92,7 @@ U4 is MEJ2S0303SC. Murata’s single-output pins are 1 +Vin, 2 −Vin, 5 −Vout
 
 ISO7720FDR pins match the symbol: VCC1 and INB on `REED_3V3`, INA on `REED_ISO`, GND1 on `REED_RET`, OUTA to the blanker, OUTB used as field-supply present. The F suffix holds the logic outputs low when the field side has no supply. `R23`, 47 kΩ, holds INA low with the shunt off. `R22`, 4.7 kΩ, pulls `DRY_A` up and reaches the isolator only when the shunt joins pins 2 and 3. The Lofrans position (pins 1–2) leaves that pull-up off the boat wire. BAT54W clamps sit from the Lofrans node to `REED_3V3` and to `REED_RET`, after 10 kΩ. A 12 V source into that 10 kΩ is under 1 mA, against a 65 mA preload.
 
-The blanker is two 74LVC1G00 gates. Field-supply loss forces GPIO6 low, so a falling supply is not a rising edge. The latch stays blocking until the reed data has been low while the field rail is up, so a supply that returns during a pulse misses that pulse instead of counting it twice. `REED_RET` is not joined to `GND`, `UP_RET`, `DN_RET`, or `GND_CAN` in the netlist. On the cleared board those nets have no vias and their copper is on F.Cu.
+The blanker is two 74LVC1G00 gates. Field-supply loss forces GPIO6 low, so a falling supply is not a rising edge. The latch stays blocking until the reed data has been low while the field rail is up, so a supply that returns during a pulse misses that pulse instead of counting it twice. `REED_RET`, `UP_RET`, `DN_RET`, `GND_CAN`, and `GND` are separate nets. On `windlass_bench.kicad_pcb` those nets, and the other isolated-side nets, have no vias and no inner-layer copper.
 
 ### Direction sense
 
@@ -125,7 +102,7 @@ TLP291 pin 1 is the LED anode, pin 2 the cathode, pin 3 the emitter, pin 4 the c
 
 GPIO0 has 10 kΩ to 3.3 V and a button to GND. GPIO3 has 10 kΩ to GND. GPIO45 and GPIO46 are open, which is what the 3.3 V-flash module requires. EN has the 10 kΩ and 1 µF above. USB D+ and D− leave GPIO19 and GPIO20 through 22 Ω. CC1 and CC2 have 5.1 kΩ to GND. USBLC6 pin 5 is `USB_VBUS`, not 3.3 V. SBU pins are open.
 
-### NMEA, apart from pin 10
+### NMEA
 
 JP1 is fitted open. `R90`, 100 kΩ, holds the module input off. GPIO18 only senses that node through 10 kΩ. A GPIO driven high can source about 0.3 mA, which cannot run the converter, so a firmware mistake does not publish. TXD is pulled up by 10 kΩ and in series with 33 Ω, so an undriven pin is recessive. No 120 Ω sits on CANH/CANL.
 
@@ -139,27 +116,34 @@ JP1 is fitted open. `R90`, 100 kΩ, holds the module input off. GPIO18 only sens
 | B4 | The Lofrans load is 10 kΩ in series and 47 kΩ to the isolated return, with BAT54 clamps. Idle current is on the order of 70 µA only if the source is near 3.3 V. The pull-up cannot reach the Lofrans pin in the default shunt position. The reference is `REED_RET`, not board ground. | Idle and active voltage, rise and fall, source impedance, and whether that reference is battery negative. The old 3.22 V to 1.5 V sag is the result to avoid. |
 | B5 | Two optocouplers, separate returns, active low on GPIO7 (UP) and GPIO8 (DOWN). Those are not the DevKit pins in the README or in `main.cpp`. | Idle and active voltage, which ground, whether the wires are the contactor coils, and which physical wire is UP. |
 | B6 | The input is designed for 12 V. The coil is specified to 18 V. SMAJ18A is not a load-dump clamp. The buck rise used in the calculations is 89 °C/W from Diodes’ single-layer test board, not this enclosure. | Which battery and breaker, whether the engine can load-dump that feed, the enclosure, and 15 mm from the antenna to metal. |
-| B7 | The monostable pinout and the 330 ms formula match Nexperia. GPIO1 must rise at least every 100 ms. The prototype image does not. The 300 ms TTL is a different timer and was not changed. | The actual Q pulse with the fitted `C50`, and a reviewed image that edges GPIO1, before any coil test. |
+| B7 | The monostable pinout matches Nexperia. `C50` is now 3.3 µF, 50 V, X7R, 1206, with `R52` still 100 kΩ, so the nominal pulse is still about 330 ms. GPIO1 must rise at least every 100 ms. The prototype image does not. The 300 ms TTL is a different timer and was not changed. | The actual Q pulse with the fitted `C50`, and a reviewed image that edges GPIO1, before any coil test. |
 | B8 | No terminator, NET-S open, publish jumper open, shield to `GND_CAN` only. One publisher is the rule already written down. | Whether a drop can reach the mount, whether both backbone ends are already terminated, and whether the other transmitter is removed. |
 
-A2 and A7 in the assumptions table are stale, as noted above. A1, A3, A4, A5, and A6 are unchanged by this review. The explicit non-assumptions still hold: Lofrans ground is not this board’s ground, no 120 Ω belongs here until B8 says this drop is an end, NET-S does not power the transceiver, and an LED is not a safety indication.
+A2 and A7 now name the MEJ2S0305SC and KiCad 10.0.8. A1, A3, A4, A5, and A6 are unchanged by this review. The explicit non-assumptions still hold: Lofrans ground is not this board’s ground, no 120 Ω belongs here until B8 says this drop is an end, NET-S does not power the transceiver, and an LED is not a safety indication.
 
-## Before a first prototype is manufactured
+## What remains before this board can be built or installed
 
-1. Move U10 pin 10 to `GND_CAN`.
-2. Replace “3.9 µH SRN4018” with an ordering code that exists, and write capacitor voltages on the BOM.
-3. Decide, in writing, that the 1 A coil fuse and the contact clamps are accepted for a bench article that is not wired to a contactor. If the first article might be wired to one, change those two items first.
-4. Leave B1–B8 open. Do not install the board to answer them.
-5. Do not program the prototype image and expect the relays to move.
-6. Leave the title block as not for fabrication until the pin-10 board has its own ERC and DRC, and until the USB land risk in `docs/usb4105_jlcpcb.md` is accepted or removed.
+The title block on `windlass_bench` still says not for fabrication and not for marine installation. ERC at 2:53 pm Sydney time is 0 errors and the same one intentional warning (U5 pin 4 `GND1` on `REED_RET`). DRC at 2:56 pm Sydney time is 0 violations and 0 unconnected pads (`kicad11/drc_bench.rpt`). A clean DRC is the connectivity check. It is not a fabrication release and it is not permission to wire the board to a windlass.
+
+Still open, and separate from B1–B8:
+
+- `C30I` effective capacitance at 12 V. The part is specified. Its own DC-bias curve was not in the sheet used here. Measure it on the first article. If the result is under 10 µF, add a second capacitor.
+- `ISO_5V` at the 42 mA preload, after pin 10 is on `GND_CAN`. It has to sit inside 4.5–5.5 V.
+- The Q pulse with the fitted `C50` (B7 is that measurement).
+- The USB4105 residual in `docs/usb4105_jlcpcb.md`. JLCPCB has not reviewed the board.
+- The MEJ2 pin-1 to body-end dimension against the courtyard.
+
+B1–B8 stay open. They are the installation measurements. The 1 A coil fuse and the SMBJ fail-short behaviour stay bench-only restrictions. The prototype image was not edited and does not edge GPIO1, so a board loaded with that image keeps the coils off.
 
 ## Datasheets used
 
-- Texas Instruments ISO1042, SLLSF09F, revised August 2026. Figure 4-1 and the pin table.
-- Diodes AP63200/AP63201/AP63203/AP63205. Pin table, absolute maximums, recommended operating conditions, and the AP63203 component table.
+- Texas Instruments ISO1042, SLLSF09F, revised August 2026. Figure 4-1. Pins 9, 10, and 15 are GND2. Pins 11 and 16 are VCC2 and are tied together.
+- Diodes AP63200/AP63201/AP63203/AP63205. Pin table, absolute maximums, the high-side peak current limit (2.5 / 2.8 / 3.1 A), and the AP63203 component table.
 - Diodes DMP6023LE, DS37199 Rev. 3-2, January 2015. Pin diagram and RDS(on).
-- Nexperia 74LVC1G123, Rev. 8, 14 August 2023. Pin table and the pulse-width formula.
-- Nexperia NX6008NBK, 19 August 2021. Limiting values and RDSon.
+- Nexperia 74LVC1G123, Rev. 8, 14 August 2023. Pin table and the pulse-width formula for Cext above 10 nF.
+- Nexperia NX6008NBK, 19 August 2021. Limiting values and RDSon. Continuous drain 270 mA at VGS = 4.5 V, 25 °C.
 - Murata MEJ2 series datasheet. Pin table, 5.2 kV DC hipot, 2.4 kV DC continuous functional isolation, selection-guide columns for MEJ2S0303SC and MEJ2S0305SC.
-- Bourns SRN4018 series table, retrieved 23 November 2026. No 3.9 µH row. 3.3 µH and 4.7 µH rows as cited.
+- Murata reference sheet for GRM32ER71E226KE15 (22 µF, 25 V, X7R, 1210) and the published ratings for GRM31CR71H335KA88L (3.3 µF, 50 V, X7R, 1206) and GRM155R71H104KE14 (100 nF, 50 V, X7R, 0402). No DC-bias curve for those three parts was read for this revision.
+- Bourns SRN4018 series table, retrieved 23 November 2026. SRN4018-3R3M is 3.3 µH, Isat 2.3 A, Irms 2.2 A. No 3.9 µH row.
+- Bourns SRN6045 series, rev 01/20. SRN6045-3R3Y is 3.3 µH ±30%, Isat 5.0 A, Irms 3.2 A, DCR 30.2 mΩ maximum. Recommended layout: pad 2.3 mm by 6.0 mm, 2.0 mm between the facing edges.
 - Finder 40 series coil table for the 7.012 sensitive coil: 288 Ω, 42 mA, 8.8–18 V. DC1 and the DC13 note as cited in the design documents and the Finder general technical information.

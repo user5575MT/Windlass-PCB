@@ -2,7 +2,7 @@
 	(version "E")
 	(design
 		(source "/agent/repos/Windlass-PCB/kicad11/windlass.kicad_sch")
-		(date "2026-11-21T23:09:00")
+		(date "2026-11-23T03:53:51")
 		(tool "Eeschema 10.0.8-10.0.8~ubuntu24.04.1")
 		(sheet
 			(number "1")
@@ -554,11 +554,11 @@
 		)
 		(comp
 			(ref "C30I")
-			(value "10uF")
-			(footprint "Capacitor_SMD:C_0805_2012Metric")
+			(value "22uF/25V")
+			(footprint "Capacitor_SMD:C_1210_3225Metric")
 			(fields
 				(field
-					(name "Footprint") "Capacitor_SMD:C_0805_2012Metric")
+					(name "Footprint") "Capacitor_SMD:C_1210_3225Metric")
 				(field
 					(name "Datasheet")
 				)
@@ -916,11 +916,11 @@
 		)
 		(comp
 			(ref "L20")
-			(value "3.9uH")
-			(footprint "Inductor_SMD:L_Bourns-SRN4018")
+			(value "SRN6045-3R3Y")
+			(footprint "windlass:L_Bourns_SRN6045")
 			(fields
 				(field
-					(name "Footprint") "Inductor_SMD:L_Bourns-SRN4018")
+					(name "Footprint") "windlass:L_Bourns_SRN6045")
 				(field
 					(name "Datasheet")
 				)
@@ -4615,11 +4615,11 @@
 		)
 		(comp
 			(ref "C50")
-			(value "3.3uF")
-			(footprint "Capacitor_SMD:C_0805_2012Metric")
+			(value "3.3uF/50V")
+			(footprint "Capacitor_SMD:C_1206_3216Metric")
 			(fields
 				(field
-					(name "Footprint") "Capacitor_SMD:C_0805_2012Metric")
+					(name "Footprint") "Capacitor_SMD:C_1206_3216Metric")
 				(field
 					(name "Datasheet")
 				)
@@ -6168,7 +6168,7 @@
 		)
 		(comp
 			(ref "C92")
-			(value "100nF")
+			(value "100nF/50V")
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
 			(fields
 				(field
@@ -6667,7 +6667,7 @@
 			(libsource
 				(lib "windlass")
 				(part "ISO1042BDWR")
-				(description "TI ISO1042 DW-16 isolated CAN. Pinout from datasheet Rev F, Figure 4-1. Project-local symbol; not in the KiCad library.")
+				(description "TI ISO1042 DW-16 isolated CAN. Pinout from SLLSF09F Figure 4-1, revised August 2026. Pin 10 is GND2. Project-local symbol; not in the KiCad library.")
 			)
 			(property
 				(name "Sheetname")
@@ -8964,7 +8964,7 @@
 		(libpart
 			(lib "windlass")
 			(part "ISO1042BDWR")
-			(description "TI ISO1042 DW-16 isolated CAN. Pinout from datasheet Rev F, Figure 4-1. Project-local symbol; not in the KiCad library.")
+			(description "TI ISO1042 DW-16 isolated CAN. Pinout from SLLSF09F Figure 4-1, revised August 2026. Pin 10 is GND2. Project-local symbol; not in the KiCad library.")
 			(fields
 				(field
 					(name "Reference") "U")
@@ -8977,7 +8977,7 @@
 					(name "Datasheet")
 				)
 				(field
-					(name "Description") "TI ISO1042 DW-16 isolated CAN. Pinout from datasheet Rev F, Figure 4-1. Project-local symbol; not in the KiCad library.")
+					(name "Description") "TI ISO1042 DW-16 isolated CAN. Pinout from SLLSF09F Figure 4-1, revised August 2026. Pin 10 is GND2. Project-local symbol; not in the KiCad library.")
 			)
 			(pins
 				(pin
@@ -9012,7 +9012,7 @@
 				)
 				(pin
 					(num "10")
-					(name "VCC2")
+					(name "GND2")
 					(type "power_in")
 				)
 				(pin
@@ -9381,7 +9381,7 @@
 		(net
 			(code "2")
 			(name "+12V_COIL")
-			(class "Default")
+			(class "Power12")
 			(node
 				(ref "D_Z_COIL")
 				(pin "1")
@@ -9403,7 +9403,7 @@
 		(net
 			(code "3")
 			(name "+12V_MCU")
-			(class "Default")
+			(class "Power12")
 			(node
 				(ref "C30I")
 				(pin "1")
@@ -9474,7 +9474,7 @@
 		(net
 			(code "6")
 			(name "CAN_H")
-			(class "Default")
+			(class "Isolated")
 			(node
 				(ref "J_NMEA")
 				(pin "4")
@@ -9491,7 +9491,7 @@
 		(net
 			(code "7")
 			(name "CAN_L")
-			(class "Default")
+			(class "Isolated")
 			(node
 				(ref "J_NMEA")
 				(pin "2")
@@ -9540,7 +9540,7 @@
 		(net
 			(code "9")
 			(name "CC1")
-			(class "Default")
+			(class "USB")
 			(node
 				(ref "J_USB")
 				(pin "A5")
@@ -9556,7 +9556,7 @@
 		(net
 			(code "10")
 			(name "CC2")
-			(class "Default")
+			(class "USB")
 			(node
 				(ref "J_USB")
 				(pin "B5")
@@ -9572,7 +9572,7 @@
 		(net
 			(code "11")
 			(name "COIL_12")
-			(class "Default")
+			(class "Power12")
 			(node
 				(ref "D60")
 				(pin "1")
@@ -9653,7 +9653,7 @@
 		(net
 			(code "14")
 			(name "DN_COM")
-			(class "Default")
+			(class "Contact")
 			(node
 				(ref "D71")
 				(pin "1")
@@ -9676,7 +9676,7 @@
 		(net
 			(code "15")
 			(name "DN_FIELD")
-			(class "Default")
+			(class "Isolated_sig")
 			(node
 				(ref "J_SENSE")
 				(pin "4")
@@ -9719,7 +9719,7 @@
 		(net
 			(code "17")
 			(name "DN_LED_A")
-			(class "Default")
+			(class "Isolated_sig")
 			(node
 				(ref "C41")
 				(pin "1")
@@ -9745,7 +9745,7 @@
 		(net
 			(code "18")
 			(name "DN_LOW")
-			(class "Default")
+			(class "Coil")
 			(node
 				(ref "D70")
 				(pin "2")
@@ -9768,7 +9768,7 @@
 		(net
 			(code "19")
 			(name "DN_NO")
-			(class "Default")
+			(class "Contact")
 			(node
 				(ref "D71")
 				(pin "2")
@@ -9818,7 +9818,7 @@
 		(net
 			(code "21")
 			(name "DN_RET")
-			(class "Default")
+			(class "Isolated_sig")
 			(node
 				(ref "C41")
 				(pin "2")
@@ -9866,7 +9866,7 @@
 		(net
 			(code "23")
 			(name "DRY_A")
-			(class "Default")
+			(class "Isolated_sig")
 			(node
 				(ref "JP_REED")
 				(pin "3")
@@ -10277,7 +10277,7 @@
 		(net
 			(code "26")
 			(name "GND_CAN")
-			(class "Default")
+			(class "Isolated")
 			(node
 				(ref "C91")
 				(pin "2")
@@ -10301,6 +10301,12 @@
 			)
 			(node
 				(ref "U10")
+				(pin "10")
+				(pinfunction "GND2_10")
+				(pintype "power_in")
+			)
+			(node
+				(ref "U10")
 				(pin "15")
 				(pinfunction "GND2_15")
 				(pintype "power_in")
@@ -10321,7 +10327,7 @@
 		(net
 			(code "27")
 			(name "IGN_A")
-			(class "Default")
+			(class "Coil")
 			(node
 				(ref "J_PERM")
 				(pin "3")
@@ -10337,7 +10343,7 @@
 		(net
 			(code "28")
 			(name "IGN_B")
-			(class "Default")
+			(class "Coil")
 			(node
 				(ref "J_PERM")
 				(pin "4")
@@ -10391,7 +10397,7 @@
 		(net
 			(code "31")
 			(name "ISO_5V")
-			(class "Default")
+			(class "Isolated")
 			(node
 				(ref "C91")
 				(pin "1")
@@ -10401,12 +10407,6 @@
 				(ref "R94")
 				(pin "1")
 				(pintype "passive")
-			)
-			(node
-				(ref "U10")
-				(pin "10")
-				(pinfunction "VCC2_10")
-				(pintype "power_in")
 			)
 			(node
 				(ref "U10")
@@ -10520,7 +10520,7 @@
 		(net
 			(code "37")
 			(name "LOFRANS_NODE")
-			(class "Default")
+			(class "Isolated_sig")
 			(node
 				(ref "D20")
 				(pin "2")
@@ -10548,7 +10548,7 @@
 		(net
 			(code "38")
 			(name "NMEA_SHIELD")
-			(class "Default")
+			(class "Isolated_sig")
 			(node
 				(ref "C92")
 				(pin "1")
@@ -10731,7 +10731,7 @@
 		(net
 			(code "47")
 			(name "REED_3V3")
-			(class "Default")
+			(class "Isolated")
 			(node
 				(ref "C20")
 				(pin "1")
@@ -10830,7 +10830,7 @@
 		(net
 			(code "50")
 			(name "REED_ISO")
-			(class "Default")
+			(class "Isolated_sig")
 			(node
 				(ref "C22")
 				(pin "1")
@@ -10857,7 +10857,7 @@
 		(net
 			(code "51")
 			(name "REED_RET")
-			(class "Default")
+			(class "Isolated")
 			(node
 				(ref "C20")
 				(pin "2")
@@ -10912,7 +10912,7 @@
 		(net
 			(code "52")
 			(name "REED_SIG")
-			(class "Default")
+			(class "Isolated_sig")
 			(node
 				(ref "J_REED")
 				(pin "1")
@@ -10928,7 +10928,7 @@
 		(net
 			(code "53")
 			(name "SERIES_NODE")
-			(class "Default")
+			(class "Coil")
 			(node
 				(ref "Q_DN")
 				(pin "2")
@@ -10973,7 +10973,7 @@
 		(net
 			(code "55")
 			(name "SW_A")
-			(class "Default")
+			(class "Coil")
 			(node
 				(ref "J_PERM")
 				(pin "1")
@@ -10989,7 +10989,7 @@
 		(net
 			(code "56")
 			(name "SW_B")
-			(class "Default")
+			(class "Coil")
 			(node
 				(ref "J_PERM")
 				(pin "2")
@@ -11093,7 +11093,7 @@
 		(net
 			(code "62")
 			(name "UP_COM")
-			(class "Default")
+			(class "Contact")
 			(node
 				(ref "D61")
 				(pin "1")
@@ -11116,7 +11116,7 @@
 		(net
 			(code "63")
 			(name "UP_FIELD")
-			(class "Default")
+			(class "Isolated_sig")
 			(node
 				(ref "J_SENSE")
 				(pin "1")
@@ -11159,7 +11159,7 @@
 		(net
 			(code "65")
 			(name "UP_LED_A")
-			(class "Default")
+			(class "Isolated_sig")
 			(node
 				(ref "C31")
 				(pin "1")
@@ -11185,7 +11185,7 @@
 		(net
 			(code "66")
 			(name "UP_LOW")
-			(class "Default")
+			(class "Coil")
 			(node
 				(ref "D60")
 				(pin "2")
@@ -11208,7 +11208,7 @@
 		(net
 			(code "67")
 			(name "UP_NO")
-			(class "Default")
+			(class "Contact")
 			(node
 				(ref "D61")
 				(pin "2")
@@ -11258,7 +11258,7 @@
 		(net
 			(code "69")
 			(name "UP_RET")
-			(class "Default")
+			(class "Isolated_sig")
 			(node
 				(ref "C31")
 				(pin "2")
@@ -11306,7 +11306,7 @@
 		(net
 			(code "71")
 			(name "USB_DN")
-			(class "Default")
+			(class "USB")
 			(node
 				(ref "R18")
 				(pin "1")
@@ -11322,7 +11322,7 @@
 		(net
 			(code "72")
 			(name "USB_DN_C")
-			(class "Default")
+			(class "USB")
 			(node
 				(ref "J_USB")
 				(pin "A7")
@@ -11356,7 +11356,7 @@
 		(net
 			(code "73")
 			(name "USB_DP")
-			(class "Default")
+			(class "USB")
 			(node
 				(ref "R17")
 				(pin "1")
@@ -11372,7 +11372,7 @@
 		(net
 			(code "74")
 			(name "USB_DP_C")
-			(class "Default")
+			(class "USB")
 			(node
 				(ref "J_USB")
 				(pin "A6")
@@ -11406,7 +11406,7 @@
 		(net
 			(code "75")
 			(name "USB_SHIELD")
-			(class "Default")
+			(class "USB")
 			(node
 				(ref "C13")
 				(pin "1")
@@ -11427,7 +11427,7 @@
 		(net
 			(code "76")
 			(name "USB_VBUS")
-			(class "Default")
+			(class "USB")
 			(node
 				(ref "J_USB")
 				(pin "A4")
@@ -11462,7 +11462,7 @@
 		(net
 			(code "77")
 			(name "VIN_12")
-			(class "Default")
+			(class "Power12")
 			(node
 				(ref "F_COIL")
 				(pin "1")
@@ -11483,7 +11483,7 @@
 		(net
 			(code "78")
 			(name "VIN_COIL")
-			(class "Default")
+			(class "Power12")
 			(node
 				(ref "D_TVS_COIL")
 				(pin "1")
@@ -11505,7 +11505,7 @@
 		(net
 			(code "79")
 			(name "VIN_MCU")
-			(class "Default")
+			(class "Power12")
 			(node
 				(ref "D_TVS_MCU")
 				(pin "1")
