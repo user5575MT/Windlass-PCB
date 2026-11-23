@@ -1,0 +1,288 @@
+** Drc report for windlass_routed.kicad_pcb **
+** Created on 2026-11-22T08:12:35 **
+** Report includes: Errors, Warnings **
+
+** Found 79 DRC violations **
+[track_width]: Track width (rule '12 V track width' min width 0.8000 mm; actual 0.6000 mm)
+    Rule: 12 V track width; error
+    @(83.9016 mm, 17.3516 mm): Track [+12V_MCU] on F.Cu, length 1.3412 mm
+[track_width]: Track width (rule '12 V track width' min width 0.8000 mm; actual 0.6000 mm)
+    Rule: 12 V track width; error
+    @(82.8255 mm, 17.3516 mm): Track [+12V_MCU] on F.Cu, length 1.0761 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(98.1500 mm, 67.0250 mm): Track [+3V3] on F.Cu, length 0.8454 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(139.2500 mm, 42.0100 mm): Track [+3V3] on F.Cu, length 1.0454 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(140.7902 mm, 42.5048 mm): Track [+3V3] on F.Cu, length 0.6998 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(97.1798 mm, 67.1498 mm): Track [+3V3] on F.Cu, length 0.1765 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(96.2252 mm, 67.1498 mm): Track [+3V3] on F.Cu, length 0.9546 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(141.8348 mm, 42.5048 mm): Track [+3V3] on F.Cu, length 1.0446 mm
+[track_width]: Track width (rule '12 V track width' min width 0.8000 mm; actual 0.6000 mm)
+    Rule: 12 V track width; error
+    @(83.9016 mm, 37.3516 mm): Track [+12V_COIL] on F.Cu, length 1.3412 mm
+[track_width]: Track width (rule '12 V track width' min width 0.8000 mm; actual 0.6000 mm)
+    Rule: 12 V track width; error
+    @(82.8255 mm, 37.3516 mm): Track [+12V_COIL] on F.Cu, length 1.0761 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(130.4000 mm, 117.9657 mm): Track [UP_RET] on F.Cu, length 0.9807 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(129.4193 mm, 117.9657 mm): Track [UP_RET] on F.Cu, length 0.9465 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(148.6653 mm, 146.6998 mm): Track [DN_FIELD] on F.Cu, length 0.6015 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(151.5000 mm, 146.6998 mm): Track [DN_FIELD] on F.Cu, length 2.8347 mm
+[track_width]: Track width (rule 'Isolated supply track width' min width 0.4000 mm; actual 0.3000 mm)
+    Rule: Isolated supply track width; error
+    @(105.3252 mm, 116.6642 mm): Track [REED_3V3] on F.Cu, length 0.8153 mm
+[track_width]: Track width (rule 'Isolated supply track width' min width 0.4000 mm; actual 0.3000 mm)
+    Rule: Isolated supply track width; error
+    @(106.1405 mm, 116.6642 mm): Track [REED_3V3] on F.Cu, length 0.8153 mm
+[track_width]: Track width (rule 'Isolated supply track width' min width 0.4000 mm; actual 0.3000 mm)
+    Rule: Isolated supply track width; error
+    @(106.9558 mm, 116.6642 mm): Track [REED_3V3] on F.Cu, length 0.8050 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(23.0365 mm, 92.6071 mm): Track [QSERIES_G] on F.Cu, length 2.3115 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(24.4575 mm, 92.6071 mm): Track [QSERIES_G] on F.Cu, length 1.4210 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(113.7968 mm, 116.7208 mm): Track [REED_DATA] on F.Cu, length 0.6776 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(113.1192 mm, 116.7208 mm): Track [REED_DATA] on F.Cu, length 0.9110 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(108.8269 mm, 118.0092 mm): Track [REED_ISO] on F.Cu, length 0.6577 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(108.8258 mm, 119.2700 mm): Track [REED_ISO] on F.Cu, length 1.0345 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(108.1692 mm, 118.0092 mm): Track [REED_ISO] on F.Cu, length 0.9110 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(108.8258 mm, 118.2355 mm): Track [REED_ISO] on F.Cu, length 0.0016 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(110.7900 mm, 103.0174 mm): Track [PG] on F.Cu, length 1.4660 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(105.4893 mm, 100.5701 mm): Track [PG] on F.Cu, length 0.0659 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(113.1192 mm, 117.9908 mm): Track [PG] on F.Cu, length 0.9110 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(105.4893 mm, 100.3575 mm): Track [PG] on F.Cu, length 0.6592 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(114.9933 mm, 117.9908 mm): Track [PG] on F.Cu, length 1.8741 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(104.8301 mm, 100.3575 mm): Track [PG] on F.Cu, length 0.2114 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(105.5033 mm, 101.0325 mm): Track [PG] on F.Cu, length 0.0987 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(109.7534 mm, 101.9808 mm): Track [PG] on F.Cu, length 0.0250 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(105.7275 mm, 100.8083 mm): Track [PG] on F.Cu, length 0.3369 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(105.5033 mm, 102.0131 mm): Track [PG] on F.Cu, length 0.9806 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(140.7902 mm, 45.0448 mm): Track [TWAI_TX] on F.Cu, length 0.6998 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(141.2685 mm, 45.0448 mm): Track [TWAI_TX] on F.Cu, length 0.4783 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(139.2500 mm, 44.5500 mm): Track [TWAI_TX] on F.Cu, length 1.0454 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(167.0655 mm, 75.9908 mm): Track [TWAI_RX] on F.Cu, length 1.6403 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(168.7058 mm, 75.9908 mm): Track [TWAI_RX] on F.Cu, length 0.9110 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(139.2500 mm, 45.8200 mm): Track [TWAI_RX] on F.Cu, length 1.0454 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(140.7902 mm, 46.3148 mm): Track [TWAI_RX] on F.Cu, length 0.6998 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(141.2096 mm, 46.3148 mm): Track [TWAI_RX] on F.Cu, length 0.4194 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(139.2500 mm, 47.0900 mm): Track [REED_GPIO] on F.Cu, length 1.0454 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(137.7098 mm, 47.5848 mm): Track [REED_GPIO] on F.Cu, length 0.6998 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(136.2626 mm, 47.5848 mm): Track [REED_GPIO] on F.Cu, length 1.4472 mm
+[track_width]: Track width (rule 'USB track width' min width 0.2000 mm; actual 0.1500 mm)
+    Rule: USB track width; error
+    @(137.7035 mm, 55.4602 mm): Track [USB_DN] on F.Cu, length 0.7351 mm
+[track_width]: Track width (rule 'USB track width' min width 0.2000 mm; actual 0.1500 mm)
+    Rule: USB track width; error
+    @(139.2500 mm, 55.9800 mm): Track [USB_DN] on F.Cu, length 1.0267 mm
+[track_width]: Track width (rule 'USB track width' min width 0.2000 mm; actual 0.1500 mm)
+    Rule: USB track width; error
+    @(136.4316 mm, 55.4602 mm): Track [USB_DN] on F.Cu, length 1.2719 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(154.5322 mm, 46.3148 mm): Track [UART_RX] on F.Cu, length 0.6776 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(156.7500 mm, 45.8200 mm): Track [UART_RX] on F.Cu, length 1.0454 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(155.2098 mm, 46.3148 mm): Track [UART_RX] on F.Cu, length 0.6998 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(153.9813 mm, 45.0448 mm): Track [UART_TX] on F.Cu, length 1.2285 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(156.7500 mm, 44.5500 mm): Track [UART_TX] on F.Cu, length 1.0454 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(155.2098 mm, 45.0448 mm): Track [UART_TX] on F.Cu, length 0.6998 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(98.1500 mm, 68.9750 mm): Track [WDT_Q] on F.Cu, length 0.8454 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(97.1798 mm, 68.8502 mm): Track [WDT_Q] on F.Cu, length 0.1765 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(95.0096 mm, 68.8502 mm): Track [WDT_Q] on F.Cu, length 2.1702 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(99.0755 mm, 74.1995 mm): Track [BLOCKED] on F.Cu, length 0.2114 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(97.5745 mm, 74.1995 mm): Track [BLOCKED] on F.Cu, length 1.5010 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(165.6985 mm, 73.4508 mm): Track [TXD_NODE] on F.Cu, length 3.0073 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(168.7058 mm, 73.4508 mm): Track [TXD_NODE] on F.Cu, length 0.9110 mm
+[track_width]: Track width (rule 'Isolated supply track width' min width 0.4000 mm; actual 0.3000 mm)
+    Rule: Isolated supply track width; error
+    @(175.5245 mm, 74.1466 mm): Track [ISO_5V] on F.Cu, length 0.2488 mm
+[track_width]: Track width (rule 'Isolated supply track width' min width 0.4000 mm; actual 0.3000 mm)
+    Rule: Isolated supply track width; error
+    @(178.0808 mm, 72.1242 mm): Track [ISO_5V] on F.Cu, length 0.8050 mm
+[track_width]: Track width (rule 'Isolated supply track width' min width 0.4000 mm; actual 0.3000 mm)
+    Rule: Isolated supply track width; error
+    @(175.5245 mm, 74.5711 mm): Track [ISO_5V] on F.Cu, length 0.4245 mm
+[track_width]: Track width (rule 'Isolated supply track width' min width 0.4000 mm; actual 0.3000 mm)
+    Rule: Isolated supply track width; error
+    @(175.7004 mm, 72.1242 mm): Track [ISO_5V] on F.Cu, length 2.3804 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(149.5585 mm, 118.0343 mm): Track [DN_LED_A] on F.Cu, length 0.5222 mm
+[track_width]: Track width (rule 'Signal track width' min width 0.2500 mm; actual 0.1874 mm)
+    Rule: Signal track width; error
+    @(150.0807 mm, 118.0343 mm): Track [DN_LED_A] on F.Cu, length 0.9465 mm
+[track_width]: Track width (rule 'USB track width' min width 0.2000 mm; actual 0.1500 mm)
+    Rule: USB track width; error
+    @(14.0831 mm, 14.4333 mm): Track [USB_VBUS] on F.Cu, length 1.7622 mm
+[track_width]: Track width (rule 'USB track width' min width 0.2000 mm; actual 0.1500 mm)
+    Rule: USB track width; error
+    @(12.3209 mm, 14.4333 mm): Track [USB_VBUS] on F.Cu, length 0.4938 mm
+[silk_overlap]: Silkscreen clearance
+    Rule: board setup constraints silk; warning
+    @(13.7800 mm, 147.7200 mm): Segment of J_PWR on F.Silkscreen
+    @(12.0000 mm, 140.0000 mm): PCB text '+12V  GND' on F.Silkscreen
+[silk_overlap]: Silkscreen clearance
+    Rule: board setup constraints silk; warning
+    @(13.7800 mm, 140.4800 mm): Segment of J_PWR on F.Silkscreen
+    @(12.0000 mm, 140.0000 mm): PCB text '+12V  GND' on F.Silkscreen
+[silk_overlap]: Silkscreen clearance
+    Rule: board setup constraints silk; warning
+    @(43.7800 mm, 147.7200 mm): Segment of J_PERM on F.Silkscreen
+    @(42.0000 mm, 140.0000 mm): PCB text 'SW  SW  IGN  IGN' on F.Silkscreen
+[silk_overlap]: Silkscreen clearance
+    Rule: board setup constraints silk; warning
+    @(42.0000 mm, 140.0000 mm): PCB text 'SW  SW  IGN  IGN' on F.Silkscreen
+    @(43.7800 mm, 140.4800 mm): Segment of J_PERM on F.Silkscreen
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(42.0000 mm, 140.0000 mm): PCB text 'SW  SW  IGN  IGN' on F.Silkscreen
+    @(37.6500 mm, 139.6000 mm): Pad 2 [UP_NO] of D61 on F.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(82.0728 mm, 16.2150 mm): Via [QMCU_G] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(138.8447 mm, 60.7151 mm): Via [IO3_NET] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(143.5544 mm, 61.0117 mm): Via [DN_REQ] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(88.0490 mm, 36.9819 mm): Via [VIN_COIL] on F.Cu - B.Cu
+
+** Found 7 unconnected pads **
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(0.4000 mm, 0.4000 mm): Zone [GND] on F.Cu, priority 0
+    @(0.4000 mm, 0.4000 mm): Zone [GND] on F.Cu, priority 0
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(0.4000 mm, 0.4000 mm): Zone [GND] on F.Cu, priority 0
+    @(0.4000 mm, 0.4000 mm): Zone [GND] on F.Cu, priority 0
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(0.4000 mm, 0.4000 mm): Zone [GND] on F.Cu, priority 0
+    @(0.4000 mm, 0.4000 mm): Zone [GND] on F.Cu, priority 0
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(0.4000 mm, 0.4000 mm): Zone [GND] on F.Cu, priority 0
+    @(0.4000 mm, 0.4000 mm): Zone [GND] on F.Cu, priority 0
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(102.3250 mm, 117.3650 mm): PTH pad 1 [LOFRANS_NODE] of JP_REED
+    @(95.1317 mm, 133.9180 mm): Track [LOFRANS_NODE] on F.Cu, length 0.5716 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(98.2150 mm, 119.9050 mm): Pad 1 [REED_ISO] of R23 on F.Cu
+    @(102.3250 mm, 119.9050 mm): PTH pad 2 [REED_ISO] of JP_REED
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(178.6500 mm, 72.8250 mm): Pad 15 [GND_CAN] of U10 on F.Cu
+    @(178.6500 mm, 81.4125 mm): Track [GND_CAN] on F.Cu, length 0.9675 mm
+
+** Found 0 Footprint errors **
+
+** Ignored checks **
+    - Footprint has no courtyard defined
+    - Track endpoint not centered on via
+    - Tuning profile track geometries
+    - Footprint doesn't match symbol's footprint filters
+    - Footprint component type doesn't match footprint pads
+
+** End of Report **

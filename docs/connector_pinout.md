@@ -1,5 +1,7 @@
 # Connector pinout and wiring schedule
 
+This schedule is revision 0.8 and describes the earlier `kicad/` schematic, including an ISO7721. The integrated connectors and GPIO assignments are the `kicad11/` schematic and `docs/integrated_bom.md`. The reed isolator on that board is ISO7720FDR.
+
 Revision 0.8. Not a fabrication release. Pin 1 is the first pin of the schematic symbol. The relay contacts are routed. Most other nets are still open. Net names below are the ones in `docs/windlass.net` after the 19 November 2026 export.
 
 Six housings replace the separate 2-pin headers. A shared housing does not join the nets. `UP_RET` is not `DN_RET`. `REED_RET` is not `GND`. `GND_CAN` is not `GND`. `NMEA_SHIELD` is not `GND`. `NET-S` has no PCB net.

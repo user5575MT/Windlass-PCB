@@ -1,5 +1,7 @@
 # Component availability
 
+These stock checks are from 19 November 2026 and name parts that are not on the integrated board, including MEJ2S0505SC, ISO7721, AP63205, and a blue LED on GPIO17. Do not order from this page. The integrated parts list is `docs/integrated_bom.md`. U9 is MEJ2S0305SC. The reed isolator is ISO7720FDR. GPIO17 is open.
+
 ## Revision 0.7 checks, 19 November 2026
 
 No order was placed. Quantities below are the figures already read on this date. They were not reloaded for this revision.

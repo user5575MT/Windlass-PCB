@@ -1,5 +1,7 @@
 # Pin allocation
 
+This page is the revision 0.2 map in `kicad/esp32.kicad_sch`. The integrated board’s map is in `docs/electrical_review.md`: heartbeat GPIO1, TWAI GPIO4 and GPIO5, reed GPIO6, UP sense GPIO7, DOWN sense GPIO8, requests GPIO9 and GPIO10, coil-rail GPIO14, red GPIO15, green GPIO16, publish GPIO18, USB GPIO19 and GPIO20, UART GPIO43 and GPIO44. GPIO17, GPIO45, and GPIO46 are open. There is no blue LED and no ISO7721. The reed isolator is ISO7720FDR.
+
 Implemented on `kicad/esp32.kicad_sch` for `ESP32-S3-WROOM-1-N16`. Classic ESP32 GPIO25/26/27/32/33 are not on this module and are not reused. This map is for a future image on this board. The running DevKit firmware is not edited.
 
 ## Not on this module

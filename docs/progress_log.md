@@ -1,6 +1,80 @@
 # Progress log
 
-Status of this repository: design only. No board has been ordered. No firmware has been modified, flashed, or deployed. No vessel wiring has been changed.
+Status of this repository: design only. No board has been ordered. No firmware has been modified, flashed, or deployed. No vessel wiring has been changed. No Gerber, drill, or position file has been written.
+
+## 2026-11-23 — Bench revision from the electrical review
+
+`kicad11/windlass_cleared.kicad_pcb` was not overwritten. The corrections are on `kicad11/windlass_bench.kicad_pcb`.
+
+U10 pin 10 is GND2 on `GND_CAN`. Pins 9 and 15 stay on `GND_CAN`. Pins 11 and 16 stay on `ISO_5V`. The join is on F.Cu, with no via. L20 is Bourns SRN6045-3R3Y. SRN4018-3R3M was not fitted: its 2.3 A saturation rating is below the AP63203 3.1 A peak-limit maximum. C30I is a 22 µF 25 V X7R 1210, C50 is a 3.3 µF 50 V X7R 1206, and C92 is a 100 nF 50 V X7R 0402. The 1 A coil fuse and the SMBJ18CA clamps were left in place and written down as bench-only restrictions.
+
+ERC at 2:53 pm Sydney time: 0 errors, 1 warning, the intentional U5 `GND1` on `REED_RET`. DRC at 2:56 pm Sydney time: 0 violations, 0 unconnected pads. The title block still says not for fabrication and not for marine installation. B1–B8 are open. No Gerber was written, no part was ordered, and the prototype firmware was not edited. The write-up is `docs/electrical_review.md`.
+
+## 2026-11-23 — Electrical review, nothing changed
+
+The schematic, `kicad11/windlass_cleared.kicad_pcb`, and the integrated BOM were checked against the datasheets. No schematic, PCB, firmware, or part value was edited.
+
+U10 pin 10 is GND2 on the ISO1042 and is tied to `ISO_5V`. Pins 9 and 15 are the same ground, on `GND_CAN`, so the isolated 5 V rail is shorted inside the package. That has to move before fabrication. A clean DRC does not see it. The power input, the coil interlock, the reed input, and the ESP32 straps otherwise match their datasheets. The 3.9 µH SRN4018 is not a Bourns ordering code, capacitor voltages are not specified, and B1–B8 are still measurements. The write-up is `docs/electrical_review.md`. The board is not for fabrication.
+
+## 2026-11-23 — USB4105 ground-pad corners relieved
+
+`kicad11/windlass_cleared.kicad_pcb` continues from the complete board. That file was not overwritten. The schematic was not edited. The connector stays the GCT USB4105.
+
+A larger corner radius cannot make 0.25 mm. The corner of each ground pad that faces a locating hole was cut back so the copper is 0.28 mm from the hole. KiCad measures 0.280 mm. The cut is 0.0184 mm², about 2.7 percent of the pad. The tail width on the drawing is 0.45 mm inside a 0.60 mm pad. The shell stakes and the peg holes were not moved. Paste and mask use the same outline.
+
+DRC at 12:33 pm Sydney time is `kicad11/drc_cleared.rpt`: 0 violations and 0 unconnected items. ERC is `kicad11/erc_cleared.rpt`: 0 errors and 1 warning. The hole rule stays 0.25 mm. JLCPCB has not reviewed the board. A hole shifted by their published ±0.075 mm still leaves about 0.205 mm. Adding the through-hole oversize as well is arithmetic on a separate row and can leave about 0.140 mm. This board is not for fabrication. B1–B8 are open. The write-up is the “Decision” section of `docs/usb4105_jlcpcb.md`.
+
+## 2026-11-23 — JLCPCB has not accepted the USB4105 land
+
+The PCB and the schematic were not edited. JLCPCB’s capability table, retrieved the same day, lists NPTH-to-track clearance as 0.2 mm, hole position as ±0.075 mm, and through-hole size as +0.13 / −0.08 mm. A 1.6 mm FR-4 thickness is on that list, and the Ø0.65 mm holes are above the 0.50 mm NPTH minimum. The GCT recommended land is 0.1944 mm from pad to hole, which is under the published 0.2 mm row before those tolerances. The table has no USB4105 exception. Lowering the KiCad rule from 0.25 mm to 0.20 mm would not clear the four errors. No horizontal 16-pin replacement in the KiCad library keeps 0.20 mm after a 0.075 mm hole shift on a 1.6 mm board. The write-up is `docs/usb4105_jlcpcb.md`. The next action is to ask JLCPCB whether they will build this land. The board is not for fabrication.
+
+## 2026-11-23 — Complete copy, reed nets joined on F.Cu
+
+`kicad11/windlass_complete.kicad_pcb` continues from the validated board. The validated file, the finished file, the routed file, and the original `kicad11/windlass.kicad_pcb` were not overwritten. The schematic was not edited, and the board was not autorouted again.
+
+JP_REED moved to (104.00 mm, 137.58 mm) and turned 180°, so the dry contact is the north pin, and C22 moved 2 mm north. `LOFRANS_NODE`, `REED_ISO`, and `DRY_A` now each join their pads on F.Cu: JP_REED pin 1 to D20 pin 2, JP_REED pin 2 to R23 pin 1, and JP_REED pin 3 to J_REED pin 3. The `REED_RET` wall is split and rejoined east of the header so it stays clear of those new tracks. `REED_3V3` keeps its original link. No barrier net has a via, and barrier copper stays on F.Cu. The slots and the inner keepouts are unchanged.
+
+The connector stays the GCT USB4105. No horizontal top-mount USB 2.0 footprint in the KiCad library both matches a manufacturer drawing and clears the 0.25 mm hole rule on a 1.6 mm board. The lands that do clear it are mid-mount, vertical, power-only, or made for a thinner board. The four 0.1944 mm hole-clearance errors remain, and the hole rule stays 0.25 mm.
+
+DRC at 8:51 am Sydney time is `kicad11/drc_complete.rpt`: 0 shorts, 0 clearance errors, 0 under-width tracks, 0 unconnected items, and 4 hole-clearance errors. ERC is the validated run on the unchanged schematic: 0 errors and 1 warning. This board is not for fabrication. B1–B8 are still open. The write-up is the “Complete copy” section of `docs/freerouting_trial.md`.
+
+## 2026-11-23 — Validated copy, DRY_A left on F.Cu
+
+`kicad11/windlass_validated.kicad_pcb` continues from the finished board. The finished file, the routed file, and the original `kicad11/windlass.kicad_pcb` were not overwritten. The schematic was not edited.
+
+A two-via jump of the `DRY_A` segment that blocks `LOFRANS_NODE` and `REED_ISO` was measured and rejected. The segment sits inside the reed inner keepout. The only exits that stay outside that keepout and outside the isolation slots cross onto the logic side, where a barrel would sit 0.20 mm from the inner ground pour and the inner 3.3 V pour. `DRY_A` is the standalone dry contact and shares `REED_3V3` and `REED_RET` with the Lofrans input, so that via was not added. Both nets stay unconnected, on F.Cu.
+
+The four dangling vias were removed. The `+12V  GND` and `SW  SW  IGN  IGN` labels were moved clear of the connector silk and of D61 pad 2. The GCT USB4105 land is unchanged: the drawing’s own gap is 0.1944 mm, the layout tolerance is ±0.05 mm, and the 0.25 mm hole rule still reports all four gaps.
+
+DRC at 7:23 am Sydney time is `kicad11/drc_validated.rpt`: 0 shorts, 0 clearance errors, 0 under-width tracks, 2 unconnected items, and 4 hole-clearance errors. ERC on the unchanged schematic is 0 errors and 1 warning (U5 `GND1` on `REED_RET`). This board is not for fabrication. B1–B8 are still open. The write-up is the “Validated copy” section of `docs/freerouting_trial.md`.
+
+## 2026-11-22 — Finished copy of the routed board
+
+`kicad11/windlass_finished.kicad_pcb` continues from the FreeRouting copy. The routed file and the original `kicad11/windlass.kicad_pcb` were not overwritten. The schematic was not edited. The board was not autorouted again.
+
+`GND_CAN` now reaches U10 pin 15 on F.Cu at 0.40 mm, around the pin row and the isolation slot, with no via. The seventy under-width segments were widened to their class widths. One `PG` segment between U13 pins 2 and 4 was centered so both gaps are 0.200 mm. The four `GND` zone-to-itself reports were four real pour fragments, each holding a ground pad (the two USB ground pairs, R15 pin 2, and U14 pin 3) that had no connection to the main plane. A via on each joins them to the ground pours. `LOFRANS_NODE` and `REED_ISO` are still open: the only F.Cu gap between those pads and the rest of their nets is a `DRY_A` track, and all three nets are barred from vias.
+
+DRC at 8:57 pm Sydney time is `kicad11/drc_finished.rpt`: 0 shorts, 0 clearance errors, 0 under-width tracks, 2 unconnected items, and 4 hole-clearance errors. The hole errors are the GCT USB-C land, 0.1944 mm against a 0.25 mm rule. That gap is not waived on this copy. U3’s nine 0.50 mm thermal vias are unchanged. This board is not for fabrication. B1–B8 are still open. The write-up is the “Finished copy” section of `docs/freerouting_trial.md`.
+
+## 2026-11-22 — FreeRouting on a separate copy
+
+`kicad11/windlass_routed.kicad_pcb` is a copy of the integrated board, routed with FreeRouting 2.5.0 (the JAR on OpenJDK 25) after the net classes were set to the widths the layout already required. The original `kicad11/windlass.kicad_pcb` was not overwritten. The schematic was not edited.
+
+The route ran from 7:03 pm to 7:06 pm Sydney time. DRC after zone refill, at 7:12 pm, is in `kicad11/drc_routed.rpt`: 0 shorts, 0 clearance errors, 0 hole-clearance errors, and 0 drill errors. Three signal connections are still open (`LOFRANS_NODE`, `REED_ISO`, `GND_CAN`), all on nets that are held on F.Cu with no vias. Seventy tracks are narrower than their class. The seventeen isolator-side nets have no vias. The four relay-contact nets are 1.20 mm and may use vias. U3’s twelve 0.20 mm thermal drills were replaced, on the copy, with nine 0.50 mm drills inside the existing ground pad. The USB-C land was not redrawn. This board is not for fabrication. B1–B8 are still open. The write-up is the “Routed copy” section of `docs/freerouting_trial.md`.
+
+## 2026-11-22 — FreeRouting trial, board unchanged
+
+FreeRouting 2.5.0 was run on a copy of `kicad11/windlass.kicad_pcb` with the custom-router copper removed. The schematic and `kicad11/windlass.kicad_pcb` were not modified. The native Linux CLI hangs on a GraalVM serialization error (`ComponentOutline`). The JAR, on OpenJDK 25.0.5.1, completed both trials.
+
+With every net free to use all four layers, KiCad DRC after import showed 0 shorts, 0 clearance errors, and 0 open signal nets. Fourteen isolated nets still received through vias. With those 21 nets locked to F.Cu in the Specctra file, the vias disappeared and one signal stayed open (`REED_ISO` at U5 pin 2). That import also has one short (`VIN_12` on In1.Cu against an `IGN_B` via) and one 0.166 mm clearance on the same pair. Both runs left about 100 tracks at 0.15 mm, under the 0.20 mm rule. The report is `docs/freerouting_trial.md`.
+
+## 2026-11-22 — Integrated redesign, not for fabrication
+
+The revision 0.8 placement in `kicad/` is unchanged and is kept as the reference. A new schematic and a new four-layer board are in `kicad11/`. The outline is 200 × 160 mm. The relays stay on this board. The XOR, the AND, the second buck, the 5 V rail, and the mid-mount USB-C footprint are gone.
+
+ERC on `kicad11/windlass.kicad_sch` is 0 errors and 1 warning. The warning is U5 pin 4, `GND1`, on `REED_RET`. That net is not joined to `GND`.
+
+DRC on `kicad11/windlass.kicad_pcb`, after a zone refill at 10:58 Sydney time on 22 November 2026, is not clean. The report is `kicad11/drc.rpt`: 351 violations, 27 unconnected items, 4 shorts, 11 clearance errors, 4 crossing tracks, and 180 dangling vias. The shorts join `USB_VBUS` to `CC2`, `GND` to `USB_SHIELD`, `+3V3` to `NQ`, and `GND_CAN` to an unconnected pad of U10. This board is not for fabrication. Measurements B1–B8 are still open. No production file was written.
 
 ## 2026-11-22 — Architecture review, routing stopped
 

@@ -1,6 +1,8 @@
 # Circuit calculations
 
-Rev 0.2. Figures below are the ones used on the schematic. Anything marked OPEN is not a fabrication value. KiCad ERC does not check these numbers. The watchdog, reed thresholds, buck thermal check, and isolation ratings are written out in `design_review.md`.
+The integrated board in `kicad11/` has superseded this page. The schematic and `docs/integrated_bom.md` are the parts list. This page still describes the XOR, a second buck (AP63205), and coil FETs called `NMOS_COIL_OPEN`. None of those are on the integrated schematic. The coil FETs are NX6008NBK. L20 is Bourns SRN6045-3R3Y. U9 is MEJ2S0305SC from 3.3 V. The text below is the revision 0.2 record.
+
+Rev 0.2. Figures below are the ones used on the schematic of that revision. Anything marked OPEN is not a fabrication value. KiCad ERC does not check these numbers. The watchdog, reed thresholds, buck thermal check, and isolation ratings are written out in `design_review.md`.
 
 ## Direction-sense LED current — OPEN
 
