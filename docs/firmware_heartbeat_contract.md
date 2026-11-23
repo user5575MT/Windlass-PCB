@@ -1,6 +1,6 @@
 # Future firmware heartbeat contract
 
-This contract is for a future image built for this PCB. It does not change `WindlassController` on the prototype. That image does not toggle GPIO1, `ENABLE_RELAY_CONTROL` defaults off, and it must stay that way. Do not flash it, and do not edit it to satisfy this document.
+This contract is the one implemented by `firmware/s3` on the integrated board. It does not change `WindlassController` on the prototype. That image does not toggle GPIO1, `ENABLE_RELAY_CONTROL` defaults off, and it must stay that way. Do not flash it, and do not edit it to satisfy this document. The prototype sources are not in this repository.
 
 GPIO1 is `WDI_FUTURE`. The 74LVC1G123 retriggers only on a rising edge. A high level, including a pin stuck high, does not hold `WDT_Q`. The pulse is 330 ms typical and about 475 ms in the long case. After the last edge, `Q` falls and the series MOSFET opens.
 

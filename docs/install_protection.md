@@ -114,6 +114,20 @@ The published buffer VOH at the heavy load is 2.0 V minimum, at IO = −24 mA, V
 
 Fail-off uses the same sheets. Buffer VOL maximum is 0.10 V at 100 µA. NX3008 VGS(th) minimum is 0.6 V. ZXMS VIL maximum is 0.7 V. An unpowered buffer’s IOFF maximum is ±2 µA, and 2 µA in 100 kΩ is 0.2 V. `R13` and `R14` hold the buffer inputs low while a GPIO is high-impedance. A buffer stuck high still cannot run a coil unless `Q_SERIES` is held on by edges on GPIO1. Both requests high clamps both inputs off.
 
+## Continuous both-request rating
+
+The both-request case was checked as a continuous fault, not as a pulse. No part was changed.
+
+Nexperia 74LVC1G34 Rev. 11, Table 5, lists output current as a limiting value: ±50 mA with the output between 0 V and VCC. Table 6, the recommended operating conditions, gives supply, input, output voltage, and ambient temperature. It does not give a separate continuous output-current line. The supply-current limit in Table 5 is 100 mA. The fight current, about 34 mA at 3.33 V into 98.4 Ω, is under both limits.
+
+The static table guarantees a high output only up to 24 mA at VCC = 3.0 V. At −40 °C to +125 °C that floor is 2.0 V. At −40 °C to +85 °C it is 2.3 V. The 34 mA figure is above that characterised row. The heat in that fault is mostly in the 100 Ω resistor, not in the die. At the published 2.0 V / 24 mA point the drop from a 3.0 V rail is 1.0 V, so the die is at 24 mW. SOT353 total power is 250 mW and derates 3.3 mW/K above 74 °C, leaving about 214 mW at 85 °C. A straight-line extension of the 85 °C row (2.3 V at 24 mA, about 29 Ω) to 34 mA, referred to the 3.27 V rail, still leaves the clamp gate above 2.5 V. That extension is not a second datasheet line. It does not show a published limit being crossed at the module’s 85 °C rating.
+
+The resistor is 112 mW continuous. A 1206 rated 250 mW at 70 °C and zero at 155 °C still has about 206 mW at 85 °C. At 125 °C ambient the same part would be down to about 88 mW and would not cover 112 mW. The ESP32-S3-WROOM-1-N16 and the AP63203 are rated to 85 °C, and that is the ambient used here.
+
+NX3008NBK,215 drain current in this fault is the same 34 mA. The continuous ratings are 400 mA at 25 °C and 250 mA at 100 °C, both at VGS = 4.5 V. The 2.5 V RDS(on) row is specified at 200 mA. Dissipation at the 2.8 Ω / 1.8 V maximum is under 4 mW. Junction-to-ambient is 370 K/W on the standard footprint, about 1.5 °C, against a 350 mW package rating at 25 °C. VGS absolute maximum is ±8 V. The clamp gate in this fault is a buffer output of a few volts.
+
+The copper, the 100 Ω value, and the NX3008 part stay as drawn. The check is a datasheet calculation. It is not a measurement on a board. Firmware still refuses to assert both requests; the clamp is the fault path, not the normal path.
+
 ## Coil fuse
 
 `F_COIL` is Littelfuse 0466.250, a 250 mA, 125 V, very-fast 1206 fuse. The current product table gives a cold resistance of 0.691 Ω, measured at 10% of rated current, and a nominal melting I²t of 0.0022 A²s. Orderable reels are 0466.250NR and the halogen-free 0466.250NRHF. The series is specified as secondary protection of portable equipment. It is not a marine safety fuse, and it is not the contactor fuse.

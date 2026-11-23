@@ -1,6 +1,12 @@
 # Progress log
 
-Status of this repository: design only. No board has been ordered. No firmware has been modified, flashed, or deployed. No vessel wiring has been changed. No Gerber, drill, or position file has been written.
+Status of this repository: design only. No board has been ordered. The prototype firmware was not modified, and nothing has been flashed or deployed. No vessel wiring has been changed. No Gerber, drill, or position file has been written. The integrated image is `firmware/s3`.
+
+## 2026-11-23 — Continuous both-request check and the ESP32-S3 image
+
+The buffers and the NX3008 clamps were checked for a continuous both-request fault. About 34 mA is inside the 74LVC1G34 ±50 mA limiting value. The 1206 is inside its 85 °C rating at 112 mW. The clamp dissipation is a few milliwatts. No part and no copper changed. The write-up is the continuous section of `docs/install_protection.md`.
+
+`firmware/s3` is a new image for the integrated GPIO map. GPIO1 is edged only during a valid UP or DOWN hold. STOP, a 300 ms expiry, a conflict, and coil-rail loss clear the requests and the heartbeat in the decision core. A retired session does not restart the windlass. Host tests passed at 4:34 pm Sydney time. The prototype tree was not in this repository and was not edited. Nothing was flashed.
 
 ## 2026-11-23 — Direction buffers
 
