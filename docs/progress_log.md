@@ -2,6 +2,12 @@
 
 Status of this repository: design only. No board has been ordered. No firmware has been modified, flashed, or deployed. No vessel wiring has been changed. No Gerber, drill, or position file has been written.
 
+## 2026-11-23 — Electrical review, nothing changed
+
+The schematic, `kicad11/windlass_cleared.kicad_pcb`, and the integrated BOM were checked against the datasheets. No schematic, PCB, firmware, or part value was edited.
+
+U10 pin 10 is GND2 on the ISO1042 and is tied to `ISO_5V`. Pins 9 and 15 are the same ground, on `GND_CAN`, so the isolated 5 V rail is shorted inside the package. That has to move before fabrication. A clean DRC does not see it. The power input, the coil interlock, the reed input, and the ESP32 straps otherwise match their datasheets. The 3.9 µH SRN4018 is not a Bourns ordering code, capacitor voltages are not specified, and B1–B8 are still measurements. The write-up is `docs/electrical_review.md`. The board is not for fabrication.
+
 ## 2026-11-23 — USB4105 ground-pad corners relieved
 
 `kicad11/windlass_cleared.kicad_pcb` continues from the complete board. That file was not overwritten. The schematic was not edited. The connector stays the GCT USB4105.
