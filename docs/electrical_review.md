@@ -1,6 +1,8 @@
 # Electrical review, bench revision
 
-23 November 2026, Sydney time. The cleared board `kicad11/windlass_cleared.kicad_pcb` is unchanged and remains the checkpoint. The corrections below are on `kicad11/windlass_bench.kicad_pcb` and in the schematic. No firmware was edited. No Gerber was written and no part was ordered.
+23 November 2026, Sydney time. The installation revision supersedes the two bench restrictions in the section below. The current schematic and `kicad11/windlass_install.kicad_pcb` are the design to read. The calculations, the parts, and what is still a boat measurement are in `docs/install_protection.md`. `kicad11/windlass_bench.kicad_pcb` was not edited and no longer matches the schematic. It remains the copper checkpoint of the bench article.
+
+The cleared board `kicad11/windlass_cleared.kicad_pcb` is unchanged. The corrections below are the bench revision. No firmware was edited. No Gerber was written and no part was ordered.
 
 ERC at 2:53 pm Sydney time (`kicad11/erc_bench.rpt`): 0 errors, 1 warning. The warning is U5 pin 4 `GND1` on `REED_RET`, and it is intentional. DRC at 2:56 pm Sydney time (`kicad11/drc_bench.rpt`), after a zone refill: 0 violations, 0 unconnected pads. Schematic pad nets match the board. `GND_CAN`, `ISO_5V`, `CAN_H`, `CAN_L`, `REED_RET`, `UP_RET`, `DN_RET`, and the other isolated-side nets have no vias and no inner-layer copper.
 

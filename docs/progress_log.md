@@ -2,6 +2,34 @@
 
 Status of this repository: design only. No board has been ordered. No firmware has been modified, flashed, or deployed. No vessel wiring has been changed. No Gerber, drill, or position file has been written.
 
+## 2026-11-23 — Direction buffers
+
+`kicad11/windlass_install.kicad_pcb` was not edited. It is the checkpoint from before this change and no longer matches the schematic. The buffered board is `kicad11/windlass_install_v2.kicad_pcb`.
+
+`U12` and `U15` are Nexperia 74LVC1G34GW buffers on GPIO9 and GPIO10. `R60` and `R70` are 100 Ω, 1206, 250 mW. `Q_CLAMP_UP` and `Q_CLAMP_DN` are NX3008NBK. The Finder relays, the dry contacts, the series switch, the monostable, and the isolation barrier are unchanged. Firmware was not edited.
+
+The ESP32-S3 high of 2.616 V is 0.616 V above the buffer’s 2.0 V VIH minimum. Through 100 Ω the switch input is about 3.12 V against the 3.0 V on-level, using the ZXMS 100 µA maximum published at 25 °C. With both requests high, each 100 Ω dissipates about 112 mW and the clamp holds the opposite input at about 0.05 V. An unpowered buffer leaks about 0.2 V into the 100 kΩ pulldown.
+
+ERC at 4:19 pm Sydney time: 0 errors, 1 warning, the intentional U5 `GND1` on `REED_RET`. DRC at 4:18 pm Sydney time, after a zone refill: 0 violations, 0 unconnected pads. The title block says not for fabrication. No Gerber was written, no part was ordered, and nothing was flashed. The write-up is `docs/install_protection.md`.
+
+## 2026-11-23 — Relay and contactor review
+
+The schematic, `kicad11/windlass_install.kicad_pcb`, and the firmware were not edited. No Gerber was written, no part was ordered, and nothing was flashed.
+
+The direction inputs fail the published on-level. ESP32-S3-WROOM-1 VOH minimum is 0.8 × VDD, measured at high impedance, which is 2.616 V on the AP63203 minimum of 3.27 V. The ZXMS6004FF on-level is 3.0 V. `R60` and `R70` at 1 kΩ drop about 0.10 V at the published 100 µA and would be adequate if the pin sat on the rail. They cannot close a gap that exists at 0 Ω. `Q_SERIES`, driven by the 74LVC1G123 through 100 Ω, does meet 3.0 V, at about 3.13 V. The correction, not drawn, is a 74LVC1G buffer on GPIO9 and GPIO10 and 100 Ω in place of the 1 kΩ.
+
+The Finder 40.31 contact passes the Quick control circuit on the published bound. DC1 is 12 A at 24 V. With a freewheeling diode, DC13 life matches that. Without one, Finder’s approximation for a 40 ms L/R load is 6 A. Quick’s recommended fuse for the T6315-12 and T6415-12 coil is 2.5 A fast, and Quick does not publish the coil current. The Rev 002A manual does not describe a coil suppressor. One 1N5404 per coil, at the contactor, after confirming the housing has none, is the arrangement that uses the DC1 life. A shorted diode opens the control fuse and the contactor stays off.
+
+The write-up is the review section of `docs/install_protection.md`.
+
+## 2026-11-23 — Installation protection
+
+The bench file `kicad11/windlass_bench.kicad_pcb` was not edited. The installation board is `kicad11/windlass_install.kicad_pcb`, copied from it and then reworked. The schematic is the shared one, so the bench file no longer matches it.
+
+`Q_UP`, `Q_DN`, and `Q_SERIES` are Diodes ZXMS6004FFTA on the existing SOT-23 land. Pin 1 is drain, pin 2 is IN, pin 3 is source. `F_COIL` is Littelfuse 0466.250, 250 mA. `R60` and `R70` are 1 kΩ. `D61` and `D71` are gone. Nothing on the board joins COM to NO. The contactor diode is an installation part at the contactor. The series FET, the cross-clamps, the monostable, and the isolation barrier are unchanged. Firmware was not edited.
+
+ERC at 3:32 pm Sydney time: 0 errors, 1 warning, the intentional U5 `GND1` on `REED_RET`. DRC at 3:41 pm Sydney time, after a zone refill: 0 violations, 0 unconnected pads. The title block says not for fabrication. No Gerber was written, no part was ordered, and nothing was flashed. The write-up is `docs/install_protection.md`.
+
 ## 2026-11-23 — Bench revision from the electrical review
 
 `kicad11/windlass_cleared.kicad_pcb` was not overwritten. The corrections are on `kicad11/windlass_bench.kicad_pcb`.

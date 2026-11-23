@@ -8,7 +8,7 @@ The board is 200 × 160 mm and four layers. Inner 1 is a ground pour, inner 2 is
 
 Removed, because each one repeated something else or existed only to feed a rail that is gone:
 
-- The 74LVC1G86 XOR and the 74LVC1G08 AND. The two 2N7002 cross-clamps already hold a coil gate off when the other request is on, and both requests on hold both gates off.
+- The 74LVC1G86 XOR and the 74LVC1G08 AND. The two cross-clamps already hold a coil gate off when the other request is on, and both requests on hold both gates off.
 - The 5 V buck, its fuse, and the AP2112. The ESP32 and the logic run from one AP63203 3.3 V buck.
 - The blue LED, its transistor, and GPIO17.
 - The mid-mount HRO USB-C footprint. The connector is a GCT USB4105, top-mount, so the signal pads sit on the board.
@@ -20,7 +20,7 @@ Kept, because each one is the hardware interlock firmware cannot bypass:
 - The external relay-power switch and the external ignition, both in series with the coil feed, ahead of the onboard FETs.
 - A series FET, Q_SERIES, that the 74LVC1G123 holds on only while GPIO1 keeps producing edges. A static level does not retrigger it. Nexperia’s timing, with 100 kΩ and 3.3 µF, is about 330 ms typical and about 475 ms at the long case used here. The prototype image does not edge GPIO1, so a board loaded with that image keeps the coils off.
 - Cross-clamps so both relays cannot be driven together.
-- Flyback diodes across the Finder coils only. A bidirectional SMBJ18CA across each contact pair. That clamp has no polarity and it does not join the contactor return to board ground.
+- Flyback diodes across the Finder coils only. No component on this board joins COM to NO. The contactor-coil diode is mounted at the contactor.
 
 The coil high side is the fused, polarity-protected coil branch, then the external switch, then the external ignition, then Q_SERIES. The low side is Q_UP or Q_DN. If the controller stops, resets, or loses 3.3 V, the requests fall, the monostable times out, and both coils release. A welded contact is not opened by any of this. The boat breaker is the clearing action.
 
@@ -46,11 +46,11 @@ ISO1042 on the logic 3.3 V, with its bus side on 5 V from a Murata MEJ2S0305SC. 
 
 ## Contacts and the Quick contactor
 
-The likely contactor is a Quick T6315-12. The model, the coil resistance, and the inductive energy are not confirmed. Quick’s user manual states a 12 V coil and a recommended 2.5 A fast control fuse. It does not state the coil current. The motor ratings in that manual are the motor contact, which this board does not switch.
+The likely contactor is a Quick T6315-12 or T6415-12. Quick’s manual states a 12 V coil and a recommended 2.5 A fast control fuse. It does not state the coil current. The motor ratings are the motor contact, which this board does not switch. The PCB does not feed the contactor coils.
 
-Finder’s DC1 rating used here is 10 A at 30 V DC, resistive. The DC13 inductive life equals that figure only when the load already has a diode. That diode is not assumed. The SMBJ18CA may absorb less energy than the contactor coil stores. Installation stays blocked until the measured current and the turn-off energy sit inside the Finder DC1 figure.
+Finder’s current DC1 breaking capacity for this contact is 12 A at 24 V. DC13 life matches that when a diode is fitted across the load, and the no-diode approximation in Finder’s general information is half of it, 6 A. The diode is an installation part at the contactor, fitted only after that contactor is seen to have no suppressor of its own. Quick does not publish the coil current. The 2.5 A fuse Quick specifies is under both of those contact figures. Confirming the installed contactor, the coil polarity, and whether a parallel contact back-feeds the hand remote, is still a measurement. GPIO9 and GPIO10 each pass through a 74LVC1G34, and `R60` and `R70` are 100 Ω. The calculation is in `docs/install_protection.md`.
 
-Contact tracks are 1.2 mm. IPC-2221 for an external 1 oz trace at a 10 °C rise gives about 1.07 mm for 2.5 A. The 1.2 mm width is that fuse as an upper bound, not a measured current. The 1 A coil fuse is sized for two Finder coils at 42 mA, only one of them on.
+Contact tracks are 1.2 mm. IPC-2221 for an external 1 oz trace at a 10 °C rise gives about 1.07 mm for 2.5 A. The Finder coil fuse is 250 mA, sized for the 42 mA coil. The calculations are in `docs/install_protection.md`.
 
 ## Isolation
 
@@ -64,7 +64,7 @@ One 12 V connector, split after the connector into an MCU fuse and a coil fuse. 
 
 ## Validation
 
-The figures in this section are the unrouted board on the morning of 22 November 2026. They are not the present board. The bench revision is `kicad11/windlass_bench.kicad_pcb`. Its ERC at 2:53 pm Sydney time on 23 November 2026 is 0 errors and 1 intentional warning, and its DRC at 2:56 pm the same afternoon is 0 violations and 0 unconnected pads. See `docs/electrical_review.md`.
+The figures in this section are the unrouted board on the morning of 22 November 2026. They are not the present board. The installation revision is `kicad11/windlass_install_v2.kicad_pcb`. Its ERC at 4:19 pm Sydney time on 23 November 2026 is 0 errors and 1 intentional warning, and its DRC at 4:18 pm the same afternoon is 0 violations and 0 unconnected pads. See `docs/install_protection.md`. `kicad11/windlass_install.kicad_pcb` is the checkpoint from before the direction buffers, and the bench file is the checkpoint from before that. Neither matches the schematic.
 
 KiCad 10.0.8.
 
@@ -89,7 +89,7 @@ Still unmeasured, and still able to change a part or forbid installation:
 - B7. The heartbeat edge on GPIO1 is not in the prototype image.
 - B8. The NMEA drop, whether the bus is already terminated, and which device is allowed to publish.
 
-Also unresolved: the SMBJ18CA energy against the real coil, the Finder contact life on an inductive load with no diode, and the MEJ2 pin-1 to body-end dimension against a Murata drawing. The KF350 courtyard is still the 4Ucon envelope.
+Also unresolved: confirming the installed contactor is a Quick T6315-12 or T6415-12, whether a parallel contact back-feeds the hand remote, and the MEJ2 pin-1 to body-end dimension against a Murata drawing. The KF350 courtyard is still the 4Ucon envelope. The contact diode and the coil-driver ratings are calculated in `docs/install_protection.md`.
 
 The antenna keepout is on every copper layer over the module’s antenna end. Espressif’s 15 mm clearance to metal is not satisfied by that keepout if the case is metal. That remains B6.
 
