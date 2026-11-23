@@ -2,6 +2,14 @@
 
 Status of this repository: design only. No board has been ordered. No firmware has been modified, flashed, or deployed. No vessel wiring has been changed. No Gerber, drill, or position file has been written.
 
+## 2026-11-23 — Installation protection
+
+The bench file `kicad11/windlass_bench.kicad_pcb` was not edited. The installation board is `kicad11/windlass_install.kicad_pcb`, copied from it and then reworked. The schematic is the shared one, so the bench file no longer matches it.
+
+`Q_UP`, `Q_DN`, and `Q_SERIES` are Diodes ZXMS6004FFTA on the existing SOT-23 land. Pin 1 is drain, pin 2 is IN, pin 3 is source. `F_COIL` is Littelfuse 0466.250, 250 mA. `R60` and `R70` are 1 kΩ. `D61` and `D71` are gone. Nothing on the board joins COM to NO. The contactor diode is an installation part at the contactor. The series FET, the cross-clamps, the monostable, and the isolation barrier are unchanged. Firmware was not edited.
+
+ERC at 3:32 pm Sydney time: 0 errors, 1 warning, the intentional U5 `GND1` on `REED_RET`. DRC at 3:41 pm Sydney time, after a zone refill: 0 violations, 0 unconnected pads. The title block says not for fabrication. No Gerber was written, no part was ordered, and nothing was flashed. The write-up is `docs/install_protection.md`.
+
 ## 2026-11-23 — Bench revision from the electrical review
 
 `kicad11/windlass_cleared.kicad_pcb` was not overwritten. The corrections are on `kicad11/windlass_bench.kicad_pcb`.

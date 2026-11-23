@@ -74,17 +74,17 @@
       (stroke (width 0.254) (type default)) (fill (type background))))
   (symbol "DMP6023LE_1_1" (pin input line (at -7.62 0.0 0) (length 2.54) (name "G" (effects (font (size 1.27 1.27)))) (number "1" (effects (font (size 1.27 1.27))))) (pin passive line (at 7.62 0.0 180) (length 2.54) (name "D" (effects (font (size 1.27 1.27)))) (number "2" (effects (font (size 1.27 1.27))))) (pin passive line (at 0 -7.62 90) (length 2.54) (name "S" (effects (font (size 1.27 1.27)))) (number "3" (effects (font (size 1.27 1.27))))))
 )
-(symbol "NX6008NBK"
+(symbol "ZXMS6004FF"
   (exclude_from_sim no) (in_bom yes) (on_board yes) (in_pos_files yes)
   (property "Reference" "Q" (at 0 10.16 0) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27))))
-  (property "Value" "NX6008NBK" (at 0 12.7 0) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27))))
+  (property "Value" "ZXMS6004FF" (at 0 12.7 0) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27))))
   (property "Footprint" "" (at 0 0 0) (hide yes) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27))))
   (property "Datasheet" "" (at 0 0 0) (hide yes) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27))))
-  (property "Description" "Nexperia NX6008NBK, SOT-23, 60 V. Pin 1 gate, pin 2 source, pin 3 drain. RDS max 3 ohm at Vgs 2.5 V. Vgs absolute maximum is +/-8 V, so the gate stays on the 3.3 V logic rail." (at 0 0 0) (hide yes) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27))))
-  (symbol "NX6008NBK_0_1"
+  (property "Description" "Diodes ZXMS6004FFTA, SOT23F on the SOT-23 land. Pin 1 drain, pin 2 IN, pin 3 source. 60 V protected low-side switch. VIH 3.0 V. Current limit 0.7 A minimum at VIN 3 V, then thermal shutdown." (at 0 0 0) (hide yes) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27))))
+  (symbol "ZXMS6004FF_0_1"
     (rectangle (start -5.08 6.35) (end 5.08 -6.35)
       (stroke (width 0.254) (type default)) (fill (type background))))
-  (symbol "NX6008NBK_1_1" (pin input line (at -7.62 0.0 0) (length 2.54) (name "G" (effects (font (size 1.27 1.27)))) (number "1" (effects (font (size 1.27 1.27))))) (pin passive line (at 7.62 0.0 180) (length 2.54) (name "D" (effects (font (size 1.27 1.27)))) (number "3" (effects (font (size 1.27 1.27))))) (pin passive line (at 0 -7.62 90) (length 2.54) (name "S" (effects (font (size 1.27 1.27)))) (number "2" (effects (font (size 1.27 1.27))))))
+  (symbol "ZXMS6004FF_1_1" (pin input line (at -7.62 0.0 0) (length 2.54) (name "IN" (effects (font (size 1.27 1.27)))) (number "2" (effects (font (size 1.27 1.27))))) (pin passive line (at 7.62 0.0 180) (length 2.54) (name "D" (effects (font (size 1.27 1.27)))) (number "1" (effects (font (size 1.27 1.27))))) (pin passive line (at 0 -7.62 90) (length 2.54) (name "S" (effects (font (size 1.27 1.27)))) (number "3" (effects (font (size 1.27 1.27))))))
 )
 (symbol "74LVC1G123"
   (exclude_from_sim no) (in_bom yes) (on_board yes) (in_pos_files yes)

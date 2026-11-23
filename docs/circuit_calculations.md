@@ -1,6 +1,6 @@
 # Circuit calculations
 
-The integrated board in `kicad11/` has superseded this page. The schematic and `docs/integrated_bom.md` are the parts list. This page still describes the XOR, a second buck (AP63205), and coil FETs called `NMOS_COIL_OPEN`. None of those are on the integrated schematic. The coil FETs are NX6008NBK. L20 is Bourns SRN6045-3R3Y. U9 is MEJ2S0305SC from 3.3 V. The text below is the revision 0.2 record.
+The integrated board in `kicad11/` has superseded this page. The schematic and `docs/integrated_bom.md` are the parts list. The coil drivers are ZXMS6004FFTA and `F_COIL` is 0466.250. Those calculations are in `docs/install_protection.md`. This page still describes the XOR, a second buck (AP63205), and coil FETs called `NMOS_COIL_OPEN`. None of those are on the integrated schematic. L20 is Bourns SRN6045-3R3Y. U9 is MEJ2S0305SC from 3.3 V. The text below is the revision 0.2 record.
 
 Rev 0.2. Figures below are the ones used on the schematic of that revision. Anything marked OPEN is not a fabrication value. KiCad ERC does not check these numbers. The watchdog, reed thresholds, buck thermal check, and isolation ratings are written out in `design_review.md`.
 
@@ -109,20 +109,14 @@ ISO1042 dominant bus current is about 43–73 mA at `RL = 60 Ω`. A 120 Ω prelo
 
 Finder 40.31, coil code 7.012, from the series coil table: 288 Ω, 42 mA at 12 V, operating range 8.8 V to 18 V, operate/release 7 ms / 3 ms.
 
-```text
-I_coil = 12 V / 288 Ω = 42 mA
-Two FETs at 3 Ω max each: drop = 2 × 0.042 × 3 = 0.25 V
-Coil voltage at 12 V ≈ 11.7 V, above the 8.8 V pickup
-```
-
-`F_COIL` is 1 A, about 20 times one coil and about 12 times both coils. The interlock allows only one coil. `NX6008NBK` is 60 V and 270 mA at 25 °C on the stated pad, against 42 mA. `SS14` is 1 A / 40 V across each coil. `Q_COIL` is DMP6023LE, 60 V / 7 A, at 42 mA. `SMAJ18A` on this branch matches the coil's 18 V maximum operating voltage as a stand-off. Its 29.2 V clamp is inside the 60 V FETs. It is not load-dump protection, and it does not make 10 A a safe inductive contact current.
+The 42 mA figure is unchanged. The driver drop, the 250 mA fuse, and the contact diode are calculated in `docs/install_protection.md`. The 3 Ω / 1 A figures that used to sit here were the NX6008 and the 0466001, and they are not the current parts.
 
 ## Parts still not closed
 
 | Item | Why |
 | --- | --- |
 | Load-dump energy | SMAJ18A is 400 W, 10/1000 µs. Source impedance is unknown. |
-| Lofrans control current and inductive energy | Contact design limit is DC1, 10 A at 30 V. DC13 is not that number unless the load has its own diode. |
+| Installed contactor | DC13 matches the 10 A DC1 rating once the diode is at the contactor. That comparison holds only if the boat’s unit is a Quick T6315-12 or T6415-12. |
 | Inductor reel | Value and Isat floor are set (above 3.1 A). The exact MPN is a purchase against that spec. |
 | C92 voltage rating | Has to survive the barrier. Creepage is a layout item. |
 | R30, R40 | See the LED-current rule above. |

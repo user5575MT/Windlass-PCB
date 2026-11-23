@@ -1,6 +1,6 @@
 # Integrated controller BOM
 
-Parts as drawn in `kicad11/windlass.net`. 130 fitted parts, plus four M3 mounting holes that are on the PCB and not in the schematic. No price is stated. Stock was not re-checked for this list. A JLCPCB line is not a claim that the part is basic-library or in stock.
+Parts as drawn in `kicad11/windlass.net`. 128 fitted parts, plus four M3 mounting holes that are on the PCB and not in the schematic. No price is stated. Stock was not re-checked for this list. A JLCPCB line is not a claim that the part is basic-library or in stock. The coil-driver and contact-protection calculations are in `docs/install_protection.md`.
 
 Hand-fitted parts: both Finder relays, both genuine Murata modules, and the USB-C receptacle if the assembler does not place it. Do not substitute the LCSC listing that uses the MEJ2S part number and is made by YLPTEC.
 
@@ -10,7 +10,7 @@ Hand-fitted parts: both Finder relays, both genuine Murata modules, and the USB-
 | --- | --- | --- | --- |
 | J_PWR | KF350-3.5-2P | windlass:KF350-3.5-1x02 | 12 V input |
 | F_MCU | 0466002, 2 A | Fuse_1206 | MCU branch fuse |
-| F_COIL | 0466001, 1 A | Fuse_1206 | Finder coil branch fuse. Bench only: it does not protect the 270 mA NX6008, and it is not the contactor fuse |
+| F_COIL | 0466.250, 250 mA | Fuse_1206 | Finder coil branch fuse. Cold resistance 0.691 Ω. It is not the contactor fuse |
 | D_TVS_MCU, D_TVS_COIL | SMAJ18A | SMA | 18 V unidirectional TVS, not load-dump protection |
 | Q_MCU, Q_COIL | DMP6023LE-13 | SOT-223 | reverse-polarity P-FETs |
 | D_Z_MCU, D_Z_COIL | BZT52C12 | SOD-123 | gate clamps |
@@ -81,18 +81,18 @@ No isolated supply on these channels. `UP_RET` and `DN_RET` are not joined.
 | Ref | Value | Role |
 | --- | --- | --- |
 | K_UP, K_DN | Finder 40.31.7.012.0000 | 12 V coil, 288 Ω, 42 mA. Contact DC1 is 10 A at 30 V DC resistive |
-| Q_UP, Q_DN, Q_SERIES | NX6008NBK | low-side drivers and the series heartbeat FET |
+| Q_UP, Q_DN, Q_SERIES | ZXMS6004FFTA | protected low-side switches. SOT23F on the existing SOT-23 land. Pin 1 drain, pin 2 IN, pin 3 source |
+| R60, R70 | 1 kΩ | series into the up and down inputs, so 100 µA of input current stays above the 3.0 V on-threshold |
 | Q_CLAMP_UP, Q_CLAMP_DN | 2N7002BK | cross-clamp, no XOR and no AND |
 | U11 | 74LVC1G123DP,125 | heartbeat, about 330 ms typical |
 | C50 | 3.3 µF, 50 V, X7R, GRM31CR71H335KA88L or equivalent, 1206 | timing capacitor. Nominal pulse stays about 330 ms with R52 at 100 kΩ. Measure the Q pulse |
 | R52 | 100 kΩ | timing resistor |
-| D60, D70 | SS14 | Finder coil flyback only |
-| D61, D71 | SMBJ18CA | bidirectional clamp across each COM–NO pair. Bench only: a shorted clamp holds that contactor on |
+| D60, D70 | SS14 | Finder coil flyback only. Nothing on this board joins COM to NO |
 | J_PERM | KF350 4-pin | external relay-power switch and ignition, both in series |
-| J_CONTACT | KF350 4-pin | UP_COM, UP_NO, DN_COM, DN_NO |
+| J_CONTACT | KF350 4-pin | UP_COM, UP_NO, DN_COM, DN_NO. Two independent dry contacts |
 | R_SWLINK, R_IGNLINK, R_COILFEED | 0 Ω | the series links in that external path |
 
-F_COIL does not carry contactor current, and at 1 A it does not protect the 270 mA NX6008. D61 and D71 can fail short and hold a contactor on. Both are accepted only for a bench article that is not wired to a windlass. The contact copper is drawn at 1.2 mm. That width is the IPC-2221 external 1 oz, 10 °C figure for 2.5 A, which is Quick’s recommended control fuse for a T6315-12 and is not a measured coil current.
+Not on this PCB, fitted at each Quick contactor: one 3 A, 400 V diode such as a 1N5404, cathode to the switched positive and anode to the coil return, and the boat’s existing 2.5 A fast control fuse. F_COIL does not carry contactor current. The contact copper is 1.2 mm, the IPC-2221 external 1 oz, 10 °C figure for that 2.5 A fuse.
 
 ## NMEA 2000
 
