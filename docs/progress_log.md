@@ -2,6 +2,16 @@
 
 Status of this repository: design only. No board has been ordered. No firmware has been modified, flashed, or deployed. No vessel wiring has been changed. No Gerber, drill, or position file has been written.
 
+## 2026-11-23 — Relay and contactor review
+
+The schematic, `kicad11/windlass_install.kicad_pcb`, and the firmware were not edited. No Gerber was written, no part was ordered, and nothing was flashed.
+
+The direction inputs fail the published on-level. ESP32-S3-WROOM-1 VOH minimum is 0.8 × VDD, measured at high impedance, which is 2.616 V on the AP63203 minimum of 3.27 V. The ZXMS6004FF on-level is 3.0 V. `R60` and `R70` at 1 kΩ drop about 0.10 V at the published 100 µA and would be adequate if the pin sat on the rail. They cannot close a gap that exists at 0 Ω. `Q_SERIES`, driven by the 74LVC1G123 through 100 Ω, does meet 3.0 V, at about 3.13 V. The correction, not drawn, is a 74LVC1G buffer on GPIO9 and GPIO10 and 100 Ω in place of the 1 kΩ.
+
+The Finder 40.31 contact passes the Quick control circuit on the published bound. DC1 is 12 A at 24 V. With a freewheeling diode, DC13 life matches that. Without one, Finder’s approximation for a 40 ms L/R load is 6 A. Quick’s recommended fuse for the T6315-12 and T6415-12 coil is 2.5 A fast, and Quick does not publish the coil current. The Rev 002A manual does not describe a coil suppressor. One 1N5404 per coil, at the contactor, after confirming the housing has none, is the arrangement that uses the DC1 life. A shorted diode opens the control fuse and the contactor stays off.
+
+The write-up is the review section of `docs/install_protection.md`.
+
 ## 2026-11-23 — Installation protection
 
 The bench file `kicad11/windlass_bench.kicad_pcb` was not edited. The installation board is `kicad11/windlass_install.kicad_pcb`, copied from it and then reworked. The schematic is the shared one, so the bench file no longer matches it.

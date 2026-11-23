@@ -80,9 +80,9 @@ No isolated supply on these channels. `UP_RET` and `DN_RET` are not joined.
 
 | Ref | Value | Role |
 | --- | --- | --- |
-| K_UP, K_DN | Finder 40.31.7.012.0000 | 12 V coil, 288 Ω, 42 mA. Contact DC1 is 10 A at 30 V DC resistive |
+| K_UP, K_DN | Finder 40.31.7.012.0000 | 12 V coil, 288 Ω, 42 mA. Contact DC1 breaking capacity is 12 A at 24 V. The review is in `docs/install_protection.md` |
 | Q_UP, Q_DN, Q_SERIES | ZXMS6004FFTA | protected low-side switches. SOT23F on the existing SOT-23 land. Pin 1 drain, pin 2 IN, pin 3 source |
-| R60, R70 | 1 kΩ | series into the up and down inputs, so 100 µA of input current stays above the 3.0 V on-threshold |
+| R60, R70 | 1 kΩ | series into the up and down inputs. The 1 kΩ drop is inside the ZXMS input current. The ESP32-S3 VOH minimum is not. See `docs/install_protection.md` |
 | Q_CLAMP_UP, Q_CLAMP_DN | 2N7002BK | cross-clamp, no XOR and no AND |
 | U11 | 74LVC1G123DP,125 | heartbeat, about 330 ms typical |
 | C50 | 3.3 µF, 50 V, X7R, GRM31CR71H335KA88L or equivalent, 1206 | timing capacitor. Nominal pulse stays about 330 ms with R52 at 100 kΩ. Measure the Q pulse |
@@ -92,7 +92,7 @@ No isolated supply on these channels. `UP_RET` and `DN_RET` are not joined.
 | J_CONTACT | KF350 4-pin | UP_COM, UP_NO, DN_COM, DN_NO. Two independent dry contacts |
 | R_SWLINK, R_IGNLINK, R_COILFEED | 0 Ω | the series links in that external path |
 
-Not on this PCB, fitted at each Quick contactor: one 3 A, 400 V diode such as a 1N5404, cathode to the switched positive and anode to the coil return, and the boat’s existing 2.5 A fast control fuse. F_COIL does not carry contactor current. The contact copper is 1.2 mm, the IPC-2221 external 1 oz, 10 °C figure for that 2.5 A fuse.
+Not on this PCB. After the installed Quick coil is confirmed to have no suppressor of its own: one 3 A, 400 V diode such as a 1N5404 at each contactor, cathode to the coil terminal that is positive while the coil is energised, anode to the coil return. The boat’s existing 2.5 A fast control fuse stays in that wiring. F_COIL does not carry contactor current. The contact copper is 1.2 mm, the IPC-2221 external 1 oz, 10 °C figure for that 2.5 A fuse.
 
 ## NMEA 2000
 
