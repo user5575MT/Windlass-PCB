@@ -86,6 +86,18 @@
       (stroke (width 0.254) (type default)) (fill (type background))))
   (symbol "ZXMS6004FF_1_1" (pin input line (at -7.62 0.0 0) (length 2.54) (name "IN" (effects (font (size 1.27 1.27)))) (number "2" (effects (font (size 1.27 1.27))))) (pin passive line (at 7.62 0.0 180) (length 2.54) (name "D" (effects (font (size 1.27 1.27)))) (number "1" (effects (font (size 1.27 1.27))))) (pin passive line (at 0 -7.62 90) (length 2.54) (name "S" (effects (font (size 1.27 1.27)))) (number "3" (effects (font (size 1.27 1.27))))))
 )
+(symbol "74LVC1G34"
+  (exclude_from_sim no) (in_bom yes) (on_board yes) (in_pos_files yes)
+  (property "Reference" "U" (at 0 10.16 0) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27))))
+  (property "Value" "74LVC1G34" (at 0 12.7 0) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27))))
+  (property "Footprint" "" (at 0 0 0) (hide yes) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27))))
+  (property "Datasheet" "" (at 0 0 0) (hide yes) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27))))
+  (property "Description" "Nexperia 74LVC1G34 single buffer, SOT353. Pin 1 n.c., pin 2 A, pin 3 GND, pin 4 Y, pin 5 VCC. VOH minimum is VCC-0.1 V at 100 uA from -40 C to +125 C." (at 0 0 0) (hide yes) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27))))
+  (symbol "74LVC1G34_0_1"
+    (rectangle (start -5.08 7.62) (end 5.08 -7.62)
+      (stroke (width 0.254) (type default)) (fill (type background))))
+  (symbol "74LVC1G34_1_1" (pin no_connect line (at -7.62 5.08 0) (length 2.54) (name "NC" (effects (font (size 1.27 1.27)))) (number "1" (effects (font (size 1.27 1.27))))) (pin input line (at -7.62 0.0 0) (length 2.54) (name "A" (effects (font (size 1.27 1.27)))) (number "2" (effects (font (size 1.27 1.27))))) (pin power_in line (at 0.0 -10.16 90) (length 2.54) (name "GND" (effects (font (size 1.27 1.27)))) (number "3" (effects (font (size 1.27 1.27))))) (pin output line (at 7.62 0.0 180) (length 2.54) (name "Y" (effects (font (size 1.27 1.27)))) (number "4" (effects (font (size 1.27 1.27))))) (pin power_in line (at 0.0 10.16 270) (length 2.54) (name "VCC" (effects (font (size 1.27 1.27)))) (number "5" (effects (font (size 1.27 1.27))))))
+)
 (symbol "74LVC1G123"
   (exclude_from_sim no) (in_bom yes) (on_board yes) (in_pos_files yes)
   (property "Reference" "U" (at 0 15.239999999999998 0) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27))))

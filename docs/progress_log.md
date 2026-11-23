@@ -2,6 +2,16 @@
 
 Status of this repository: design only. No board has been ordered. No firmware has been modified, flashed, or deployed. No vessel wiring has been changed. No Gerber, drill, or position file has been written.
 
+## 2026-11-23 — Direction buffers
+
+`kicad11/windlass_install.kicad_pcb` was not edited. It is the checkpoint from before this change and no longer matches the schematic. The buffered board is `kicad11/windlass_install_v2.kicad_pcb`.
+
+`U12` and `U15` are Nexperia 74LVC1G34GW buffers on GPIO9 and GPIO10. `R60` and `R70` are 100 Ω, 1206, 250 mW. `Q_CLAMP_UP` and `Q_CLAMP_DN` are NX3008NBK. The Finder relays, the dry contacts, the series switch, the monostable, and the isolation barrier are unchanged. Firmware was not edited.
+
+The ESP32-S3 high of 2.616 V is 0.616 V above the buffer’s 2.0 V VIH minimum. Through 100 Ω the switch input is about 3.12 V against the 3.0 V on-level, using the ZXMS 100 µA maximum published at 25 °C. With both requests high, each 100 Ω dissipates about 112 mW and the clamp holds the opposite input at about 0.05 V. An unpowered buffer leaks about 0.2 V into the 100 kΩ pulldown.
+
+ERC at 4:19 pm Sydney time: 0 errors, 1 warning, the intentional U5 `GND1` on `REED_RET`. DRC at 4:18 pm Sydney time, after a zone refill: 0 violations, 0 unconnected pads. The title block says not for fabrication. No Gerber was written, no part was ordered, and nothing was flashed. The write-up is `docs/install_protection.md`.
+
 ## 2026-11-23 — Relay and contactor review
 
 The schematic, `kicad11/windlass_install.kicad_pcb`, and the firmware were not edited. No Gerber was written, no part was ordered, and nothing was flashed.

@@ -1,18 +1,18 @@
 # Installation protection
 
-23 November 2026, Sydney time. This is the permanent-installation revision of the two bench restrictions. It starts from `kicad11/windlass_bench.kicad_pcb`, which was not edited. The board that matches the schematic is `kicad11/windlass_install.kicad_pcb`. The parts list is `docs/integrated_bom.md`.
+23 November 2026, Sydney time. This is the permanent-installation revision of the two bench restrictions. It starts from `kicad11/windlass_bench.kicad_pcb`, which was not edited. The board that matches the schematic is `kicad11/windlass_install_v2.kicad_pcb`. `kicad11/windlass_install.kicad_pcb` is the checkpoint from before the direction buffers and no longer matches the schematic. The parts list is `docs/integrated_bom.md`.
 
 No firmware was edited. No Gerber was written. No part was ordered. Nothing was flashed. The title block says not for fabrication. A clean DRC is the connectivity check. It is not approval to install the board on the boat.
 
 ERC at 3:32 pm Sydney time (`kicad11/erc_install.rpt`): 0 errors, 1 warning. The warning is U5 pin 4 `GND1` on `REED_RET`, and it is intentional. DRC at 3:41 pm Sydney time (`kicad11/drc_install.rpt`), after a zone refill: 0 violations, 0 unconnected pads. `REED_RET`, `UP_RET`, `DN_RET`, `GND_CAN`, `ISO_5V`, `CAN_H`, `CAN_L`, and the other isolated-side nets still have no vias and no inner-layer copper. `UP_COM` is not tied to `DN_COM`. Each contact net connects only its relay pin to its connector pin.
 
-The series FET, the two cross-clamps, the 74LVC1G123 heartbeat, and the external switch and ignition in the coil feed are unchanged. The prototype image still does not edge GPIO1, so a board loaded with that image keeps both coils off.
+The series FET, the 74LVC1G123 heartbeat, and the external switch and ignition in the coil feed are unchanged. The cross-clamps are now NX3008NBK, and GPIO9 and GPIO10 each pass through a 74LVC1G34 before they reach a switch input. The prototype image still does not edge GPIO1, so a board loaded with that image keeps both coils off.
 
-This review did not edit the schematic, the PCB, or the firmware.
+The ERC and DRC lines above are the checkpoint, `windlass_install.kicad_pcb`. The buffered board was checked separately. ERC at 4:19 pm Sydney time on 23 November 2026: 0 errors, 1 warning, the same intentional U5 pin 4 `GND1` on `REED_RET`. DRC at 4:18 pm Sydney time the same afternoon, after a zone refill: 0 violations, 0 unconnected pads. Every schematic part is on that board. The four extra footprints are the M3 mounting holes, which are not in the schematic. The two buffer NC pads are open on purpose. `UP_DRV` and `DN_DRV` are on the outer layers only. The isolated nets listed above still have no vias and no inner-layer copper. `scripts/install_protect.py` rebuilds the pre-buffer checkpoint from the bench file and does not produce this board.
 
 ## Relay and contactor review
 
-23 November 2026, Sydney time. Three checks against the published sheets. The board files were left as they are. The text block on the relay sheet still says the 1 kΩ holds the input above 3.0 V, and that DC1 is 10 A at 30 V. Those two sentences are superseded by this section.
+23 November 2026, Sydney time. Three checks against the published sheets, made before the buffers were drawn. The relay-sheet text now matches this section: DC1 is 12 A at 24 V, and the direction inputs are buffered.
 
 ### 1. Relay-driver voltage margin — fail
 
@@ -42,7 +42,7 @@ That is 136 mV above 3.0 V. At ±5% the same sum is 3.131 V. Input current would
 
 The cross-clamp has the same GPIO limit. Nexperia 2N7002BK specifies RDS(on) at 2 Ω maximum for VGS = 5 V and 1.6 Ω maximum for VGS = 10 V, both at 25 °C. It does not specify RDS(on) at 3.3 V. VGS(th) maximum is 2.1 V. With the GPIO at the 3.27 V rail, the clamp voltage stays under the 0.7 V off-level for a clamp resistance up to about 260 Ω, because 3.27 × 260 / (260 + 990) is 0.68 V. The 5 V maximum of 2 Ω is far under that. With only the published 2.616 V high, the gate is 0.52 V above the 2.1 V threshold maximum, and no RDS figure covers that. The off-state of the opposite direction is therefore not guaranteed from the two datasheets either.
 
-Correction, required before a coil is energised from this board, and not drawn in this review: buffer GPIO9 and GPIO10 with a 74LVC1G gate powered from +3V3, so the buffered net is what `R60`, `R70`, and the two clamp gates already share, and change `R60` and `R70` from 1 kΩ to 100 Ω. Keeping 1 kΩ behind that buffer does not pass. The buffer drop, scaled from VCC − 0.1 V at 100 µA to about 140 µA, is 0.14 V, so the source is 3.13 V. Through 1 kΩ +1% the pin is (3.13 − 0.102) / 1.010 = 3.00 V, with nothing left. Through 100 Ω +1% it is (3.13 − 0.010) / 1.001 = 3.12 V, about 120 mV above 3.0 V. A ±5% 100 Ω resistor changes that by about a millivolt.
+The correction is drawn on `kicad11/windlass_install_v2.kicad_pcb`. GPIO9 and GPIO10 each go through a 74LVC1G34 powered from +3V3. `R60` and `R70` are 100 Ω. Keeping 1 kΩ behind that buffer does not pass. The buffer drop, scaled from VCC − 0.1 V at 100 µA to about 140 µA, is 0.14 V, so the source is 3.13 V. Through 1 kΩ +1% the pin is (3.13 − 0.102) / 1.010 = 3.00 V, with nothing left. Through 100 Ω +1% it is (3.13 − 0.010) / 1.001 = 3.12 V, about 120 mV above 3.0 V. A ±5% 100 Ω resistor changes that by about a millivolt. The part, the clamp MOSFET, and the resistor size are in Direction buffers below.
 
 ### 2. Finder contact against the Quick coil — pass, on the published bound
 
@@ -96,7 +96,23 @@ From that datasheet, at the 3 V input used here:
 
 The current limit applies only in saturation. At the 42 mA coil current the switch stays fully on. Note 8 in the datasheet says the part is not designed to sit in thermal shutdown for a long time. The fuse is what ends that condition.
 
-`R60` and `R70` are still 1 kΩ on the schematic. The margin calculation is in the review section above. The series-FET gate resistor stays 100 Ω. That path meets the 3.0 V on-level. The two direction inputs do not, on the published ESP32-S3 VOH, and the correction is a 74LVC1G buffer plus 100 Ω. It is not drawn yet.
+`R60` and `R70` are 100 Ω, 1206, 250 mW. The series-FET gate resistor stays 100 Ω. That path meets the 3.0 V on-level. The direction inputs meet it through the buffers below.
+
+## Direction buffers
+
+`U12` buffers `UP_REQ` (GPIO9) onto `UP_DRV`. `U15` buffers `DN_REQ` (GPIO10) onto `DN_DRV`. Both are Nexperia 74LVC1G34GW, orderable 74LVC1G34GW,125, SOT353, Rev. 11, 13 November 2024. Pin 1 is n.c., pin 2 is A, pin 3 is GND, pin 4 is Y, pin 5 is VCC. `C52` and `C53` are 100 nF X7R, 0402, 16 V or higher, one from each VCC pin to GND. `R13` and `R14`, 100 kΩ, stay on the GPIO side of the buffers. `R61` and `R71`, 100 kΩ, stay on `UP_GATE` and `DN_GATE`.
+
+At VCC from 2.7 V to 3.6 V the buffer VIH minimum is 2.0 V and the VIL maximum is 0.8 V, across −40 °C to +125 °C. The ESP32-S3 floor on the 3.27 V rail is 2.616 V high and 0.327 V low. The high margin is 0.616 V. The low margin is 0.473 V.
+
+VOH minimum is VCC − 0.1 V at −100 µA, for both −40 °C to +85 °C and −40 °C to +125 °C. On the 3.27 V rail that is 3.17 V at the pin while it sources 100 µA. The ZXMS input takes up to 100 µA at VIN = +3 V, and that maximum is published at TA = +25 °C only. The 100 kΩ pulldown at −1% takes about 32 µA. The 0.1 V specification allows up to 1 kΩ of output resistance, so the extra 32 µA is another 32 mV and the pin is at least 3.138 V. Through 100 Ω at +1% and +100 ppm/°C over 60 °C, 101.6 Ω, into the 99 kΩ pulldown, the switch input is 3.12 V. That is about 120 mV above the 3.0 V on-level. The datasheet does not publish the input current over temperature, so this 100 µA is the published bound and not an over-temperature measurement.
+
+`Q_CLAMP_UP` and `Q_CLAMP_DN` are Nexperia NX3008NBK, orderable NX3008NBK,215, SOT-23, pin 1 gate, pin 2 source, pin 3 drain. The land and the pinout are the ones the 2N7002BK used. VDS is 30 V and VGS absolute maximum is ±8 V, so a 3.3 V gate is inside the rating. RDS(on) maximum is 2.1 Ω at VGS = 2.5 V, 200 mA, 25 °C, and 2.8 Ω at VGS = 1.8 V, 10 mA, 25 °C. The 2N7002BK publishes RDS(on) at 5 V and at 10 V only, and its VGS(th) maximum is 2.1 V. A buffer high of about 3.14 V, and an ESP32 high of 2.616 V, both sit where that part has no on-resistance number. The NX3008 number at 2.5 V covers the normal buffered high.
+
+Both requests high is the mutual-exclusion case. Each buffer output drives its own 100 Ω and the opposite clamp gate, so each buffer fights its own clamp through 100 Ω. At the 3.33 V rail maximum and a 98.4 Ω minimum (100 Ω at −1% and −100 ppm/°C over 60 °C) the current is about 34 mA, under the 50 mA absolute maximum. The resistor dissipates about 112 mW. A 1206 rated 250 mW at 70 °C and zero at 155 °C still has about 206 mW at 85 °C. An 0402 rated 63 mW at 70 °C and zero at 155 °C has about 50 mW left at 85 °C, which does not cover it. The 1206 is there for this fault. In normal single-direction use the resistor carries about 130 µA.
+
+The published buffer VOH at the heavy load is 2.0 V minimum, at IO = −24 mA, VCC = 3.0 V, −40 °C to +125 °C. Into the 2.8 Ω NX3008 figure the clamp drain is 2.0 × 2.8 / (100 + 2.8) = 0.05 V, under the 0.7 V ZXMS off-level. The clamp resistance would have to exceed about 54 Ω before that node reached 0.7 V. No 2.5 V RDS maximum at 150 °C is published. The 4.5 V figures rise from 1.4 Ω at 25 °C to 2.5 Ω at 150 °C, a ratio of about 1.8. Applied to the 2.1 Ω figure that is about 3.8 Ω, which is a scaled bound and not a datasheet maximum. At 3.8 Ω and a 2.0 V source the drain is still about 0.07 V.
+
+Fail-off uses the same sheets. Buffer VOL maximum is 0.10 V at 100 µA. NX3008 VGS(th) minimum is 0.6 V. ZXMS VIL maximum is 0.7 V. An unpowered buffer’s IOFF maximum is ±2 µA, and 2 µA in 100 kΩ is 0.2 V. `R13` and `R14` hold the buffer inputs low while a GPIO is high-impedance. A buffer stuck high still cannot run a coil unless `Q_SERIES` is held on by edges on GPIO1. Both requests high clamps both inputs off.
 
 ## Coil fuse
 
@@ -130,7 +146,6 @@ The suppression decision is in the review section above. One 1N5404 per coil, at
 
 These are not closed by a datasheet:
 
-- The direction-driver correction: a 74LVC1G buffer on GPIO9 and GPIO10, and `R60` and `R70` at 100 Ω. It is specified above and is not on the schematic. Firmware can be written against the existing pin names. A coil-on test waits until that buffer is on the board.
 - The installed contactor has to be confirmed as a Quick T6315-12 or T6415-12. If it is not, the 2.5 A comparison above does not apply. Quick does not publish coil current, resistance, inductance, or inrush, so the 2.5 A fuse is the bound that was used.
 - Whether that contactor already has a coil suppressor, and which coil terminal is positive. Fit the 1N5404 only when the housing has none, then measure the release time.
 - Whether a parallel contact feeds the hand remote or the Lofrans box. That is the boat wiring, and it is not in the Quick sheet.

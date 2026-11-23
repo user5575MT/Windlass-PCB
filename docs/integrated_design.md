@@ -8,7 +8,7 @@ The board is 200 × 160 mm and four layers. Inner 1 is a ground pour, inner 2 is
 
 Removed, because each one repeated something else or existed only to feed a rail that is gone:
 
-- The 74LVC1G86 XOR and the 74LVC1G08 AND. The two 2N7002 cross-clamps already hold a coil gate off when the other request is on, and both requests on hold both gates off.
+- The 74LVC1G86 XOR and the 74LVC1G08 AND. The two cross-clamps already hold a coil gate off when the other request is on, and both requests on hold both gates off.
 - The 5 V buck, its fuse, and the AP2112. The ESP32 and the logic run from one AP63203 3.3 V buck.
 - The blue LED, its transistor, and GPIO17.
 - The mid-mount HRO USB-C footprint. The connector is a GCT USB4105, top-mount, so the signal pads sit on the board.
@@ -48,7 +48,7 @@ ISO1042 on the logic 3.3 V, with its bus side on 5 V from a Murata MEJ2S0305SC. 
 
 The likely contactor is a Quick T6315-12 or T6415-12. Quick’s manual states a 12 V coil and a recommended 2.5 A fast control fuse. It does not state the coil current. The motor ratings are the motor contact, which this board does not switch. The PCB does not feed the contactor coils.
 
-Finder’s current DC1 breaking capacity for this contact is 12 A at 24 V. DC13 life matches that when a diode is fitted across the load, and the no-diode approximation in Finder’s general information is half of it, 6 A. The diode is an installation part at the contactor, fitted only after that contactor is seen to have no suppressor of its own. Quick does not publish the coil current. The 2.5 A fuse Quick specifies is under both of those contact figures. Confirming the installed contactor, the coil polarity, and whether a parallel contact back-feeds the hand remote, is still a measurement. The direction inputs are not yet guaranteed against the ESP32-S3 VOH minimum. That correction is specified in `docs/install_protection.md` and is not drawn.
+Finder’s current DC1 breaking capacity for this contact is 12 A at 24 V. DC13 life matches that when a diode is fitted across the load, and the no-diode approximation in Finder’s general information is half of it, 6 A. The diode is an installation part at the contactor, fitted only after that contactor is seen to have no suppressor of its own. Quick does not publish the coil current. The 2.5 A fuse Quick specifies is under both of those contact figures. Confirming the installed contactor, the coil polarity, and whether a parallel contact back-feeds the hand remote, is still a measurement. GPIO9 and GPIO10 each pass through a 74LVC1G34, and `R60` and `R70` are 100 Ω. The calculation is in `docs/install_protection.md`.
 
 Contact tracks are 1.2 mm. IPC-2221 for an external 1 oz trace at a 10 °C rise gives about 1.07 mm for 2.5 A. The Finder coil fuse is 250 mA, sized for the 42 mA coil. The calculations are in `docs/install_protection.md`.
 
@@ -64,7 +64,7 @@ One 12 V connector, split after the connector into an MCU fuse and a coil fuse. 
 
 ## Validation
 
-The figures in this section are the unrouted board on the morning of 22 November 2026. They are not the present board. The installation revision is `kicad11/windlass_install.kicad_pcb`. Its ERC at 3:32 pm Sydney time on 23 November 2026 is 0 errors and 1 intentional warning, and its DRC at 3:41 pm the same afternoon is 0 violations and 0 unconnected pads. See `docs/install_protection.md`. The bench file is the unchanged checkpoint and no longer matches the schematic.
+The figures in this section are the unrouted board on the morning of 22 November 2026. They are not the present board. The installation revision is `kicad11/windlass_install_v2.kicad_pcb`. Its ERC at 4:19 pm Sydney time on 23 November 2026 is 0 errors and 1 intentional warning, and its DRC at 4:18 pm the same afternoon is 0 violations and 0 unconnected pads. See `docs/install_protection.md`. `kicad11/windlass_install.kicad_pcb` is the checkpoint from before the direction buffers, and the bench file is the checkpoint from before that. Neither matches the schematic.
 
 KiCad 10.0.8.
 

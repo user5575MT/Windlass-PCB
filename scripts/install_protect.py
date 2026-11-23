@@ -1,4 +1,10 @@
-"""Build kicad11/windlass_install.kicad_pcb from the bench board.
+"""Historical builder for the pre-buffer checkpoint.
+
+Do not run this against the current design. It overwrites
+kicad11/windlass_install.kicad_pcb from the bench board and sets R60 and
+R70 back to 1k. The schematic now matches kicad11/windlass_install_v2.kicad_pcb.
+
+Build kicad11/windlass_install.kicad_pcb from the bench board.
 
 ZXMS6004FF is pin 1 drain, pin 2 IN, pin 3 source. The NX6008 land was
 pin 1 gate, pin 2 source, pin 3 drain. Straight endpoint moves cross the

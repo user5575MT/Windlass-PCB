@@ -1,6 +1,6 @@
 # Integrated controller BOM
 
-Parts as drawn in `kicad11/windlass.net`. 128 fitted parts, plus four M3 mounting holes that are on the PCB and not in the schematic. No price is stated. Stock was not re-checked for this list. A JLCPCB line is not a claim that the part is basic-library or in stock. The coil-driver and contact-protection calculations are in `docs/install_protection.md`.
+Parts as drawn on `kicad11/windlass_install_v2.kicad_pcb`. 132 fitted parts, plus four M3 mounting holes that are on the PCB and not in the schematic. No price is stated. Stock was not re-checked for this list. A JLCPCB line is not a claim that the part is basic-library or in stock. The coil-driver and contact-protection calculations are in `docs/install_protection.md`.
 
 Hand-fitted parts: both Finder relays, both genuine Murata modules, and the USB-C receptacle if the assembler does not place it. Do not substitute the LCSC listing that uses the MEJ2S part number and is made by YLPTEC.
 
@@ -82,8 +82,10 @@ No isolated supply on these channels. `UP_RET` and `DN_RET` are not joined.
 | --- | --- | --- |
 | K_UP, K_DN | Finder 40.31.7.012.0000 | 12 V coil, 288 Ω, 42 mA. Contact DC1 breaking capacity is 12 A at 24 V. The review is in `docs/install_protection.md` |
 | Q_UP, Q_DN, Q_SERIES | ZXMS6004FFTA | protected low-side switches. SOT23F on the existing SOT-23 land. Pin 1 drain, pin 2 IN, pin 3 source |
-| R60, R70 | 1 kΩ | series into the up and down inputs. The 1 kΩ drop is inside the ZXMS input current. The ESP32-S3 VOH minimum is not. See `docs/install_protection.md` |
-| Q_CLAMP_UP, Q_CLAMP_DN | 2N7002BK | cross-clamp, no XOR and no AND |
+| U12, U15 | 74LVC1G34GW,125 | buffers on GPIO9 (`UP_REQ`) and GPIO10 (`DN_REQ`). SOT353. Pin 1 n.c., pin 2 A, pin 3 GND, pin 4 Y, pin 5 VCC |
+| C52, C53 | 100 nF, X7R, 0402, 16 V or higher | one bypass on each buffer |
+| R60, R70 | 100 Ω, 1%, 250 mW, 1206 | series into the up and down inputs. The 1206 rating covers both requests asserted. See `docs/install_protection.md` |
+| Q_CLAMP_UP, Q_CLAMP_DN | NX3008NBK,215 | cross-clamp. SOT-23, pin 1 gate, pin 2 source, pin 3 drain. RDS(on) is specified at 2.5 V and at 1.8 V |
 | U11 | 74LVC1G123DP,125 | heartbeat, about 330 ms typical |
 | C50 | 3.3 µF, 50 V, X7R, GRM31CR71H335KA88L or equivalent, 1206 | timing capacitor. Nominal pulse stays about 330 ms with R52 at 100 kΩ. Measure the Q pulse |
 | R52 | 100 kΩ | timing resistor |
