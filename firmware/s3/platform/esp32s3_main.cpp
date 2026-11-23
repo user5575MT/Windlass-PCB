@@ -7,13 +7,14 @@
 // interrupt on GPIO1. If loop() stops, the edges stop and the monostable
 // releases the series switch.
 //
-// No command socket is opened. The prototype datagram bytes, the password,
-// and the Pi bridge are not in this repository, so nothing in this file
-// calls Controller::command().
+// Commands are WLC2 on UDP port 4212. The tag is checked before
+// Controller::command() is called. The unrecovered prototype bytes are not
+// accepted. The Pi bridge is not modified by this tree.
 
 #if defined(ARDUINO)
 
 #include "windlass/controller.hpp"
+#include "windlass/datagram.hpp"
 #include "windlass/nmea.hpp"
 #include "windlass/web.hpp"
 
@@ -21,6 +22,7 @@
 #include <Preferences.h>
 #include <WebServer.h>
 #include <WiFi.h>
+#include <WiFiUdp.h>
 #include <driver/twai.h>
 #include <esp_random.h>
 
@@ -29,8 +31,14 @@
 
 namespace {
 
+#if __has_include("secrets.h")
+#include "secrets.h"
+#endif
 #ifndef WIFI_PASS
 #define WIFI_PASS "CHANGE_ME"
+#endif
+#ifndef COMMAND_KEY
+#define COMMAND_KEY "CHANGE_ME"
 #endif
 
 class NvsStore : public windlass::Store {
@@ -59,9 +67,11 @@ class NvsStore : public windlass::Store {
 NvsStore store;
 windlass::Controller controller(store);
 WebServer server(80);
+WiFiUDP commands;
 windlass::NmeaNode* bus = nullptr;
 bool twai_up = false;
 bool radio_up = false;
+bool commands_up = false;
 
 // Called before radio, NVS, or any other peripheral init.
 void drivePinsLow() {
@@ -93,8 +103,8 @@ windlass::Sense readSense() {
   sense.down_sense_low = digitalRead(windlass::Gpio::down_sense) == LOW;
   sense.coil_rail_high = digitalRead(windlass::Gpio::coil_rail) == HIGH;
   sense.publish_high = digitalRead(windlass::Gpio::publish) == HIGH;
-  // Station presence is not a command link. This image accepts no datagram.
-  sense.link_up = false;
+  // The command link is the authenticated socket, not the mere presence of a station.
+  sense.link_up = commands_up;
   return sense;
 }
 
@@ -119,9 +129,9 @@ windlass::WindlassReport reportFromController() {
   return report;
 }
 
-void handleRoot() { server.send(200, "text/html", windlass::config_page(controller)); }
+void handleRoot() { server.send(200, "text/html", windlass::config_page(controller).c_str()); }
 
-void handleStatus() { server.send(200, "application/json", windlass::status_json(controller)); }
+void handleStatus() { server.send(200, "application/json", windlass::status_json(controller).c_str()); }
 
 void handleConfig() {
   std::string body;
@@ -151,6 +161,7 @@ void setup() {
   pinMode(windlass::Gpio::coil_rail, INPUT_PULLUP);
   pinMode(windlass::Gpio::publish, INPUT_PULLDOWN);
   Serial.begin(115200);
+  controller.set_identity(esp_random(), esp_random());
   controller.begin(millis(), readSense());
   applyDrive();
 
@@ -167,6 +178,11 @@ void setup() {
     server.on("/config", HTTP_POST, handleConfig);
     server.begin();
     radio_up = true;
+    const bool key_set = std::strcmp(COMMAND_KEY, "CHANGE_ME") != 0 && std::strlen(COMMAND_KEY) >= 16;
+    if (key_set) {
+      commands.begin(windlass::kCommandPort);
+      commands_up = true;
+    }
   }
 
   twai_general_config_t general =
@@ -182,6 +198,31 @@ void setup() {
 
 void loop() {
   const uint32_t now = millis();
+  if (commands_up) {
+    int packet = commands.parsePacket();
+    while (packet > 0) {
+      uint8_t buffer[96];
+      const int length = commands.read(buffer, sizeof(buffer));
+      if (length > 0) {
+        const auto opened = windlass::open_command(buffer, static_cast<std::size_t>(length),
+                                                   reinterpret_cast<const uint8_t*>(COMMAND_KEY),
+                                                   std::strlen(COMMAND_KEY));
+        if (opened.authentic) {
+          const bool ok = controller.command(now, opened.command);
+          applyDrive();
+          const auto ack = windlass::seal_ack(controller.session(), opened.command.sequence, ok,
+                                               reinterpret_cast<const uint8_t*>(COMMAND_KEY),
+                                               std::strlen(COMMAND_KEY));
+          if (!ack.empty()) {
+            commands.beginPacket(commands.remoteIP(), commands.remotePort());
+            commands.write(ack.data(), ack.size());
+            commands.endPacket();
+          }
+        }
+      }
+      packet = commands.parsePacket();
+    }
+  }
   controller.tick(now, readSense());
   applyDrive();
   if (radio_up) server.handleClient();
@@ -198,6 +239,20 @@ void loop() {
         frame.dlc = received.data_length_code;
         for (int i = 0; i < frame.dlc; ++i) frame.data[i] = received.data[i];
         transmit(bus->on_frame(now, frame));
+      }
+    }
+  }
+  if (commands_up) {
+    static uint32_t last_telemetry = 0;
+    if (static_cast<uint32_t>(now - last_telemetry) >= 200) {
+      last_telemetry = now;
+      const auto line = windlass::seal_telemetry(controller, reinterpret_cast<const uint8_t*>(COMMAND_KEY),
+                                                 std::strlen(COMMAND_KEY));
+      if (!line.empty()) {
+        WiFiUDP telemetry;
+        telemetry.beginPacket("255.255.255.255", windlass::kTelemetryPort);
+        telemetry.write(line.data(), line.size());
+        telemetry.endPacket();
       }
     }
   }

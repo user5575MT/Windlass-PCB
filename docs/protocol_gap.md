@@ -1,6 +1,8 @@
 # Prototype remote and the Pi bridge
 
-23 November 2026, Sydney time. The hardware is unchanged. The prototype tree and the Pi bridge were not edited, because neither source is in this repository.
+23 November 2026, Sydney time. The prototype tree and the Pi bridge were not edited. Neither source is in this repository.
+
+`firmware/s3` does not speak the unrecovered `WLC1` bytes. The layout the Pi bridge is to adopt is `docs/pi_bridge_protocol.md` (WLC2, HMAC-SHA256). That document is the specification. It is not a claim that the old bridge already sends those bytes.
 
 `docs/interface_control_document.md` section P9 is the copy of what `WindlassController` `src/main.cpp` exposes by name. That file is recorded at `C:\Users\thoma\OneDrive\Desktop\WindlassProject\WindlassController\src\main.cpp`, with the project README beside it. A separate publisher lives at `WaveshareReceiver\src\main.cpp` and uses TWAI on GPIO15 and GPIO16, which are not the pins on this board. None of those trees are present here. A search of `user5575MT` on GitHub, a search of the public code for these datagram names, and the Origin namespace available to this run did not contain them.
 

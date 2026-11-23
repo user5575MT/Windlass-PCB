@@ -2,7 +2,7 @@
 	(version 20241229)
 	(generator "windlass_place_preview")
 	(layer "F.Cu")
-	(descr "M3 hole, 3.2 mm drill. Courtyard is 7.4 mm diameter: a 7 mm DIN 125 washer plus 0.2 mm. ISO 7380 button head is 5.7 mm and sits inside this circle. NOT FOR FABRICATION.")
+	(descr "M3 hole, 3.2 mm drill. Courtyard is 7.4 mm diameter: a 7 mm DIN 125 washer plus 0.2 mm. ISO 7380 button head is 5.7 mm and sits inside this circle. Fabrication package prepared; not ordered..")
 	(property "Reference" "REF**"
 		(at 0 -4.4 0)
 		(layer "F.SilkS")

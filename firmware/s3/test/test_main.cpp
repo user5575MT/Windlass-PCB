@@ -1,6 +1,8 @@
 #include "windlass/controller.hpp"
+#include "windlass/datagram.hpp"
 #include "windlass/nmea.hpp"
 #include "windlass/remote_gap.hpp"
+#include "windlass/sha256.hpp"
 #include "windlass/web.hpp"
 
 #include <cstdint>
@@ -457,6 +459,104 @@ void test_remote_gap_web_nmea_and_pins() {
 
 }  // namespace
 
+bool bytes_eq(const uint8_t* got, const char* hex) {
+  for (int i = 0; hex[i] != '\0'; i += 2) {
+    const int hi = hex[i] >= 'a' ? hex[i] - 'a' + 10 : hex[i] - '0';
+    const int lo = hex[i + 1] >= 'a' ? hex[i + 1] - 'a' + 10 : hex[i + 1] - '0';
+    if (got[i / 2] != static_cast<uint8_t>((hi << 4) | lo)) return false;
+  }
+  return true;
+}
+
+void test_authenticated_udp() {
+  uint8_t digest[32];
+  const uint8_t abc[] = {'a', 'b', 'c'};
+  windlass::sha256(abc, 3, digest);
+  expect(bytes_eq(digest, "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"), "sha256 abc");
+  windlass::sha256(nullptr, 0, digest);
+  expect(bytes_eq(digest, "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"), "sha256 empty");
+  uint8_t hmac_key[20];
+  std::memset(hmac_key, 0x0b, sizeof(hmac_key));
+  const uint8_t hi_there[] = {'H', 'i', ' ', 'T', 'h', 'e', 'r', 'e'};
+  windlass::hmac_sha256(hmac_key, sizeof(hmac_key), hi_there, sizeof(hi_there), digest);
+  expect(bytes_eq(digest, "b0344c61d8db38535ca8afceaf0bf12b881dc200c9833da726e9376c2e32cff7"), "hmac rfc4231 case 1");
+
+  const char* key = "0123456789abcdef0123456789abcdef";
+  const auto key_len = std::strlen(key);
+  windlass::MemoryStore store;
+  windlass::Controller controller(store);
+  controller.set_identity(0x11223344u, 0x55667788u);
+  auto sense = rail_on();
+  controller.begin(0, sense);
+  const std::string session = controller.session();
+  expect(session.size() == 32 && session[12] == '4' && session[16] == '8' &&
+             session.substr(24) == "00000001",
+         "boot session is a 16-byte id");
+  const char* invented = "WLC1CMD sess 7 UP 300";
+  expect(!windlass::open_command(reinterpret_cast<const uint8_t*>(invented), std::strlen(invented),
+                                 reinterpret_cast<const uint8_t*>(key), key_len)
+              .authentic,
+         "the old text line is not WLC2");
+
+  auto packet = windlass::seal_command(session, 1, windlass::kOpUp, 300, reinterpret_cast<const uint8_t*>(key), key_len);
+  expect(packet.size() == windlass::kCommandBytes, "command datagram size");
+  const char* published =
+      "574c43320101112233445566478880000000000000010000000101012c977945be88d1a5a1b6888ac900bdf8de2aa7f71c9563e4c6f0c5e5d45eac785e";
+  bool vector_ok = true;
+  for (int i = 0; published[i] != '\0'; i += 2) {
+    const int hi = published[i] >= 'a' ? published[i] - 'a' + 10 : published[i] - '0';
+    const int lo = published[i + 1] >= 'a' ? published[i + 1] - 'a' + 10 : published[i + 1] - '0';
+    if (packet[static_cast<std::size_t>(i / 2)] != static_cast<uint8_t>((hi << 4) | lo)) vector_ok = false;
+  }
+  expect(vector_ok, "published WLC2 command vector");
+  auto opened = windlass::open_command(packet.data(), packet.size(), reinterpret_cast<const uint8_t*>(key), key_len);
+  expect(opened.authentic && opened.command.kind == windlass::CmdKind::Up && opened.command.sequence == 1,
+         "a signed UP opens");
+  expect(controller.command(0, opened.command) && controller.drive().up_req && controller.drive().heartbeat,
+         "a signed UP starts the hold and the heartbeat");
+  packet[40] ^= 0x01;
+  expect(!windlass::open_command(packet.data(), packet.size(), reinterpret_cast<const uint8_t*>(key), key_len).authentic,
+         "a bad tag is not a command");
+  expect(controller.drive().up_req, "a bad tag leaves the hold untouched");
+
+  auto replay = windlass::seal_command(session, 1, windlass::kOpUp, 300, reinterpret_cast<const uint8_t*>(key), key_len);
+  auto replayed = windlass::open_command(replay.data(), replay.size(), reinterpret_cast<const uint8_t*>(key), key_len);
+  expect(replayed.authentic && !controller.command(20, replayed.command), "a repeated sequence does not refresh");
+
+  auto stop = windlass::seal_command(session, 2, windlass::kOpStop, 300, reinterpret_cast<const uint8_t*>(key), key_len);
+  auto stopped = windlass::open_command(stop.data(), stop.size(), reinterpret_cast<const uint8_t*>(key), key_len);
+  expect(controller.command(30, stopped.command), "signed STOP is accepted");
+  expect(!controller.drive().up_req && !controller.drive().down_req && !controller.drive().heartbeat &&
+             !controller.drive().heartbeat_rising,
+         "STOP clears the requests and the heartbeat");
+  const std::string retired = controller.session();
+  expect(retired != session && retired.substr(24) == "00000002", "STOP advances the session generation");
+  auto ack = windlass::seal_ack(retired, 2, true, reinterpret_cast<const uint8_t*>(key), key_len);
+  expect(ack.size() == windlass::kAckBytes && ack[26] == 1, "the ack carries the session after STOP");
+  auto stale = windlass::seal_command(session, 3, windlass::kOpUp, 300, reinterpret_cast<const uint8_t*>(key), key_len);
+  auto stale_open = windlass::open_command(stale.data(), stale.size(), reinterpret_cast<const uint8_t*>(key), key_len);
+  expect(stale_open.authentic && !controller.command(40, stale_open.command) && !controller.drive().up_req,
+         "a retired session cannot start the windlass");
+
+  auto release = windlass::seal_command(retired, 1, windlass::kOpStop, 300, reinterpret_cast<const uint8_t*>(key), key_len);
+  auto released = windlass::open_command(release.data(), release.size(), reinterpret_cast<const uint8_t*>(key), key_len);
+  expect(controller.command(50, released.command) && !controller.start_locked() && !controller.drive().up_req,
+         "STOP on the new session unlocks without moving");
+  auto again = windlass::seal_command(retired, 2, windlass::kOpDown, 300, reinterpret_cast<const uint8_t*>(key), key_len);
+  auto down = windlass::open_command(again.data(), again.size(), reinterpret_cast<const uint8_t*>(key), key_len);
+  expect(controller.command(60, down.command) && controller.drive().down_req && !controller.drive().up_req,
+         "a new press after the release runs DOWN");
+
+  auto tel = windlass::seal_telemetry(controller, reinterpret_cast<const uint8_t*>(key), key_len);
+  auto view = windlass::open_telemetry(tel.data(), tel.size(), reinterpret_cast<const uint8_t*>(key), key_len);
+  expect(view.authentic && view.session_hex == controller.session() && (view.flags & windlass::kFlagRunning) != 0 &&
+             (view.flags & windlass::kFlagDown) != 0,
+         "signed telemetry reports the hold");
+  tel[40] ^= 0x01;
+  expect(!windlass::open_telemetry(tel.data(), tel.size(), reinterpret_cast<const uint8_t*>(key), key_len).authentic,
+         "telemetry with a bad tag is ignored");
+}
+
 int main() {
   test_boot_outputs_off();
   test_stop_priority_and_stale_run();
@@ -465,6 +565,7 @@ int main() {
   test_rail_loss_and_chain();
   test_link_loss();
   test_remote_gap_web_nmea_and_pins();
+  test_authenticated_udp();
   if (failures != 0) {
     std::cerr << failures << " failed\n";
     return 1;

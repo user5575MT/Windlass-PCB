@@ -1,4 +1,5 @@
-#pragma once
+#ifndef WINDLASS_WEB_HPP
+#define WINDLASS_WEB_HPP
 
 #include "windlass/controller.hpp"
 
@@ -16,3 +17,4 @@ std::string status_json(const Controller& controller);
 bool apply_config(Controller& controller, const std::string& body);
 
 }  // namespace windlass
+#endif  // WINDLASS_WEB_HPP

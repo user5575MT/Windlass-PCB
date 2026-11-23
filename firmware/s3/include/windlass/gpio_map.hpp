@@ -1,4 +1,5 @@
-#pragma once
+#ifndef WINDLASS_GPIO_MAP_HPP
+#define WINDLASS_GPIO_MAP_HPP
 
 #include <cstdint>
 
@@ -50,3 +51,4 @@ static_assert(kHeartbeatPeriodMs * 2 < kMonostableShortMs,
 constexpr int32_t kDefaultMmPerPulse = 360;
 
 }  // namespace windlass
+#endif  // WINDLASS_GPIO_MAP_HPP

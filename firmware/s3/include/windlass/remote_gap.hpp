@@ -1,4 +1,5 @@
-#pragma once
+#ifndef WINDLASS_REMOTE_GAP_HPP
+#define WINDLASS_REMOTE_GAP_HPP
 
 #include <cstddef>
 #include <cstdint>
@@ -52,3 +53,4 @@ inline bool contract_marks_missing(const std::vector<ContractFact>& facts, const
 }
 
 }  // namespace windlass
+#endif  // WINDLASS_REMOTE_GAP_HPP

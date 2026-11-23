@@ -11,7 +11,7 @@
 		(title "Windlass integrated controller")
 		(date "2026-11-23")
 		(rev "install-v2")
-		(comment 1 "NOT FOR FABRICATION. No Gerbers in this revision.")
+		(comment 1 "Fabrication files are in fab/jlcpcb. Not ordered. Not a marine approval.")
 		(comment 2 "ZXMS6004FF drivers behind 74LVC1G34 buffers. F_COIL is 250 mA.")
 		(comment 3 "No component across COM-NO. Contactor diode is off this board.")
 	)

@@ -1,6 +1,26 @@
 #include "windlass/controller.hpp"
 
 namespace windlass {
+namespace {
+
+void put_be32(uint8_t* p, uint32_t value) {
+  p[0] = static_cast<uint8_t>(value >> 24);
+  p[1] = static_cast<uint8_t>(value >> 16);
+  p[2] = static_cast<uint8_t>(value >> 8);
+  p[3] = static_cast<uint8_t>(value);
+}
+
+std::string hex16(const uint8_t raw[16]) {
+  static const char* digits = "0123456789abcdef";
+  std::string hex(32, '0');
+  for (int i = 0; i < 16; ++i) {
+    hex[2 * i] = digits[raw[i] >> 4];
+    hex[2 * i + 1] = digits[raw[i] & 0x0f];
+  }
+  return hex;
+}
+
+}  // namespace
 
 uint32_t clamp_ttl(uint32_t ttl_ms) {
   if (ttl_ms < kTtlMinMs) return kTtlMinMs;
@@ -10,6 +30,23 @@ uint32_t clamp_ttl(uint32_t ttl_ms) {
 
 Controller::Controller(Store& store) : store_(store) {
   drive_ = Drive{};
+  mint_session();
+}
+
+void Controller::set_identity(uint32_t entropy_a, uint32_t entropy_b) {
+  entropy_a_ = entropy_a;
+  entropy_b_ = entropy_b;
+  if (!begun_) mint_session();
+}
+
+void Controller::mint_session() {
+  uint8_t raw[16] = {};
+  put_be32(raw, entropy_a_);
+  put_be32(raw + 4, entropy_b_);
+  raw[6] = static_cast<uint8_t>(0x40 | (raw[6] & 0x0f));
+  raw[8] = static_cast<uint8_t>(0x80 | (raw[8] & 0x3f));
+  put_be32(raw + 12, generation_);
+  session_ = hex16(raw);
 }
 
 void Controller::begin(uint32_t now_ms, const Sense& sense) {
@@ -32,6 +69,8 @@ void Controller::begin(uint32_t now_ms, const Sense& sense) {
   start_locked_ = false;
   have_rise_ = false;
   last_seq_ = 0;
+  generation_ = 1;
+  mint_session();
   drive_ = Drive{};
   update_leds();
   begun_ = true;
@@ -65,7 +104,7 @@ void Controller::halt(bool as_fault) {
   fault_ = as_fault;
   start_locked_ = true;
   ++generation_;
-  session_ = "s" + std::to_string(generation_);
+  mint_session();
   last_seq_ = 0;
   have_rise_ = false;
   drive_.up_req = false;

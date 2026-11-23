@@ -1,6 +1,12 @@
 # Progress log
 
-Status of this repository: design only. No board has been ordered. The prototype firmware was not modified, and nothing has been flashed or deployed. No vessel wiring has been changed. No Gerber, drill, or position file has been written. The integrated image is `firmware/s3`. It does not speak the prototype datagram, because those bytes are not in this repository. See `docs/protocol_gap.md`.
+Status of this repository: fabrication files are in `fab/jlcpcb`. Nothing has been ordered. The prototype firmware and the Pi bridge were not modified, and nothing has been flashed or deployed. No vessel wiring has been changed. The integrated image is `firmware/s3`. It speaks WLC2, specified in `docs/pi_bridge_protocol.md`. The old prototype bytes remain unknown.
+
+## 2026-11-23 — WLC2, the firmware image, and the JLCPCB package
+
+The command path is an authenticated UDP datagram, WLC2, for the Pi bridge to adopt. The unrecovered prototype layout is rejected. STOP, the 300 ms watchdog, the GPIO1 heartbeat, session retirement, and fail-off are unchanged. Host tests passed at 6:16 pm Sydney time, including the published packet vector. `firmware/s3/build_image.sh` produced `firmware/s3/release/windlass_s3.bin` and did not flash it. The committed binary uses the placeholder secrets.
+
+`kicad11/windlass_install_v2.kicad_pcb` was exported to `fab/jlcpcb`. DRC is 0 violations and 0 unconnected pads. The schematic netlist matches the board. No order was placed.
 
 ## 2026-11-23 — ESP32-S3 protocol gap, NMEA address claim, heartbeat timing
 

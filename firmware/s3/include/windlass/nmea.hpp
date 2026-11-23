@@ -1,4 +1,5 @@
-#pragma once
+#ifndef WINDLASS_NMEA_HPP
+#define WINDLASS_NMEA_HPP
 
 #include <cstddef>
 #include <cstdint>
@@ -100,3 +101,4 @@ class NmeaNode {
 };
 
 }  // namespace windlass
+#endif  // WINDLASS_NMEA_HPP
