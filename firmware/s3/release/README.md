@@ -1,0 +1,1 @@
+`windlass_s3.bin` is the placeholder build of `firmware/s3`. `WIFI_PASS` and `COMMAND_KEY` are `CHANGE_ME`, so the access point does not start and a hold cannot start. Rebuild with `firmware/s3/build_image.sh` and the two secrets before a radio test. This file was not flashed.

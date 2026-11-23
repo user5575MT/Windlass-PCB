@@ -1,4 +1,5 @@
-#pragma once
+#ifndef WINDLASS_CONTROLLER_HPP
+#define WINDLASS_CONTROLLER_HPP
 
 #include "windlass/gpio_map.hpp"
 
@@ -79,6 +80,12 @@ class Controller {
  public:
   explicit Controller(Store& store);
 
+  // Boot entropy for the session id. Call it before begin(). The wire form
+  // is 16 bytes: entropy, RFC4122 version and variant bits, then the
+  // generation in the last four bytes. STOP, a fault, and rail or link loss
+  // advance the generation.
+  void set_identity(uint32_t entropy_a, uint32_t entropy_b);
+
   void begin(uint32_t now_ms, const Sense& sense);
   // Applies immediately. STOP clears the requests and the heartbeat in this
   // call. Returns false when the packet must not change the outputs.
@@ -100,6 +107,7 @@ class Controller {
 
  private:
   void halt(bool as_fault);
+  void mint_session();
   void refresh_motion(uint32_t now_ms);
   void sample_reed(uint32_t now_ms);
   void service_watchdog(uint32_t now_ms);
@@ -110,8 +118,10 @@ class Controller {
   ChainState chain_{};
   Sense sense_{};
   Drive drive_{};
-  std::string session_ = "s1";
+  std::string session_;
   uint32_t generation_ = 1;
+  uint32_t entropy_a_ = 0;
+  uint32_t entropy_b_ = 0;
   uint32_t last_seq_ = 0;
   uint32_t ttl_ms_ = kTtlDefaultMs;
   uint32_t deadline_ms_ = 0;
@@ -131,3 +141,4 @@ class Controller {
 uint32_t clamp_ttl(uint32_t ttl_ms);
 
 }  // namespace windlass
+#endif  // WINDLASS_CONTROLLER_HPP
