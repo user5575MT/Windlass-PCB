@@ -182,7 +182,7 @@ bool Controller::command(uint32_t now_ms, const Command& cmd) {
     refresh_motion(now_ms);
     return false;
   }
-  if (!sense_.coil_rail_high) {
+  if (!sense_.coil_rail_high || !sense_.link_up) {
     last_seq_ = cmd.sequence;
     refresh_motion(now_ms);
     return false;
@@ -205,9 +205,14 @@ void Controller::tick(uint32_t now_ms, const Sense& sense) {
     return;
   }
   const bool rail_was_holding = running_ && sense_.coil_rail_high;
+  const bool link_was_holding = running_ && sense_.link_up;
   sense_ = sense;
   sample_reed(now_ms);
   if (running_ && rail_was_holding && !sense_.coil_rail_high) {
+    halt(true);
+    return;
+  }
+  if (running_ && link_was_holding && !sense_.link_up) {
     halt(true);
     return;
   }

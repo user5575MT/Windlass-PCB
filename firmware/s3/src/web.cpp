@@ -46,7 +46,7 @@ std::string config_page(const Controller& controller) {
        << "\"></label><br>"
        << "<label>Pulse count <input name=\"pulses\" value=\"" << chain.pulses << "\"></label><br>"
        << "<button type=\"submit\">Save</button></form>"
-       << "<p>UP and DOWN are not on this page. Hold-to-run stays on UDP port 4212.</p>"
+       << "<p>This page cannot command the windlass.</p>"
        << "</body></html>";
   return page.str();
 }

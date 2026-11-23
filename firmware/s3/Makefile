@@ -1,6 +1,6 @@
 CXX ?= g++
 CXXFLAGS ?= -std=c++17 -Wall -Wextra -Werror -Iinclude
-SRC := src/controller.cpp src/protocol.cpp src/nmea.cpp src/web.cpp
+SRC := src/controller.cpp src/nmea.cpp src/web.cpp
 OUT := build/s3_test
 
 .PHONY: test clean platform-guard
@@ -17,6 +17,7 @@ platform-guard:
 	grep -q "digitalWrite(windlass::Gpio::heartbeat, LOW)" platform/esp32s3_main.cpp
 	grep -q "digitalWrite(windlass::Gpio::up_req, drive.up_req" platform/esp32s3_main.cpp
 	! grep -E -q "hw_timer|timerAlarm|attachInterrupt" platform/esp32s3_main.cpp
+	! grep -E -q "controller\\.command|parse_command|WLC1CMD|WiFiUDP" platform/esp32s3_main.cpp
 	# The first executable call in setup() is the pin clear.
 	awk '/void setup\(\)/,/WiFi.mode/' platform/esp32s3_main.cpp | grep -q "drivePinsLow();"
 

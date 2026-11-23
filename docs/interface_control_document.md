@@ -89,6 +89,8 @@ Copied from `WindlassController` `main.cpp` so a later image can keep it. Not im
 | Session | New RFC4122 UUID required after boot, stop, or fault |
 | Loss of link | Command path must drop coils. No resume without a new hold |
 
+The names in this table are what the working source used. The bytes, the password, the UUID field, the authentication check, and the Pi bridge are not in this repository. `firmware/s3` does not supply a replacement packet. `docs/protocol_gap.md` lists each missing piece.
+
 ## P10 — LED
 
 See architecture. Amber means “this board will not move the windlass” (switch or ignition). It does not mean the Lofrans remote is disabled. Red is a local fault, including contact-feedback disagreement. Green is not permission to stand in the chain path.

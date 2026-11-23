@@ -6,26 +6,28 @@
 // Coil outputs are driven only from Controller::drive(). There is no timer
 // interrupt on GPIO1. If loop() stops, the edges stop and the monostable
 // releases the series switch.
+//
+// No command socket is opened. The prototype datagram bytes, the password,
+// and the Pi bridge are not in this repository, so nothing in this file
+// calls Controller::command().
 
 #if defined(ARDUINO)
 
 #include "windlass/controller.hpp"
 #include "windlass/nmea.hpp"
-#include "windlass/protocol.hpp"
 #include "windlass/web.hpp"
 
 #include <Arduino.h>
 #include <Preferences.h>
 #include <WebServer.h>
 #include <WiFi.h>
-#include <WiFiUdp.h>
 #include <driver/twai.h>
+#include <esp_random.h>
+
+#include <cstring>
+#include <vector>
 
 namespace {
-
-constexpr uint16_t kTelemetryPort = 4210;
-constexpr uint16_t kCommandPort = 4212;
-constexpr uint8_t kNodeAddress = 0x22;
 
 #ifndef WIFI_PASS
 #define WIFI_PASS "CHANGE_ME"
@@ -57,8 +59,9 @@ class NvsStore : public windlass::Store {
 NvsStore store;
 windlass::Controller controller(store);
 WebServer server(80);
-WiFiUDP commands;
+windlass::NmeaNode* bus = nullptr;
 bool twai_up = false;
+bool radio_up = false;
 
 // Called before radio, NVS, or any other peripheral init.
 void drivePinsLow() {
@@ -90,21 +93,30 @@ windlass::Sense readSense() {
   sense.down_sense_low = digitalRead(windlass::Gpio::down_sense) == LOW;
   sense.coil_rail_high = digitalRead(windlass::Gpio::coil_rail) == HIGH;
   sense.publish_high = digitalRead(windlass::Gpio::publish) == HIGH;
-  sense.link_up = WiFi.softAPgetStationNum() > 0;
+  // Station presence is not a command link. This image accepts no datagram.
+  sense.link_up = false;
   return sense;
 }
 
-void sendStatus() {
-  if (!twai_up || digitalRead(windlass::Gpio::publish) != HIGH) return;
-  const auto frames = windlass::status_frames(controller, true, kNodeAddress);
+void transmit(const std::vector<windlass::CanFrame>& frames) {
+  if (!twai_up) return;
   for (const auto& frame : frames) {
     twai_message_t message = {};
     message.identifier = frame.id;
     message.extd = 1;
     message.data_length_code = frame.dlc;
-    for (int i = 0; i < 8; ++i) message.data[i] = frame.data[i];
+    for (int i = 0; i < frame.dlc && i < 8; ++i) message.data[i] = frame.data[i];
     twai_transmit(&message, 0);
   }
+}
+
+windlass::WindlassReport reportFromController() {
+  windlass::WindlassReport report;
+  report.running_up = controller.drive().up_req;
+  report.running_down = controller.drive().down_req;
+  report.rode_mm = static_cast<int32_t>(controller.chain().millimetres());
+  report.fault = controller.fault();
+  return report;
 }
 
 void handleRoot() { server.send(200, "text/html", windlass::config_page(controller)); }
@@ -142,13 +154,20 @@ void setup() {
   controller.begin(millis(), readSense());
   applyDrive();
 
-  WiFi.mode(WIFI_AP);
-  WiFi.softAP("WindlassCounter", WIFI_PASS);
-  commands.begin(kCommandPort);
-  server.on("/", HTTP_GET, handleRoot);
-  server.on("/status", HTTP_GET, handleStatus);
-  server.on("/config", HTTP_POST, handleConfig);
-  server.begin();
+  bus = new windlass::NmeaNode(windlass::name_from_mac(ESP.getEfuseMac()));
+  bus->set_claim_delay_ms(esp_random() % 256u);
+  bus->set_publish(false);
+
+  const bool password_set = std::strcmp(WIFI_PASS, "CHANGE_ME") != 0 && WIFI_PASS[0] != '\0';
+  if (password_set) {
+    WiFi.mode(WIFI_AP);
+    WiFi.softAP("WindlassCounter", WIFI_PASS);
+    server.on("/", HTTP_GET, handleRoot);
+    server.on("/status", HTTP_GET, handleStatus);
+    server.on("/config", HTTP_POST, handleConfig);
+    server.begin();
+    radio_up = true;
+  }
 
   twai_general_config_t general =
       TWAI_GENERAL_CONFIG_DEFAULT(static_cast<gpio_num_t>(windlass::Gpio::twai_tx),
@@ -163,36 +182,24 @@ void setup() {
 
 void loop() {
   const uint32_t now = millis();
-  int packet = commands.parsePacket();
-  while (packet > 0) {
-    char buffer[128];
-    const int length = commands.read(buffer, sizeof(buffer) - 1);
-    if (length > 0) {
-      buffer[length] = '\0';
-      windlass::Command command;
-      if (windlass::parse_command(buffer, command)) {
-        const bool ok = controller.command(now, command);
-        applyDrive();
-        const std::string ack = windlass::format_ack(controller.session(), command.sequence, ok);
-        commands.beginPacket(commands.remoteIP(), kCommandPort);
-        commands.write(reinterpret_cast<const uint8_t*>(ack.data()), ack.size());
-        commands.endPacket();
-      }
-    }
-    packet = commands.parsePacket();
-  }
   controller.tick(now, readSense());
   applyDrive();
-  server.handleClient();
-  static uint32_t last_status = 0;
-  if (static_cast<uint32_t>(now - last_status) >= 200) {
-    last_status = now;
-    WiFiUDP telemetry;
-    telemetry.beginPacket("255.255.255.255", kTelemetryPort);
-    const std::string line = windlass::format_telemetry(controller);
-    telemetry.write(reinterpret_cast<const uint8_t*>(line.data()), line.size());
-    telemetry.endPacket();
-    sendStatus();
+  if (radio_up) server.handleClient();
+  if (bus != nullptr) {
+    bus->set_publish(digitalRead(windlass::Gpio::publish) == HIGH);
+    bus->set_report(reportFromController());
+    transmit(bus->tick(now));
+    if (twai_up) {
+      twai_message_t received;
+      while (twai_receive(&received, 0) == ESP_OK) {
+        if (!received.extd || received.data_length_code > 8) continue;
+        windlass::CanFrame frame;
+        frame.id = received.identifier;
+        frame.dlc = received.data_length_code;
+        for (int i = 0; i < frame.dlc; ++i) frame.data[i] = received.data[i];
+        transmit(bus->on_frame(now, frame));
+      }
+    }
   }
   delay(10);
 }

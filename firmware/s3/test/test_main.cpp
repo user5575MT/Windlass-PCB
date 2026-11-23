@@ -1,9 +1,10 @@
 #include "windlass/controller.hpp"
 #include "windlass/nmea.hpp"
-#include "windlass/protocol.hpp"
+#include "windlass/remote_gap.hpp"
 #include "windlass/web.hpp"
 
-#include <cstdlib>
+#include <cstdint>
+#include <cstring>
 #include <iostream>
 #include <string>
 
@@ -230,13 +231,55 @@ void test_rail_loss_and_chain() {
   expect(!restored.drive().up_req && !restored.drive().heartbeat, "restored position stays off");
 }
 
-void test_protocol_web_nmea_and_pins() {
-  windlass::Command parsed;
-  expect(windlass::parse_command("WLC1CMD sess 7 UP 300", parsed), "command parses");
-  expect(parsed.kind == windlass::CmdKind::Up && parsed.sequence == 7 && parsed.ttl_ms == 300, "fields");
-  expect(!windlass::parse_command("WLC1 sess 7 UP 300", parsed), "telemetry is not a command");
-  expect(!windlass::parse_command("WLC1CMD sess 0 UP 300", parsed), "sequence 0 rejected");
-  expect(windlass::format_ack("s2", 4, false).find("REJECT") != std::string::npos, "reject ack");
+void test_link_loss() {
+  windlass::MemoryStore store;
+  windlass::Controller controller(store);
+  auto sense = rail_on();
+  sense.link_up = false;
+  controller.begin(0, sense);
+  expect(!controller.command(0, cmd(controller.session(), 1, windlass::CmdKind::Up)),
+         "RUN without a command link does not start");
+  expect(!controller.drive().up_req && !controller.drive().heartbeat, "no link leaves the outputs off");
+
+  windlass::Controller live(store);
+  auto linked = rail_on();
+  live.begin(0, linked);
+  const std::string session = live.session();
+  expect(live.command(0, cmd(session, 1, windlass::CmdKind::Down, 1000)), "linked hold starts");
+  linked.link_up = false;
+  live.tick(20, linked);
+  expect(!live.running() && !live.drive().down_req && !live.drive().up_req && !live.drive().heartbeat &&
+             !live.drive().heartbeat_rising,
+         "link loss clears the requests and the heartbeat");
+  expect(live.fault() && live.start_locked(), "link loss locks a restart");
+  linked.link_up = true;
+  live.tick(40, linked);
+  expect(!live.drive().down_req && !live.drive().heartbeat, "the link returning does not restart");
+  expect(!live.command(50, cmd(session, 2, windlass::CmdKind::Down, 1000)), "the old session stays retired");
+}
+
+bool is_motor(uint32_t id) {
+  const uint8_t pf = static_cast<uint8_t>(id >> 16);
+  const uint8_t ps = static_cast<uint8_t>(id >> 8);
+  const uint8_t dp = static_cast<uint8_t>((id >> 24) & 1u);
+  uint32_t pgn = (static_cast<uint32_t>(dp) << 16) | (static_cast<uint32_t>(pf) << 8);
+  if (pf >= 240) pgn |= ps;
+  return pgn == windlass::kPgnMotorCommand;
+}
+
+void test_remote_gap_web_nmea_and_pins() {
+  const char* invented = "WLC1CMD sess 7 UP 300";
+  const auto text = windlass::consider_remote(reinterpret_cast<const uint8_t*>(invented), std::strlen(invented));
+  expect(!text.accepted, "the invented text line is not a command");
+  const uint8_t binary[8] = {0x57, 0x4c, 0x43, 0x31, 0x00, 0x01, 0x02, 0x03};
+  expect(!windlass::consider_remote(binary, sizeof(binary)).accepted, "a binary datagram is not a command");
+  expect(!windlass::consider_remote(nullptr, 0).accepted, "an empty datagram is not a command");
+  const auto facts = windlass::remote_contract();
+  expect(windlass::contract_marks_missing(facts, "SoftAP password"), "password is recorded as missing");
+  expect(windlass::contract_marks_missing(facts, "Telemetry layout"), "telemetry bytes are recorded as missing");
+  expect(windlass::contract_marks_missing(facts, "Command layout"), "command bytes are recorded as missing");
+  expect(windlass::contract_marks_missing(facts, "Authentication"), "authentication is recorded as missing");
+  expect(windlass::contract_marks_missing(facts, "Pi windlass bridge"), "the Pi bridge is recorded as missing");
 
   windlass::MemoryStore store;
   windlass::Controller controller(store);
@@ -250,22 +293,158 @@ void test_protocol_web_nmea_and_pins() {
          "web config does not move an output");
   expect(windlass::config_page(controller).find("mm_per") != std::string::npos, "page has calibration");
   expect(windlass::config_page(controller).find("WLC1CMD") == std::string::npos, "page has no command");
+  expect(windlass::config_page(controller).find("UDP port") == std::string::npos, "page does not name a command port");
   expect(windlass::status_json(controller).find("\"running\":false") != std::string::npos, "status idle");
 
-  auto frames = windlass::status_frames(controller, false, 0x22);
-  expect(frames.empty(), "strap open sends nothing");
-  controller.command(0, cmd(controller.session(), 1, windlass::CmdKind::Up));
-  frames = windlass::status_frames(controller, true, 0x22);
-  expect(frames.size() == 2, "two status frames");
-  expect(frames[0].id == windlass::nmea_id(windlass::kPgnOperating, 0x22, 6), "operating id");
-  expect(frames[1].id == windlass::nmea_id(windlass::kPgnMonitoring, 0x22, 6), "monitoring id");
-  expect(frames[0].data[0] == 1, "operating says UP");
-  for (const auto& frame : frames) {
-    const uint32_t pgn = ((frame.id >> 8) & 0xffffu);
-    expect(pgn != windlass::kPgnMotorCommand, "no motor-command PGN");
+  windlass::NameFields sample;
+  sample.unique_number = 1083224;
+  sample.manufacturer = 381;
+  sample.function = 130;
+  sample.device_class = 85;
+  sample.industry = 4;
+  sample.arbitrary_address = true;
+  uint8_t packed[8] = {};
+  windlass::pack_name(sample, packed);
+  const uint8_t expected_name[8] = {0x58, 0x87, 0xb0, 0x2f, 0x00, 0x82, 0xaa, 0xc0};
+  expect(std::memcmp(packed, expected_name, 8) == 0, "address-claim NAME matches the published sample");
+
+  const auto ours = windlass::name_from_mac(0);
+  expect(ours.unique_number == 1 && ours.manufacturer == 0 && ours.function == 0 && ours.device_class == 100 &&
+             ours.industry == 4 && ours.arbitrary_address,
+         "this board does not borrow a windlass function or a manufacturer code");
+  expect(windlass::name_from_mac(0x123456).unique_number == 0x123456u, "the MAC fills the unique number");
+
+  windlass::NmeaNode silent(windlass::NameFields{});
+  expect(!silent.publish_enabled(), "publishing starts disabled");
+  expect(silent.tick(0).empty() && silent.tick(10000).empty(), "a closed strap transmits nothing");
+
+  windlass::NmeaNode node(windlass::NameFields{}, 128);
+  node.set_publish(true);
+  node.set_claim_delay_ms(0);
+  windlass::WindlassReport report;
+  report.running_up = true;
+  report.rode_mm = 3600;
+  node.set_report(report);
+  auto claim = node.tick(0);
+  expect(claim.size() == 1 && !node.claimed(), "the strap starts an address claim and nothing else");
+  expect(claim[0].id == windlass::can_id(windlass::kPgnAddressClaim, 128, 255, 6), "claim id");
+  expect(claim[0].id == 0x18eeff80u, "claim id carries the data page and the global destination");
+  expect(node.tick(249).empty(), "status waits out the 250 ms claim");
+  auto status = node.tick(250);
+  expect(node.claimed() && status.size() == 2, "status follows a quiet claim");
+  expect(status[0].id == 0x19f70980u, "operating id");
+  expect(status[0].data[0] == 0 && status[0].data[1] == 0 && status[0].data[2] == 0xca, "UP retrieval encoding");
+  expect(status[0].data[3] == 36 && status[0].data[4] == 0, "rode is 36.0 m as decimetres");
+  expect(status[0].data[5] == 0xff && status[0].data[6] == 0xff, "line speed is not measured");
+  expect(status[0].data[7] == 0x03, "docking is unavailable");
+  expect(status[1].id == windlass::can_id(windlass::kPgnMonitoring, 128, 255, 6), "monitoring id");
+  expect(status[1].data[0] == 0 && status[1].data[2] == 0 && status[1].data[3] == 0xff && status[1].data[7] == 0xff,
+         "monitoring voltages stay unavailable");
+  for (const auto& frame : status) expect(!is_motor(frame.id), "status is not a motor command");
+
+  windlass::CanFrame motor;
+  motor.id = windlass::can_id(windlass::kPgnMotorCommand, 20, 255, 6);
+  motor.data[0] = 2;
+  windlass::CanFrame ask_operating = motor;
+  ask_operating.id = windlass::can_id(windlass::kPgnIsoRequest, 9, 128, 6);
+  ask_operating.dlc = 3;
+  ask_operating.data[0] = static_cast<uint8_t>(windlass::kPgnOperating);
+  ask_operating.data[1] = static_cast<uint8_t>(windlass::kPgnOperating >> 8);
+  ask_operating.data[2] = static_cast<uint8_t>(windlass::kPgnOperating >> 16);
+  auto only_operating = node.on_frame(280, ask_operating);
+  expect(only_operating.size() == 1 && only_operating[0].id == status[0].id, "an operating-status request returns that PGN");
+  expect(node.on_frame(300, motor).empty(), "a received motor command produces no frame");
+  expect(node.ignored_motor_commands() == 1, "the motor command is counted and dropped");
+  report.running_up = false;
+  node.set_report(report);
+  auto stopped = node.tick(1250);
+  expect(!stopped.empty() && stopped[0].data[2] == 0xc0, "the motor command did not select UP");
+
+  windlass::NmeaNode negative(windlass::NameFields{}, 128);
+  negative.set_publish(true);
+  windlass::WindlassReport below;
+  below.rode_mm = -100;
+  negative.set_report(below);
+  negative.tick(0);
+  auto unavailable = negative.tick(250);
+  expect(unavailable.size() == 2 && unavailable[0].data[3] == 0xff && unavailable[0].data[4] == 0xff,
+         "a negative rode is unavailable rather than wrapped");
+
+  windlass::CanFrame request;
+  request.id = windlass::can_id(windlass::kPgnIsoRequest, 9, 255, 6);
+  request.dlc = 3;
+  request.data[0] = static_cast<uint8_t>(windlass::kPgnProductInfo);
+  request.data[1] = static_cast<uint8_t>(windlass::kPgnProductInfo >> 8);
+  request.data[2] = static_cast<uint8_t>(windlass::kPgnProductInfo >> 16);
+  windlass::NmeaNode claiming(windlass::NameFields{}, 128);
+  claiming.set_publish(true);
+  claiming.tick(0);
+  expect(claiming.on_frame(10, request).empty(), "product information waits until the address is claimed");
+  auto info = node.on_frame(1300, request);
+  expect(info.size() == 19, "132-byte product information is 19 fast-packet frames");
+  expect(info[0].data[1] == 132 && info[0].data[2] == 0x34 && info[0].data[3] == 0x08, "version is 2.100");
+  expect((info[1].data[0] & 0x1f) == 1, "the second frame is the continuation");
+  for (const auto& frame : info) expect(!is_motor(frame.id), "product information is not a motor command");
+
+  auto before_heartbeat = node.tick(250 + windlass::kNmeaHeartbeatMs - 1);
+  bool early = false;
+  for (const auto& frame : before_heartbeat) {
+    if (frame.id == windlass::can_id(windlass::kPgnHeartbeat, node.source(), 255, 7)) early = true;
   }
+  expect(!early, "the NMEA heartbeat waits 60 s");
+  auto heartbeat_frames = node.tick(250 + windlass::kNmeaHeartbeatMs);
+  const uint8_t expected_heartbeat[8] = {0x60, 0xea, 0x00, 0xcc, 0xff, 0xff, 0xff, 0xff};
+  bool heartbeat_ok = false;
+  for (const auto& frame : heartbeat_frames) {
+    if (frame.id == 0x1df01180u && std::memcmp(frame.data, expected_heartbeat, 8) == 0) heartbeat_ok = true;
+    expect(!is_motor(frame.id), "the NMEA heartbeat is not a motor command");
+  }
+  expect(heartbeat_ok, "NMEA heartbeat encoding");
+
+  windlass::NameFields winner;
+  winner.unique_number = 1;
+  windlass::NmeaNode defender(winner, 128);
+  defender.set_publish(true);
+  defender.tick(0);
+  windlass::NameFields loser = winner;
+  loser.unique_number = 2;
+  windlass::CanFrame contest;
+  contest.id = windlass::can_id(windlass::kPgnAddressClaim, 128, 255, 6);
+  windlass::pack_name(loser, contest.data);
+  expect(defender.on_frame(10, contest).size() == 1, "a higher NAME is answered with our claim");
+  expect(defender.source() == 128 && !defender.claimed(), "a successful defence keeps the address");
+  expect(defender.tick(250).empty(), "a defence restarts the 250 ms quiet time");
+  expect(defender.tick(260).size() == 2 && defender.claimed(), "status follows the restarted quiet time");
+
+  windlass::NameFields weaker;
+  weaker.unique_number = 5;
+  windlass::NmeaNode yielded(weaker, 128);
+  yielded.set_publish(true);
+  yielded.tick(0);
+  windlass::CanFrame stronger = contest;
+  windlass::pack_name(winner, stronger.data);
+  auto moved = yielded.on_frame(0, stronger);
+  expect(yielded.source() == 129 && !yielded.claimed() && moved.size() == 1, "a lower NAME takes the next address");
+
+  windlass::NmeaNode last(weaker, 251);
+  last.set_publish(true);
+  last.tick(0);
+  windlass::CanFrame at_last = stronger;
+  at_last.id = windlass::can_id(windlass::kPgnAddressClaim, 251, 255, 6);
+  expect(!last.on_frame(0, at_last).empty(), "the last address answers the contest");
+  expect(last.source() == windlass::kNullAddress && !last.claimed(), "losing the last address goes to the null address");
+  expect(last.tick(1000).empty(), "the null address publishes no windlass status");
+
+  node.set_publish(false);
+  expect(node.tick(70000).empty() && !node.claimed(), "opening the strap stops transmission");
 
   expect(windlass::Gpio::heartbeat == 1, "GPIO1 heartbeat");
+  expect(windlass::kHeartbeatPeriodMs == 80, "heartbeat edge period");
+  expect(windlass::kHeartbeatPeriodMs <= 100, "edge period inside the contract");
+  expect(windlass::kHeartbeatPeriodMs * 2 < windlass::kMonostableShortMs, "two edges fit the short pulse");
+  expect(windlass::kMonostableTypicalMs == 330 && windlass::kMonostableShortMs == 264 &&
+             windlass::kMonostableLongMs == 475,
+         "monostable bounds");
   expect(windlass::Gpio::twai_tx == 4 && windlass::Gpio::twai_rx == 5, "TWAI pins");
   expect(windlass::Gpio::reed == 6, "reed");
   expect(windlass::Gpio::up_sense == 7 && windlass::Gpio::down_sense == 8, "sense");
@@ -284,7 +463,8 @@ int main() {
   test_watchdog();
   test_conflict_and_heartbeat_window();
   test_rail_loss_and_chain();
-  test_protocol_web_nmea_and_pins();
+  test_link_loss();
+  test_remote_gap_web_nmea_and_pins();
   if (failures != 0) {
     std::cerr << failures << " failed\n";
     return 1;

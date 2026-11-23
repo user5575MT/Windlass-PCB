@@ -34,8 +34,19 @@ constexpr uint32_t kTtlDefaultMs = 300;
 constexpr uint32_t kTtlMinMs = 150;
 constexpr uint32_t kTtlMaxMs = 1000;
 constexpr uint32_t kDebounceMs = 30;
-constexpr uint32_t kHeartbeatPeriodMs = 80;  // rising edges, inside the 100 ms bound
+// 74LVC1G123 on U11: A held low, CLR held high, rising edge on B (GPIO1).
+// Nexperia tW = K × R52(kΩ) × C50(pF) ns, K about 1 above 10 nF.
+// R52 is 100 kΩ and C50 is 3.3 µF, so the typical pulse is 330 ms.
+// The short case used for the edge rule is K = 1 and capacitance −20%: 264 ms.
+// The long case is K = 1.2 and capacitance +20%: 475 ms.
+constexpr uint32_t kMonostableTypicalMs = 330;
+constexpr uint32_t kMonostableShortMs = 264;
+constexpr uint32_t kMonostableLongMs = 475;
+constexpr uint32_t kHeartbeatPeriodMs = 80;
 constexpr uint32_t kHeartbeatHighMs = 40;
+static_assert(kHeartbeatPeriodMs <= 100, "edge period must stay inside the heartbeat contract");
+static_assert(kHeartbeatPeriodMs * 2 < kMonostableShortMs,
+              "the short monostable pulse must cover two edges");
 constexpr int32_t kDefaultMmPerPulse = 360;
 
 }  // namespace windlass
