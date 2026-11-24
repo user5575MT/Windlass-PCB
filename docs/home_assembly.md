@@ -1,6 +1,6 @@
 # Home-assembly controller
 
-24 November 2026, Sydney time. This is the finished through-hole design. It is not an order. Bench-test the first board before it is installed.
+24 November 2026, Sydney time. This is the finished through-hole design. It is not an order. Bench-test the first board before it is installed. A single-distributor replacement for the relays, the isolators and the watchdog was investigated and not fitted. The reasons are in `docs/home_purchase.md`.
 
 `kicad11/windlass_install_v2.kicad_pcb` and the firmware were not edited. The new files are under `kicad_home/` and `scripts/build_home.py`. Open `kicad_home/windlass_home.kicad_pro`.
 
