@@ -10,17 +10,17 @@ The schematic netlist and the board agree. 132 parts are on both. Values and foo
 
 Tracks are 0.2 mm and wider. Vias are 0.6 mm pads with 0.3 mm drills, so the annular ring is 0.15 mm. That is the absolute minimum JLCPCB publishes for a multilayer 1 oz via, and it is above the 0.127 mm track they publish as the standard minimum. It was not changed. Hole-to-copper on this board is checked at 0.25 mm, and that DRC is clean. The USB4105 locating holes are in the non-plated drill file at 0.65 mm.
 
-The manufacturing files are `fab/jlcpcb`.
+The manufacturing files are `fab/jlcpcb`. Upload `bom_smt.csv`, `cpl.csv`, and `windlass_install_v2_gerbers.zip`. The part match, the hand-fit list, and the cost are in `docs/jlcpcb_order.md`.
 
 ## Blockers
 
-There is no fabrication blocker on this board. The files can be sent to JLCPCB as they are.
+There is no fabrication blocker on this board. The upload files named in `fab/jlcpcb/README.md` can be sent to JLCPCB as they are. The board file was not changed for the order.
 
 These are not fabrication blockers. They still have to be done before the windlass is asked to move:
 
 - The Pi bridge has to be changed to `docs/pi_bridge_protocol.md`. This repository does not do that. The image built with the placeholder secrets will not open the radio.
 - `WIFI_PASS` and `COMMAND_KEY` are chosen at compile time and are not in this repository.
-- LCSC stock was not re-counted. The BOM leaves the LCSC column empty so an old C-number is not ordered by mistake. The Finder relays and both Murata modules are hand-fitted.
+- LCSC numbers for the machine-placed parts are filled in `fab/jlcpcb/bom.csv` from the JLCPCB catalogue read at 7:08 pm AEDT on 23 November 2026. C30A and C30C are a 25 V X5R reel because no 0805 22 µF X7R part at 16 V or higher is stocked. The Finder relays, both Murata modules, the connectors, the jumpers, and the two switches are hand-fitted from `fab/jlcpcb/purchase_hand.csv`.
 - The monostable pulse, the reed edge against the Lofrans magnet, and boat measurements B1, B2, B3, and B6 are still unmeasured. R30 and R40 stay 4.7 kΩ on the unmeasured sense voltage.
 - NMEA certification is not claimed. The publish strap stays open while another 128777 source is on the backbone.
 

@@ -1,58 +1,57 @@
-Comment,Designator,Footprint,Assembly,LCSC
-1uF,C10,C_0805_2012Metric,smt,
-10uF,C11,C_0805_2012Metric,smt,
-100nF,"C12,C13,C20,C21,C24,C25,C30B,C31,C41,C51,C52,C53,C90,C91,C93",C_0402_1005Metric,smt,
-1nF,C22,C_0402_1005Metric,smt,
-22uF,"C30A,C30C",C_0805_2012Metric,smt,
-22uF/25V,C30I,C_1210_3225Metric,smt,
-3.3uF/50V,C50,C_1206_3216Metric,smt,
-100nF/50V,C92,C_0402_1005Metric,smt,
-BAT54W,"D20,D21,D22,D23,D80",D_SOD-123,smt,
-1N4148W,"D30,D40",D_SOD-123,smt,
-SS14,"D60,D70",D_SMA,smt,
-LTST-C190KGKT,D_G,LED_0603_1608Metric,smt,
-LTST-C190KRKT,"D_PWR,D_R",LED_0603_1608Metric,smt,
-SMAJ18A,"D_TVS_COIL,D_TVS_MCU",D_SMA,smt,
-BZT52C12,"D_Z_COIL,D_Z_MCU",D_SOD-123,smt,
-250mA_0466.250,F_COIL,Fuse_1206_3216Metric,smt,
-2A_0466002,F_MCU,Fuse_1206_3216Metric,smt,
-Jumper_2_Open,JP1,PinHeader_1x02_P2.54mm_Vertical,through-hole,
-HDR_1x03,JP_REED,PinHeader_1x03_P2.54mm_Vertical,through-hole,
-KF350-3.5-4P,"J_CONTACT,J_PERM",KF350-3.5-1x04,through-hole,
-B5B-XH-A,"J_NMEA,J_SENSE",JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical,through-hole,
-KF350-3.5-2P,J_PWR,KF350-3.5-1x02,through-hole,
-B4B-XH-A,J_REED,JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical,through-hole,
-USB4105,J_USB,USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal,smt,
-40.31.7.012.0000,"K_DN,K_UP",Relay_SPDT_Finder_40.31,through-hole,
-SRN6045-3R3Y,L20,L_Bourns_SRN6045,smt,
-2N7002BK,"Q_BLK,Q_NPG",SOT-23,smt,
-NX3008NBK,"Q_CLAMP_DN,Q_CLAMP_UP",SOT-23,smt,
-DMP6023LE-13,"Q_COIL,Q_MCU",SOT-223-3_TabPin2,smt,
-ZXMS6004FF,"Q_DN,Q_SERIES,Q_UP",SOT-23,smt,
-10k,"R10,R11,R12,R20,R25,R27,R30P,R40P,R91,R92",R_0402_1005Metric,smt,
-100k,"R13,R14,R26,R28,R51,R52,R53,R61,R71,R80,R81,R90,R_COIL_G,R_GPD,R_MCU_G,R_RPD",R_0402_1005Metric,smt,
-5.1k,"R15,R16",R_0402_1005Metric,smt,
-22,"R17,R18",R_0402_1005Metric,smt,
-1M,R19,R_0402_1005Metric,smt,
-4.7k,"R22,R30,R40",R_0402_1005Metric,smt,
-47k,R23,R_0402_1005Metric,smt,
-51_0.5W,R24,R_2512_6332Metric,smt,
-100,R50,R_0402_1005Metric,smt,
-100,"R60,R70",R_1206_3216Metric,smt,
-1k,"R82,R_PWR",R_0402_1005Metric,smt,
-33,R93,R_0402_1005Metric,smt,
-120_0.5W,R94,R_2512_6332Metric,smt,
-0,"R_COILFEED,R_IGNLINK,R_SWLINK",R_0402_1005Metric,smt,
-680,"R_G,R_R",R_0402_1005Metric,smt,
-TL3342F160QG,"SW_BOOT,SW_RST",SW_SPST_TL3342,smt,
-ISO1042BDWR,U10,SOIC-16W_7.5x10.3mm_P1.27mm,smt,
-"74LVC1G123DP,125",U11,TSSOP-8_3x3mm_P0.65mm,smt,
-74LVC1G34GW,"U12,U15",SOT-353_SC-70-5,smt,
-74LVC1G00GW,"U13,U14",SOT-353_SC-70-5,smt,
-AP63203WU-7,U20,TSOT-23-6,smt,
-ESP32-S3-WROOM-1-N16,U3,ESP32-S3-WROOM-1,smt,
-MEJ2S0303SC,U4,Murata_MEJ2SxxxxSC,through-hole,
-ISO7720FDR,U5,SOIC-8_3.9x4.9mm_P1.27mm,smt,
-"TLP291(GB-TP,SE","U6,U7",SOIC-4_4.55x2.6mm_P1.27mm,smt,
-MEJ2S0305SC,U9,Murata_MEJ2SxxxxSC,through-hole,
-USBLC6-2SC6,U_ESD,SOT-23-6,smt,
+Comment,Designator,Footprint,Assembly,LCSC,MPN,Note
+1uF,C10,C_0805_2012Metric,smt,C28323,CL21B105KBFNNNE,"1 uF 50 V X7R ±10% 0805, basic"
+10uF,C11,C_0805_2012Metric,smt,C3039694,CL21B106KAYQNNE,10 uF 25 V X7R ±10% 0805
+100nF,"C12,C13,C20,C21,C24,C25,C30B,C31,C41,C51,C52,C53,C90,C91,C92,C93",C_0402_1005Metric,smt,C307331,CL05B104KB54PNC,"100 nF 50 V X7R ±10% 0402, basic. One reel, including C92"
+1nF,C22,C_0402_1005Metric,smt,C1523,0402B102K500NT,"1 nF 50 V X7R ±10% 0402, basic"
+22uF,"C30A,C30C",C_0805_2012Metric,smt,C45783,CL21A226MAQNNNE,DEVIATION: 22 uF 25 V X5R ±20%. No 0805 22 uF X7R at 16 V or higher is in the assembly library
+22uF/25V,C30I,C_1210_3225Metric,smt,C21397,GRM32ER71E226KE15L,22 uF 25 V X7R ±10% 1210. The specified reel
+3.3uF/50V,C50,C_1206_3216Metric,smt,C342695,C3216X7R1H335KT000E,3.3 uF 50 V X7R ±10% 1206. GRM31CR71H335KA88L is not in the catalogue
+BAT54W,"D20,D21,D22,D23,D80",D_SOD-123,smt,C699107,BAT54W,"Yangjie SOD-123, 30 V, 200 mA, 600 mA surge. Rotation 0"
+1N4148W,"D30,D40",D_SOD-123,smt,C81598,1N4148W,"Basic reel, 75 V, 150 mA, 4 ns. Library land is SOD-123F; pad centers within 0.09 mm"
+SS14,"D60,D70",D_SMA,smt,C2480,SS14,"40 V, 1 A, SMA, basic"
+LTST-C190KGKT,D_G,LED_0603_1608Metric,smt,C125094,LTST-C190KGKT,Green. Pin 1 matches at rotation 0
+LTST-C190KRKT,"D_PWR,D_R",LED_0603_1608Metric,smt,C94869,LTST-C190KRKT,Red. Pin 1 matches at rotation 0
+SMAJ18A,"D_TVS_COIL,D_TVS_MCU",D_SMA,smt,C148219,SMAJ18A,"Littelfuse, unidirectional, 18 V standoff, 29.2 V clamp, 400 W"
+BZT52C12,"D_Z_COIL,D_Z_MCU",D_SOD-123,smt,C43491,BZT52C12,"11.4 V to 12.7 V, 500 mW"
+250mA_0466.250NRHF,F_COIL,Fuse_1206_3216Metric,smt,C83557,0466.250NRHF,"250 mA, 125 V, I2t 0.0022. NR reel C206986 stock is 0; this is the halogen-free reel of the same series"
+2A_0466002.NRHF,F_MCU,Fuse_1206_3216Metric,smt,C3105,0466002.NRHF,"2 A, 63 V, 1206. NR reel C187595 stock is 0; same series"
+USB4105-GF-A,J_USB,USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal,smt,C3020560,USB4105-GF-A,Top-mount 16-position USB 2.0. Centroid is shifted; see cpl.csv
+SRN6045-3R3Y,L20,L_Bourns_SRN6045,smt,C2045238,SRN6045-3R3Y,"3.3 uH, Isat 5 A, Irms 3.2 A. Two-terminal; rotation left at the KiCad angle. Library footprint did not download"
+"2N7002BK,215","Q_BLK,Q_NPG",SOT-23,smt,C282405,"2N7002BK,215",Nexperia SOT-23. CPL rotation 180
+"NX3008NBK,215","Q_CLAMP_DN,Q_CLAMP_UP",SOT-23,smt,C179399,"NX3008NBK,215","Nexperia. Pin 1 gate, pin 2 source, pin 3 drain. CPL rotation 180"
+DMP6023LE-13,"Q_COIL,Q_MCU",SOT-223-3_TabPin2,smt,C154901,DMP6023LE-13,"Pin 1 gate, pin 2 drain, pin 3 source, tab drain. CPL rotation 180"
+ZXMS6004FFTA,"Q_DN,Q_SERIES,Q_UP",SOT-23,smt,C95063,ZXMS6004FFTA,"SOT-23F on the SOT-23 land. Pin 1 drain, pin 2 IN, pin 3 source. CPL rotation 180"
+10k,"R10,R11,R12,R20,R25,R27,R30P,R40P,R91,R92",R_0402_1005Metric,smt,C25744,0402WGF1002TCE,"10 kΩ 1% 62.5 mW 50 V, basic"
+100k,"R13,R14,R26,R28,R51,R52,R53,R61,R71,R80,R81,R90,R_COIL_G,R_GPD,R_MCU_G,R_RPD",R_0402_1005Metric,smt,C25741,0402WGF1003TCE,"100 kΩ 1% 62.5 mW, basic"
+5.1k,"R15,R16",R_0402_1005Metric,smt,C25905,0402WGF5101TCE,"5.1 kΩ 1%, basic"
+22,"R17,R18",R_0402_1005Metric,smt,C25092,0402WGF220JTCE,"22 Ω 1%, basic"
+1M,R19,R_0402_1005Metric,smt,C26083,0402WGF1004TCE,"1 MΩ 1%, basic"
+4.7k,"R22,R30,R40",R_0402_1005Metric,smt,C25900,0402WGF4701TCE,"4.7 kΩ 1%, basic"
+47k,R23,R_0402_1005Metric,smt,C25792,0402WGF4702TCE,"47 kΩ 1%, basic"
+51_1W,R24,R_2512_6332Metric,smt,C137021,RC2512FK-0751RL,51 Ω 1% 1 W 2512. Dissipation at 3.3 V is about 0.21 W
+100,R50,R_0402_1005Metric,smt,C25076,0402WGF1000TCE,"100 Ω 1% 0402, basic"
+100_250mW,"R60,R70",R_1206_3216Metric,smt,C17901,1206W4F1000T5E,"100 Ω 1% 250 mW 200 V 1206, basic"
+1k,"R82,R_PWR",R_0402_1005Metric,smt,C11702,0402WGF1001TCE,"1 kΩ 1%, basic"
+33,R93,R_0402_1005Metric,smt,C25105,0402WGF330JTCE,"33 Ω 1%, basic"
+120_1W,R94,R_2512_6332Metric,smt,C421657,25121WF1200T4E,120 Ω 1% 1 W 2512. The 5 V preload is about 0.21 W
+0,"R_COILFEED,R_IGNLINK,R_SWLINK",R_0402_1005Metric,smt,C17168,0402WGF0000TCE,"0 Ω link, basic"
+680,"R_G,R_R",R_0402_1005Metric,smt,C137948,RC0402FR-07680RL,680 Ω 1% 62.5 mW. No basic 1% reel
+ISO1042BDWR,U10,SOIC-16W_7.5x10.3mm_P1.27mm,smt,C2671499,ISO1042BDWR,"SOIC-16 7.5 mm body. CPL rotation unchanged. Pad centers sit 0.54 mm further out, pitch matches"
+"74LVC1G123DP,125",U11,TSSOP-8_3x3mm_P0.65mm,smt,C513291,"74LVC1G123DP,125",Nexperia TSSOP-8. CPL rotation 90
+"74LVC1G34GW,125","U12,U15",SOT-353_SC-70-5,smt,C455045,"74LVC1G34GW,125","Nexperia SOT-353, 0.65 mm. Catalogue short text says TSSOP-5. CPL rotation 180"
+"74LVC1G00GW,125","U13,U14",SOT-353_SC-70-5,smt,C12508,"74LVC1G00GW,125","Nexperia SOT-353, 0.65 mm. CPL rotation 180"
+AP63203WU-7,U20,TSOT-23-6,smt,C780769,AP63203WU-7,Diodes TSOT-23-6. CPL rotation 90. Stock is low
+ESP32-S3-WROOM-1-N16,U3,ESP32-S3-WROOM-1,smt,C2913199,ESP32-S3-WROOM-1-N16,"16 MB, no PSRAM. Standard assembly only. Centroid is shifted; see cpl.csv"
+ISO7720FDR,U5,SOIC-8_3.9x4.9mm_P1.27mm,smt,C2878308,ISO7720FDR,"Narrow SOIC-8, 3000 Vrms. CPL rotation 90"
+"TLP291(GB-TP,SE","U6,U7",SOIC-4_4.55x2.6mm_P1.27mm,smt,C55144,"TLP291(GB-TP,SE","Toshiba SOP-4, GB CTR. Pins 1 anode, 2 cathode, 3 emitter, 4 collector. CPL rotation 180"
+USBLC6-2SC6,U_ESD,SOT-23-6,smt,C7519,USBLC6-2SC6,ST SOT-23-6. CPL rotation 90
+Jumper_2_Open,JP1,PinHeader_1x02_P2.54mm_Vertical,hand,,HX PZ2.54-1x2P ZZ,Fit open. Buy C32713268. See purchase_hand.csv
+HDR_1x03,JP_REED,PinHeader_1x03_P2.54mm_Vertical,hand,,2.54-1*3PPin,Buy C49257. Shunt on pins 1-2 is a separate loose part
+XY350V-3.5-4P,"J_CONTACT,J_PERM",KF350-3.5-1x04,hand,,XY350V-3.5-4P,Holes match. 7 A. Drawn KF350-3.5-4P is not stocked. Buy C557656
+B5B-XH-A(LF)(SN),"J_NMEA,J_SENSE",JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical,hand,,B5B-XH-A(LF)(SN),Buy C157991
+KF350-3.5-2P,J_PWR,KF350-3.5-1x02,hand,,KF350-3.5-2P,Buy C474892
+B4B-XH-A(LF)(SN),J_REED,JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical,hand,,B4B-XH-A(LF)(SN),Buy C144395
+40.31.7.012.0000,"K_DN,K_UP",Relay_SPDT_Finder_40.31,hand,,40.31.7.012.0000,JLCPCB stock 0. Buy the Finder part. Do not substitute
+MEJ2S0303SC,U4,Murata_MEJ2SxxxxSC,hand,,MEJ2S0303SC,Not in the JLCPCB catalogue. Genuine Murata only
+MEJ2S0305SC,U9,Murata_MEJ2SxxxxSC,hand,,MEJ2S0305SC,JLCPCB stock 0. Genuine Murata only
+TL3342F160QG,"SW_BOOT,SW_RST",SW_SPST_TL3342,hand,,TL3342F160QG,JLCPCB stock is 1. Hand solder to the silk. Do not substitute

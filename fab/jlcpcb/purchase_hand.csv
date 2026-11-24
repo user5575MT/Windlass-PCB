@@ -1,0 +1,12 @@
+Designator,Qty per board,MPN,Source,Order code,Stock on 23 Nov 2026,Unit USD,Buy for 5 boards,Line USD,Note
+JP1,1,HX PZ2.54-1x2P ZZ,JLCPCB,C32713268,174396,0.0155,5,0.08,1x2 2.54 mm straight male. Fit open. No shunt on JP1.
+JP_REED,1,2.54-1*3PPin,JLCPCB,C49257,449906,0.0292,5,0.15,"1x3 2.54 mm straight male. After soldering, fit one loose shunt on pins 1-2 (Lofrans)."
+J_CONTACT J_PERM,2,XY350V-3.5-4P,JLCPCB,C557656,2810,0.3002,10,3.00,"3.5 mm 4-pin, 7 A, 300 V. The holes match the drawn KF350-3.5-4P land. That 10 A KF350 listing has no stock. The contact path is the boat's 2.5 A fuse."
+J_NMEA J_SENSE,2,B5B-XH-A(LF)(SN),JLCPCB,C157991,60931,0.0902,10,0.90,JST XH 5-pin, 2.50 mm, vertical. Hand solder pin 1 to the silk.
+J_PWR,1,KF350-3.5-2P,JLCPCB,C474892,21364,0.1193,5,0.60,Cixi Kefa 2-pin, 3.5 mm, 10 A, 300 V.
+J_REED,1,B4B-XH-A(LF)(SN),JLCPCB,C144395,505443,0.0529,5,0.26,JST XH 4-pin, 2.50 mm, vertical. Hand solder pin 1 to the silk.
+K_DN K_UP,2,40.31.7.012.0000,TME,40.31.7.012.0000,931,3.99,10,39.90,"Finder 12 V coil, SPDT. JLCPCB listing C6389061 has stock 0, so that listing is not an order. TME public price at 10 pieces, read 23 Nov 2026. Newark lists the same part at 8.46 USD. Do not substitute."
+U4,1,MEJ2S0303SC,DigiKey,811-2400-ND,53,9.83,5,49.15,"Genuine Murata 3.3 V to 3.3 V, 2 W. Not in the JLCPCB catalogue. DigiKey public listing via Octopart, read 23 Nov 2026. TTI lists 7.97 USD with 25 pieces."
+U9,1,MEJ2S0305SC,DigiKey,811-2399-ND,164,9.83,5,49.15,"Genuine Murata 3.3 V to 5 V, 2 W, 5.2 kVDC. JLCPCB C5457212 has stock 0. DigiKey public listing via Octopart, read 23 Nov 2026. TTI lists 7.86 USD with 25 pieces."
+SW_BOOT SW_RST,2,TL3342F160QG,TME,TL3342F160QG,1416,0.48,10,4.80,"E-Switch, exact part. JLCPCB C2886898 has stock 1, which does not cover two switches, and the library land does not match this footprint. Hand solder to the silk. TME public price at 10 pieces, read 23 Nov 2026."
+JP_REED shunt,1,2.54 mm open shunt,buy with the headers,,unavailable,,5,unavailable,"One loose shunt per board, fitted on JP_REED pins 1-2. Not soldered. No order code was selected. Price unavailable."
