@@ -24,7 +24,7 @@ Nexperia’s 74HC/HCT123 formula is tw = 0.45 × R × C at 5 V, for C above 10 n
 
 The watchdog is one CD74HCT14E, powered from the 5 V rail so its input threshold is a legal high for a 3.3 V GPIO. GPIO1 is pulled down by 100 kΩ and inverted. A 330 Ω / 220 nF edge into a 10 kΩ pull-up makes a pulse of about 1 ms on the rising edge of the heartbeat only. That pulse turns on a BC547B and dumps a 2.2 µF film capacitor. The capacitor then charges through 470 kΩ. While the capacitor is still below the Schmitt threshold, the series IRLZ44N stays on. A stuck-high or stuck-low GPIO produces one edge and then the rail turns off.
 
-The calculated dropout, with a 1 percent resistor, a 10 percent film capacitor and the TI threshold span, is 239 ms to 660 ms. One microamp of HCT input leakage lengthens that and does not stop the trip: 470 kΩ drops 0.47 V, and the capacitor still aims well above the highest threshold. Film leakage is nanoamps and is not the term that sets the window. The working is in `docs/home_purchase.md`. Time the first board. The output is off if the heartbeat stops. It does not latch off.
+The calculated dropout, with a 1 percent resistor, a 10 percent film capacitor and the TI threshold span, is 231 ms to 705 ms. The long corner is over the original 475 ms limit, and over half a second. The earlier 660 ms figure is not that long corner. No resistor that fits the film footprint can hold the long corner under 475 ms and the short corner over two 100 ms intervals. R_TIME stays 470 kΩ. The working is in `docs/home_purchase.md`. Time the first board. The output is off if the heartbeat stops. It does not latch off.
 
 ## Coil switches and the fuse
 
@@ -32,7 +32,7 @@ The ESP32 pin does not drive the IRLZ44N. Its minimum high is about 2.6 V, and t
 
 The three IRLZ44N devices are low-side. The series device is held on by the watchdog. The up and down devices each feed one relay coil. The tabs are drains. They are not bolted together and they are not bolted to ground.
 
-The coil fuse is a Littelfuse 0235 series 250 mA fast-acting 5×20 cartridge, ordered as 0235.250HXP for the holder. The series cold resistance is 2.25 Ω and the nominal melting I²t is 0.0166 A²s. A dead short from 12 V is about 4.9 A through the fuse, the IRF9540N and the two IRLZ44Ns, so the melt time is about 0.7 ms. The energy in each IRLZ44N to reach that I²t is 0.58 mJ at the 35 mΩ, 4 V specification, against an avalanche rating of 210 mJ. The 0.0022 A²s figure belongs to the v2 1206 fuse and does not apply here. The 235 series has no published DC rating, so the arc after the melt is a first-board measurement. The 2 A fuse in the controller branch is 0217002.HXP. Littelfuse lists that 217-series part as fast-acting, not time-lag, with a melting I²t of 5.726 A²s. It is not the coil protection. Normal coil current is 42 mA, and both coils at 18 V are 125 mA, under the 250 mA fuse.
+The coil fuse is a SIBA 70-007-33/0.4A, a 400 mA fast ceramic 5×20 cartridge. It is the lowest current in the 179021 series with a published interrupting current of 1500 A at 250 VDC. No 250 mA 5×20 cartridge found for this buy has a DC interrupting current, and the Littelfuse 0235.250HXP is not the part to order. Pre-arcing I²t is 0.07 A²s. Total clearing I²t is not published; the check uses twice that, 0.14 A²s. The energy in each IRLZ44N is then 4.9 mJ at 35 mΩ, against an avalanche rating of 210 mJ, and the FET stays in the RDS(on) region at a few tenths of a volt. The working is in `docs/home_purchase.md`. The 2 A fuse in the controller branch is 0217002.HXP. It is not the coil protection. Normal coil current is 42 mA, and both coils at 18 V are 125 mA, which is under the 400 mA fuse. A fault between 250 mA and 400 mA will not open it.
 
 The reverse-polarity devices are IRF9540N, one per branch, source toward the load, gate pulled to ground and clamped near −12 V by a BZX55C12. The TVS on each fused rail is a P6KE18A. It is an 18 V part and it is not load-dump protection. The OKI absolute maximum of 36 V is why this clamp is acceptable.
 
@@ -58,14 +58,14 @@ The diode band goes in the red square. The LED flat is the cathode and goes in t
 
 The square pad of a TO-92 is the collector. The parts in the buy list are onsemi, which are emitter, base, collector with the flat toward you, so the right-hand lead is the one that goes in the square. A Nexperia C-B-E part faces the other way. Match the bag, not a single flat-direction rule.
 
-DIP pin 1 is the red square. The DevKit USB end is pin 1 of each socket, which is the end nearer the connector edge. Fit the shunt on JP_REED pins 1-2 and leave the CAN publish jumper open. The coil holder gets the 250 mA fast cartridge. The controller holder gets 0217002.HXP, which is the fast-acting 217 series.
+DIP pin 1 is the red square. The DevKit USB end is pin 1 of each socket, which is the end nearer the connector edge. Fit the shunt on JP_REED pins 1-2 and leave the CAN publish jumper open. The coil holder gets the SIBA 400 mA fast cartridge. The controller holder gets 0217002.HXP, which is the fast-acting 217 series. J_PWR is one Phoenix 1984617. Each 4-pin terminal is two of those blocks snapped together.
 
 ## Cost for one controller
 
 The manufacturing package, the quotes, and the line-by-line buy list are in `docs/home_purchase.md` and `docs/home_assembly_bom.csv`. Gerbers are in `fab/home/windlass_home_gerbers.zip`.
 
-The priced lines, including the five-board JLCPCB minimum delivered to Australia and the DigiKey delivery charge, add to **A$248.22**. One 220 nF disc, two 3.50 mm 4-pin terminals, the terminal housings and two JST 5-pin housings had no retrieved price and are not in that sum. Nothing was ordered.
+The priced lines, including the five-board JLCPCB minimum delivered to Australia, add to **A$220.63**. DigiKey delivery is A$0. Postage on the DevKit and on the 220 nF disc is not published and is not in that sum. Nothing was ordered.
 
 ## Before installation
 
-Time the watchdog dropout on the first board. Confirm the 250 mA fuse opens on a dead short without damaging the IRLZ44N. Confirm the OKI starts on the fast 2 A fuse. Confirm a clone DevKit does not back-feed the OKI through the 1N5817. The firmware and the v2 board stay as they are.
+Time the watchdog dropout on the first board. The calculated long corner is 705 ms, which is over the original 475 ms limit, and the resistor was not changed. Confirm the 400 mA fuse opens on a dead short without damaging the IRLZ44N. Confirm the OKI starts on the fast 2 A fuse. Confirm a clone DevKit does not back-feed the OKI through the 1N5817. The firmware and the v2 board stay as they are.

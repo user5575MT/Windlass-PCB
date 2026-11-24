@@ -27684,7 +27684,7 @@
 				)
 			)
 		)
-		(property "Value" "0235.250HXP"
+		(property "Value" "70-007-33/0.4A"
 			(at 11.25 6 270)
 			(layer "F.Fab")
 			(hide yes)

@@ -4,7 +4,7 @@ Qty,Buy,Refs,Value,Manufacturer part,Package,LCSC,LCSC USD,DigiKey,DigiKey AUD i
 1,1,U_ISO3,MEJ2S0503SC,MEJ2S0503SC,SIP,C38477250,13.8934,,,2429477,18.887,element14,18.887,Inc GST. LCSC had 3 in stock at the USD price.
 2,2,K_UP K_DN,Finder 40.31.7.012.0000,40.31.7.012.0000,relay,not listed,,,,1169158,40.502,element14,40.502,"Inc GST, two relays. Do not substitute."
 3,3,Q_SER Q_UP Q_DN,IRLZ44N,IRLZ44NPBF,TO-220,C38774,0.8943,IRLZ44NPBF-ND,8.778,,,DigiKey,8.778,Inc GST for three. LCSC Infineon unit USD 0.8943. Tab is drain.
-2,2,Q_COIL Q_MCU,IRF9540N,IRF9540NPBF,TO-220,C2575,0.3461,IRF9540NPBF-ND,8.932,,,DigiKey,8.932,Inc GST for two. LCSC Infineon unit USD 0.3461.
+2,3,Q_COIL Q_MCU,IRF9540N,IRF9540NPBF,TO-220,C2575,0.3461,IRF9540NPBF-ND,13.398,,,DigiKey,13.398,"Inc GST for three. Fit two. The third is an assembly spare that takes the DigiKey cart over A$60. LCSC Infineon unit USD 0.3461."
 1,1,U_CAN,MCP2562,MCP2562-E/P,DIP-8,C640345,2.3372,MCP2562-E/P-ND,2.123,,,DigiKey,2.123,"Inc GST. LCSC USD 2.3372, 46 in stock."
 2,2,U_TX U_RX,6N137,6N137,DIP-8,C14750,0.7502,1080-1485-ND,6.798,,,DigiKey,6.798,Inc GST for two Everlight DIP-8. LCSC DIP is Broadcom 6N137-000E at USD 0.7502. Do not buy a -S or -M SOIC.
 1,1,U12,CD74HCT14E,CD74HCT14E,DIP-14,C2872530,0.7993,,,3120225,1.430,element14,1.43,Inc GST. LCSC had 32 at USD 0.7993.
@@ -12,8 +12,8 @@ Qty,Buy,Refs,Value,Manufacturer part,Package,LCSC,LCSC USD,DigiKey,DigiKey AUD i
 1,1,U16,SN74HC00N,SN74HC00N,DIP-14,C2902,0.6683,,,3120419,1.287,element14,1.287,Inc GST. LCSC TI stock was 3 at USD 0.6683.
 1,1,U17,SN74HC08N,SN74HC08N,DIP-14,C2887,0.6552,,,not listed,,LCSC catalog,0.989,"element14 has no exact listing. DigiKey page was rate-limited. Line is the LCSC TI price converted, with no freight and no GST."
 4,4,optos,PC817,PC817X1J000F,DIP-4,not the Sharp part,,,,9707697,1.628,element14,1.628,Inc GST for four. $0.370 ex GST. LCSC did not list this Sharp order code.
-1,1,module,ESP32-S3-DevKitC-1-N16R8,ESP32-S3-DevKitC-1-N16R8,module,not listed,,not listed,,not listed,,Phipps,30.95,"Listed $30.95. The page does not say whether GST is included, and postage was not shown. Confirm the N16R8 marking."
-1,1,F_COIL,250 mA fast 5x20,0235.250HXP,cartridge,C3157528,1.1989,,,1192542,2.409,element14,2.409,"Inc GST. Littelfuse 235, I2t 0.0166 A2s, cold resistance 2.25 ohm."
+1,1,module,ESP32-S3-DevKitC-1-N16R8,ESP32-S3-DevKitC-1-N16R8,module,not listed,,not the DevKit,,not listed,,Zaitronics,18.50,"A$18.50 inc GST, listed as A$16.82 ex GST. PCB-antenna DevKitC-1-N16R8. The page also says unavailable, with a 5 to 10 day lead before dispatch. Postage is calculated at checkout and is not in the total. Do not buy the U.FL DevKitC-1U."
+1,1,F_COIL,400 mA fast 5x20,70-007-33/0.4A,cartridge,not the 250 mA part,,,,2523853,0.856,element14,0.856,"Inc GST. Page shows $0.778 ex GST and $0.8558 inc GST. SIBA 179021, 5x20, fast, ceramic. 1500 A at 250 VDC for 400 mA to 4 A. One piece in UK stock, 3 to 5 business days."
 1,1,F_MCU,2 A fast 5x20,0217002.HXP,cartridge,C3161305,0.3168,,,2762005,0.9416,element14,0.9416,"Inc GST. Littelfuse 217 series is fast-acting, IEC F, I2t 5.726 A2s. It is not a time-lag fuse."
 2,2,F_COIL F_MCU,5x20 holder,0031.8201,horizontal open,not listed,,,,1162740,3.608,element14,3.608,Two at $1.640 ex GST. Page bracket rounded to $1.80; line uses 10 percent.
 4,4,Q_DIS and three others,BC547B,"BC547B (onsemi, ammo)",TO-92 E-B-C,C258144,0.1692,,,1504818,1.866,element14,1.866,"onsemi is E-B-C. Square pad is the collector, which is pin 3. Nexperia BC547B,112 was not listed."
@@ -27,10 +27,10 @@ Qty,Buy,Refs,Value,Manufacturer part,Package,LCSC,LCSC USD,DigiKey,DigiKey AUD i
 2,2,J1 J3,22-pin socket,PPPC221LFBN-RC,2.54 mm,not listed,,S7055-ND,4.576,not the 22-pin,,DigiKey,4.576,Page shows $2.080 ex GST and $2.288 inc GST. Pin 1 is the end nearer the connectors.
 1,1,J_REED,JST XH 4-pin,B4B-XH-A,2.50 mm,C144395,0.0523,455-B4B-XH-A-ND,0.275,1516278 min 100,,DigiKey,0.275,DigiKey 1+ $0.250 ex GST. element14 only showed a 100+ break. LCSC JST B4B-XH-A(LF)(SN) is USD 0.0523.
 2,2,J_NMEA J_SENSE,JST XH 5-pin,B5B-XH-A(LF)(SN),2.50 mm,C157991,0.0903,,,,,LCSC catalog,0.273,"JST, converted, no freight."
-1,1,J_PWR,3.5 mm 2-pin,KF350-3.5-2P,3.50 mm,C474892,0.1194,,,,,LCSC catalog,0.18,Cixi Kefa. Pitch must stay 3.50 mm. Converted.
-2,2,J_PERM J_CONTACT,3.5 mm 4-pin,KF350 4-position,3.50 mm,not in the search,,,,,,not priced,,The LCSC search for KF350-3.5 returned the 2-pin and the 3-pin only. Not in the total.
+1,2,J_PWR,3.5 mm 2-pin,1984617,3.50 mm horizontal,,,277-1721-ND,1.892,,,DigiKey,1.892,"Phoenix PT 1,5/2-3,5-H. Pin 0.9 mm, recommended hole 1.2 mm, pitch 3.50 mm. A$0.946 inc GST each. Fit one, buy two. The spare takes the DigiKey cart over A$60. The screw takes the wire. There is no mating housing."
+2,4,J_PERM J_CONTACT,3.5 mm 4-pin,1984617 pairs,3.50 mm horizontal,,,277-1721-ND,3.784,,,DigiKey,3.784,"Two Phoenix 1984617 blocks snapped side by side on each 4-pin footprint. A pair is 14 mm long and the courtyard is 14.7 mm. A$0.946 inc GST each, four blocks."
 1,1,mate J_REED,XH housing 4,XHP-4-M,2.50 mm,C493083,0.04,,,,,LCSC catalog,0.06,JST colour variant. Plain XHP-4 was not in the first results. Converted.
-2,2,mate J_NMEA J_SENSE,XH housing 5,XHP-5,2.50 mm,not in the first results,,,,,,not priced,,Not in the total. Order the JST 5-position housing.
+2,2,mate J_NMEA J_SENSE,XH housing 5,25CH-B-05,2.50 mm,,,2057-25CH-B-05-ND,0.352,,,DigiKey,0.352,"Adam Tech 5-position 2.50 mm housing, in stock. The substitute column shows A$0.160, treated as ex GST like the XHP-5 table on the same page, so A$0.176 inc GST each. JST XHP-5, 455-2268-ND, is A$0.165 inc GST and has no stock until 9 December 2026."
 20,20,XH contacts,contact,SXH-001T-P0.6,crimp,C140573,0.0118,,,,,LCSC catalog,0.356,"Fourteen are fitted, twenty are bought. Converted."
 2,2,JP_REED JP1,2.54 mm shunt,closed shunt,2.54 mm,C100114,0.0096,,,,,LCSC catalog,0.029,Fit one on JP_REED pins 1-2. Leave JP1 open. Converted.
 1,1,LED red,LED red 5 mm,L-53ID,5 mm,C598429,0.2236,,,,,LCSC catalog,0.337,"Kingbright. Flat is the cathode, into the square pad. Converted."
@@ -48,9 +48,9 @@ Qty,Buy,Refs,Value,Manufacturer part,Package,LCSC,LCSC USD,DigiKey,DigiKey AUD i
 1,1,R24,51 ohm 1 W,MFR1WSFTE52-51R,axial 9 x 3.3,C172953,0.0317,,,,,LCSC catalog,0.048,Yageo 1 W. Body is smaller than the DIN0414 courtyard; form the leads to 15.24 mm. Converted.
 1,1,R94,120 ohm 1 W,MFR01SF1200A10,axial 9.5 x 3.5,C65201,0.0277,,,,,LCSC catalog,0.042,"Uniroyal 1 W, 120 ohm. Form the leads to 15.24 mm. Converted."
 10,10,100 nF,100 nF disc,C315C104M5U5TA7303,disc ~5 mm,C2169797,0.23,,,,,LCSC catalog,3.471,"KEMET C315, 1206 in stock. Pitch is 5.08 mm against a 5.00 mm footprint. Converted."
-1,1,C_EDGE,220 nF disc,"220 nF 50 V disc, 5 mm",disc 5 mm,no D5 part priced,,,,,,not priced,,"Not in the total. Body must be about 5 mm diameter, pitch 5 mm."
+1,1,C_EDGE,220 nF disc,CAPN0178,disc D5 mm P5.00 mm,,,,,,,Pedal Parts,0.10,"220 nF 50 V. Body diameter 5 mm thickness 4 mm pitch 5.00 mm. 274 in stock at A$0.10. Postage is not on the page and is not in the total. Courtyard thickness is 2.5 mm so check clearance."
 5,5,C_3V3B C_ISO C_REED C_5V C_DEV,10 uF 25 V,ECEA1EKS100I,radial D5 P2.5,,,,,3346715,2.898,element14,2.899,"Panasonic 25 V, 5 mm, pitch 2.5 mm. Covers the three 16 V positions and the two 25 V positions. 5+ is $0.527 ex GST. Stripe is the negative lead."
 1,1,C_IN,10 uF 50 V,HXB50V10M6.3*7 2.5TP,radial D6.3 P2.5,C2835646,0.0697,,,,,LCSC catalog,0.105,"SamYoung, D6.3 mm, pitch 2.5 mm, matches C_IN. Converted."
 1,10,C_TIME,2.2 uF film,R60DF4220506AK,box L13 W5 P10,not a fitting box,,,,4559288,10.219,element14,10.219,"KEMET PET, 2.2 uF 63 V, 10 percent, pitch 10 mm, length 13 mm, width 5 mm. Fits. Break starts at 10+. Buy ten, fit one. $0.929 ex GST."
 5,5,bare boards,120 x 112 mm 2-layer,JLCPCB quote,1.6 mm,,19.02,,,,,JLCPCB,28.7,USD 10.50 boards plus USD 8.52 Global Standard Direct Line to Australia. Quote shows no GST. Five is the minimum. One controller pays all five.
-1,1,freight,DigiKey delivery to Australia,published charge under A$60,,,,,,,,DigiKey,24.00,"Goods on this DigiKey list are A$50.16 including GST, under the published A$60 free-delivery line. The charge is A$24. It drops off if the same cart reaches A$60."
+1,1,freight,DigiKey delivery to Australia,free at A$60 or more,,,,,,,,DigiKey,0.00,"Goods on this DigiKey list are A$60.65 including GST. Published delivery is A$0 at A$60 or more, and A$24 under that."

@@ -330,7 +330,7 @@
 <circle cx="410.1" cy="786.0" r="2.2" fill="#1d4e89"/>
 <text x="414.1" y="783.0" font-family="sans-serif" font-size="8" fill="#1a1a1a">J_REED B4B-XH-A</text>
 <circle cx="313.6" cy="728.4" r="2.2" fill="#1d4e89"/>
-<text x="317.6" y="725.4" font-family="sans-serif" font-size="8" fill="#1a1a1a">F_COIL 0235.250HXP</text>
+<text x="317.6" y="725.4" font-family="sans-serif" font-size="8" fill="#1a1a1a">F_COIL 70-007-33/0.4A</text>
 <circle cx="97.6" cy="160.6" r="2.2" fill="#1d4e89"/>
 <text x="101.6" y="157.6" font-family="sans-serif" font-size="8" fill="#1a1a1a">J3 DevKitC_J3</text>
 <rect x="94.4" y="157.4" width="6.4" height="6.4" fill="#c43c1e"/>

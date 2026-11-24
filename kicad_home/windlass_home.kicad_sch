@@ -364,7 +364,7 @@
   (exclude_from_sim no) (in_bom yes) (on_board yes) (in_pos_files yes) (dnp no)
   (uuid "f48d2a96-2fd0-419b-942f-fdf70a81ff3b")
   (property "Reference" "F_COIL" (at 30.48 148.59 0) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27))))
-  (property "Value" "0235.250HXP" (at 30.48 138.42999999999998 0) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27))))
+  (property "Value" "70-007-33/0.4A" (at 30.48 138.42999999999998 0) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27))))
   (property "Footprint" "Fuse:Fuseholder_Cylinder-5x20mm_Schurter_0031_8201_Horizontal_Open" (at 30.48 143.51 0) (hide yes) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27))))
   (property "Datasheet" "" (at 30.48 143.51 0) (hide yes) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27))))
   (pin "1" (uuid "3ac62a8e-c496-4394-9096-54b6e9ded87b")) (pin "2" (uuid "8437e3eb-ca2d-4d7d-900f-8584d24caa00"))
