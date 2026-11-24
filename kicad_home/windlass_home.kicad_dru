@@ -1,0 +1,21 @@
+(version 1)
+
+# Functional isolation. Copper of one field domain stays 0.6 mm from every other domain.
+# Tracks inside one domain use the 0.2 mm net-class clearance, because a TO-92
+# has its three pins 2.54 mm apart and a 0.6 mm class clearance does not fit.
+
+(rule "reed_isolation"
+  (constraint clearance (min 0.6mm))
+  (condition "A.NetClass == 'reed' && B.NetClass != 'reed'"))
+
+(rule "can_isolation"
+  (constraint clearance (min 0.6mm))
+  (condition "A.NetClass == 'can' && B.NetClass != 'can'"))
+
+(rule "up_isolation"
+  (constraint clearance (min 0.6mm))
+  (condition "A.NetClass == 'up' && B.NetClass != 'up'"))
+
+(rule "dn_isolation"
+  (constraint clearance (min 0.6mm))
+  (condition "A.NetClass == 'dn' && B.NetClass != 'dn'"))
