@@ -1,0 +1,35 @@
+(footprint "MountingHole_M3_Washer"
+	(version 20241229)
+	(generator "windlass_place_preview")
+	(layer "F.Cu")
+	(descr "M3 hole, 3.2 mm drill. Courtyard is 7.4 mm diameter: a 7 mm DIN 125 washer plus 0.2 mm. ISO 7380 button head is 5.7 mm and sits inside this circle. Fabrication package prepared; not ordered..")
+	(property "Reference" "REF**"
+		(at 0 -4.4 0)
+		(layer "F.SilkS")
+		(effects (font (size 0.8 0.8) (thickness 0.12)))
+	)
+	(property "Value" "M3+washer"
+		(at 0 4.4 0)
+		(layer "F.Fab")
+		(effects (font (size 0.8 0.8) (thickness 0.12)))
+	)
+	(attr exclude_from_pos_files exclude_from_bom)
+	(fp_circle
+		(center 0 0)
+		(end 3.7 0)
+		(stroke (width 0.05) (type solid))
+		(layer "F.CrtYd")
+	)
+	(fp_circle
+		(center 0 0)
+		(end 2.85 0)
+		(stroke (width 0.12) (type solid))
+		(layer "Cmts.User")
+	)
+	(pad "" np_thru_hole circle
+		(at 0 0)
+		(size 3.2 3.2)
+		(drill 3.2)
+		(layers "*.Cu" "*.Mask")
+	)
+)

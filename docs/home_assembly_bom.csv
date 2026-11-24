@@ -1,18 +1,53 @@
-Qty,Proposed part,Package,Replaces on v2,Listing used for the cost,USD each,USD line,Note
-1,ESP32-S3-DevKitC-1-N16R8,plug-in on two 22-pin sockets,ESP32-S3-WROOM-1-N16 and the USB-C circuit,Espressif sample price; Mouser sells this variant,17.00,17.00,16 MB flash. Do not buy an N8 board. PSRAM stays disabled in the current image
-1,OKI-78SR-5/1.5-W36H-C,SIP horizontal,AP63203 and L20,Newark listing,6.53,6.53,7-36 V in; 5 V at 1.5 A. Not load-dump protection
-1,MEJ2S0505SC,SIP,MEJ2S0305SC,DigiKey 811-2397-ND,15.39,15.39,5 V to isolated 5 V. Same 5.2 kVDC / 2.4 kVDC functional rating
-1,MEJ2S0503SC,SIP,MEJ2S0303SC,not retrieved,,,"5 V to isolated 3.3 V. The 0505 sibling on the same page is $15.39"
-2,Finder 40.31.7.012.0000,through-hole relay,same part,Newark listing of 23 Nov 2026,8.46,16.92,Do not substitute. TME listed $3.99 at quantity 10 the same day
-2,Vishay 6N137-000E,DIP-8,ISO1042 signal path,DigiKey listing carried by a 11 Nov 2026 aggregator,2.38,4.76,5300 Vrms. Open-collector output
-1,MCP2562-E/P,DIP-8,ISO1042 transceiver,DigiKey UK,,"£0.98",Left in pounds. Not added to the USD total
-3,IRLZ44NPBF,TO-220,ZXMS6004FF coil switches,DigiKey,1.80,5.40,RDS(on) specified at 4.0 V and at 5.0 V. Tab is the drain
-2,P-channel TO-220 such as IRF9540N,TO-220,DMP6023LE reverse-polarity FETs,not retrieved,,,Gate still clamped near -12 V. Price not fetched
-1,CD74HCT14E,DIP-14,part of the 74LVC1G123 watchdog,Mouser,0.83,0.83,Schmitt inverter. The timeout is an RC network; see the note
-1,CD74HCT123E,DIP-16,edge stretcher only,not retrieved,,,10 µs discharge pulse. It is not the 330 ms timer
-1,CD74HCT125E,DIP-14,74LVC1G34 buffers,not retrieved,,,Powered from 5 V so a 3.3 V GPIO is a legal high
-1,SN74HC00N,DIP-14,74LVC1G00 blanker,not retrieved,,,SR latch; same blanker rules
-1,SN74HC08N,DIP-14,blanker output AND,not retrieved,,,Passes the reed rise only after a real low
-4,PC817 or TLP621,DIP-4,ISO7720 and the two TLP291,allowance in the small-parts line,,,Two direction optos; reed data and field-supply present
-1,1.00 Mohm 1 percent and 1.0 µF film,axial / box,1206 timing capacitor,allowance,,,Sets the heartbeat dropout. Measure it on the first board
-1 set,axial resistors capacitors diodes fuses clips sockets headers and the six housings,through-hole,the 0402 and other SMD passives,allowance,,25.00,Connectors stay the v2 housings. No 120 ohm across CANH/CANL
+Qty,Part,Package,Supplier,Order code,AUD ex GST,AUD inc GST,Line inc GST,Retrieved,Note
+1,ESP32-S3-DevKitC-1-N16R8,plug-in module,Phipps Electronics,PHI1003366 listed as N16R8,,30.95,30.95,2026-11-24,"In stock in Australia, 3 pieces. Page does not say whether GST is included. One bullet swaps flash and PSRAM; the description body says 16 MB flash and 8 MB PSRAM. Confirm the module marking. Generic board, not an Espressif box. Zaitronics listed the same name at 18.50 AUD with a lead time."
+1,OKI-78SR-5/1.5-W36H-C,SIP,element14 Australia,2812636,9.320,10.252,10.252,2026-11-24,7-36 V in, 5.0 V at 1.5 A. Not load-dump protection.
+1,MEJ2S0505SC,SIP,DigiKey Australia,811-2397-ND,15.390,16.929,16.929,2026-11-24,5 V to isolated 5 V. 5.2 kVDC hipot.
+1,MEJ2S0503SC,SIP,element14 Australia,2429477,17.170,18.887,18.887,2026-11-24,5 V to isolated 3.3 V. 18 pieces in UK stock on the day. Do not reuse the 0505 price for this part.
+2,Finder 40.31.7.012.0000,through-hole relay,element14 Australia,1169158,18.410,20.251,40.502,2026-11-24,Do not substitute. element14's coil-resistance field says 300 ohm; the Finder number is this part.
+3,IRLZ44NPBF,TO-220,DigiKey Australia,IRLZ44NPBF-ND,2.660,2.926,8.778,2026-11-24,RDS specified at 4.0 V and at 5.0 V. Tab is the drain.
+2,IRF9540NPBF,TO-220,DigiKey Australia,IRF9540NPBF-ND,4.060,4.466,8.932,2026-11-24,One per supply branch. Do not bolt the tabs together.
+1,MCP2562-E/P,DIP-8,DigiKey Australia,MCP2562-E/P-ND,1.930,2.123,2.123,2026-11-24,Pin 5 is SPLIT and is left open.
+2,6N137 DIP-8,DIP-8,DigiKey Australia,1080-1485-ND Everlight,3.090,3.399,6.798,2026-11-24,JEDEC 6N137, 5000 Vrms, 75 ns. Lite-On was listed at 2.05 ex GST the same day.
+1,CD74HCT14E,DIP-14,element14 Australia,3120225,1.300,1.430,1.430,2026-11-24,Heartbeat missing-pulse detector. Power from 5 V.
+1,SN74HC00N,DIP-14,element14 Australia,3120419,1.170,1.287,1.287,2026-11-24,Reed blanker NAND. Power from the DevKit 3.3 V.
+4,PC817X1J000F,DIP-4,element14 Australia,9707697,0.370,0.407,1.628,2026-11-24,"Page showed 0.370 ex GST and a rounded GST bracket of 0.37. Line uses 10 percent GST. Sharp, 5 kV."
+1,0235.250HXP,5x20 cartridge,element14 Australia,1192542,2.190,2.409,2.409,2026-11-24,Littelfuse 0235 series, 250 mA, fast-acting. Cartridge for the holder. Series I2t is 0.0166 A2s. The axial twin is 0235.250MXP.
+1,CD74HCT125E,DIP-14,,,,,not retrieved,2026-11-24,element14 Australia had no listing for this exact part. Any 74HCT125 in DIP-14, powered from 5 V, is the same function.
+1,SN74HC08N,DIP-14,,,,,not retrieved,2026-11-24,element14 Australia had no listing. Any 74HC08 in DIP-14 is the same function. Power from 3.3 V.
+1,0217002.HXP,5x20 cartridge,,,,,not retrieved,2026-11-24,Littelfuse 217 series, 2 A, time-lag, for the controller branch. Axial twin is 0217002.MXP. Confirm the cartridge ordering code when buying.
+2,Schurter 0031.8201 or equivalent open 5x20 holder,horizontal holder,,,,,not retrieved,2026-11-24,Footprint is the Schurter 0031.8201 horizontal open holder.
+4,BC547B,TO-92,,,,,not retrieved,2026-11-24,Flat toward you, leads are collector, base, emitter.
+1,BC557B,TO-92,,,,,not retrieved,2026-11-24,Reed-side PNP. Same lead order.
+2,1N5817,DO-41,,,,,not retrieved,2026-11-24,One is the DevKit series diode. One is a coil flyback.
+3,1N5819,DO-41,,,,,not retrieved,2026-11-24,Coil flyback.
+3,1N4148,DO-35 or DO-41,,,,,not retrieved,2026-11-24,Anti-parallel across the direction optocoupler LEDs, plus one other.
+4,BAT46,DO-35,,,,,not retrieved,2026-11-24,Reed clamps and the coil-rail divider clamp.
+2,P6KE18A,DO-41,,,,,not retrieved,2026-11-24,18 V TVS on each fused rail. Not load-dump protection.
+2,BZX55C12,DO-35,,,,,not retrieved,2026-11-24,Gate clamp for the IRF9540N.
+12,100k 0.25 W,axial,,,,,not retrieved,2026-11-24,Vertical 2.54 mm footprint.
+10,10k 0.25 W,axial,,,,,not retrieved,2026-11-24,
+5,4.7k 0.25 W,axial,,,,,not retrieved,2026-11-24,
+4,1k 0.25 W,axial,,,,,not retrieved,2026-11-24,
+3,470 ohm 0.25 W,axial,,,,,not retrieved,2026-11-24,Gate resistors.
+2,270 ohm 0.25 W,axial,,,,,not retrieved,2026-11-24,6N137 LED resistors.
+2,47k 0.25 W,axial,,,,,not retrieved,2026-11-24,
+2,680 ohm 0.25 W,axial,,,,,not retrieved,2026-11-24,Indicator LEDs.
+1,330 ohm 0.25 W,axial,,,,,not retrieved,2026-11-24,Heartbeat edge resistor. Limits clamp current.
+1,470k 0.25 W,axial,,,,,not retrieved,2026-11-24,Watchdog timing resistor.
+1,51 ohm 1 W,axial,,,,,not retrieved,2026-11-24,Reed-rail preload.
+1,120 ohm 1 W,axial,,,,,not retrieved,2026-11-24,Isolated-5 V preload. Not a CAN terminator.
+10,100 nF ceramic,disc 5 mm,,,,,not retrieved,2026-11-24,
+1,220 nF ceramic,disc 5 mm,,,,,not retrieved,2026-11-24,Heartbeat edge capacitor.
+3,10 uF 16 V,radial,,,,,not retrieved,2026-11-24,
+2,10 uF 25 V,radial,,,,,not retrieved,2026-11-24,
+1,10 uF 50 V,radial,,,,,not retrieved,2026-11-24,12 V input.
+1,2.2 uF film,13 x 6 mm box,,,,,not retrieved,2026-11-24,Watchdog timing capacitor. Measure the dropout on the first board.
+1,LED red 5 mm,through-hole,,,,,not retrieved,2026-11-24,GPIO15, high is on.
+1,LED green 5 mm,through-hole,,,,,not retrieved,2026-11-24,GPIO16, high is on.
+2,22-pin female socket,2.54 mm,,,,,not retrieved,2026-11-24,DevKit. Rows 22.86 mm apart. Pin 1 is the USB end.
+1,KF350-3.5 2-pin header plus housing,3.5 mm,,,,,not retrieved,2026-11-24,12 V input. Mating housing is the existing wiring-schedule part.
+2,KF350-3.5 4-pin header plus housing,3.5 mm,,,,,not retrieved,2026-11-24,Permissive switches and the dry contacts.
+2,JST XH 5-pin header plus housing,2.5 mm,,,,,not retrieved,2026-11-24,Reed and NMEA.
+1,JST XH 4-pin header plus housing,2.5 mm,,,,,not retrieved,2026-11-24,Direction sense.
+2,2.54 mm jumper,shunt,,,,,not retrieved,2026-11-24,Reed link is fitted 1-2. CAN publish jumper is fitted open.
+1,bare board 120 x 112 mm,2-layer 1.6 mm,,,,,not quoted,2026-11-24,"JLCPCB's published 2-layer price for five boards applies at or under 100 mm on a side. This board is larger. No quote was taken. Do not order from this file."
