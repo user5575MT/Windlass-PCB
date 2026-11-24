@@ -24,7 +24,7 @@ Nexperia’s 74HC/HCT123 formula is tw = 0.45 × R × C at 5 V, for C above 10 n
 
 The watchdog is one CD74HCT14E, powered from the 5 V rail so its input threshold is a legal high for a 3.3 V GPIO. GPIO1 is pulled down by 100 kΩ and inverted. A 330 Ω / 220 nF edge into a 10 kΩ pull-up makes a pulse of about 1 ms on the rising edge of the heartbeat only. That pulse turns on a BC547B and dumps a 2.2 µF film capacitor. The capacitor then charges through 470 kΩ. While the capacitor is still below the Schmitt threshold, the series IRLZ44N stays on. A stuck-high or stuck-low GPIO produces one edge and then the rail turns off.
 
-The bounds, using the HCT threshold at 4.5 V to 5.5 V and a 10 percent capacitor, are roughly 250 ms to 540 ms with no allowance yet for the input leakage. Leakage of 1 µA in 470 kΩ is about half a volt, so the first board has to be timed. Three missed edges are the short-case dropout. The output is off if the heartbeat stops. It does not latch off.
+The calculated dropout, with a 1 percent resistor, a 10 percent film capacitor and the TI threshold span, is 239 ms to 660 ms. One microamp of HCT input leakage lengthens that and does not stop the trip: 470 kΩ drops 0.47 V, and the capacitor still aims well above the highest threshold. Film leakage is nanoamps and is not the term that sets the window. The working is in `docs/home_purchase.md`. Time the first board. The output is off if the heartbeat stops. It does not latch off.
 
 ## Coil switches and the fuse
 
@@ -32,7 +32,7 @@ The ESP32 pin does not drive the IRLZ44N. Its minimum high is about 2.6 V, and t
 
 The three IRLZ44N devices are low-side. The series device is held on by the watchdog. The up and down devices each feed one relay coil. The tabs are drains. They are not bolted together and they are not bolted to ground.
 
-The coil fuse is a Littelfuse 0235 series 250 mA fast-acting 5×20 cartridge, ordered as 0235.250HXP for the holder. The series cold resistance is 2.25 Ω and the nominal melting I²t is 0.0166 A²s. A dead short from 12 V is about 5 A, so the melt time is about 0.7 ms. The FET energy in that interval, at the 4 V RDS, is under a millijoule. That is why the gate has to be at the 4 V specification and not at 3.3 V. The 0.0022 A²s figure belongs to the v2 1206 fuse and does not apply here. Opening time is a first-board measurement. The 2 A fuse in the controller branch is a Littelfuse 217 series time-lag cartridge, 0217002.HXP, sized for the converter inrush rather than for the coils. Normal coil current is 42 mA, and both coils at 18 V are 125 mA, under the 250 mA fuse.
+The coil fuse is a Littelfuse 0235 series 250 mA fast-acting 5×20 cartridge, ordered as 0235.250HXP for the holder. The series cold resistance is 2.25 Ω and the nominal melting I²t is 0.0166 A²s. A dead short from 12 V is about 4.9 A through the fuse, the IRF9540N and the two IRLZ44Ns, so the melt time is about 0.7 ms. The energy in each IRLZ44N to reach that I²t is 0.58 mJ at the 35 mΩ, 4 V specification, against an avalanche rating of 210 mJ. The 0.0022 A²s figure belongs to the v2 1206 fuse and does not apply here. The 235 series has no published DC rating, so the arc after the melt is a first-board measurement. The 2 A fuse in the controller branch is 0217002.HXP. Littelfuse lists that 217-series part as fast-acting, not time-lag, with a melting I²t of 5.726 A²s. It is not the coil protection. Normal coil current is 42 mA, and both coils at 18 V are 125 mA, under the 250 mA fuse.
 
 The reverse-polarity devices are IRF9540N, one per branch, source toward the load, gate pulled to ground and clamped near −12 V by a BZX55C12. The TVS on each fused rail is a P6KE18A. It is an 18 V part and it is not load-dump protection. The OKI absolute maximum of 36 V is why this clamp is acceptable.
 
@@ -52,44 +52,20 @@ The reed blanker is the same rule as v2. Loss of the field supply forces GPIO6 l
 
 ## Assembly
 
-Every part is through-hole, or it is a finished module with through-hole pins. A conventional iron can solder all of it. Match each TO-92 flat to the silk. The BC547 and BC557 leads, flat toward you, are collector, base, emitter. The IRLZ44N and IRF9540N leads, marking toward you, are gate, drain, source. The diode silk marks the cathode.
+Every part is through-hole, or it is a finished module with through-hole pins. The labelled drawing is `docs/images/windlass_home_placement.svg`. A red square is pad 1.
+
+The diode band goes in the red square. The LED flat is the cathode and goes in the red square. The electrolytic stripe is the other hole. TO-220 leads, marking toward you, are gate, drain, source, and the tab is the drain. Do not bolt the tabs together.
+
+The square pad of a TO-92 is the collector. The parts in the buy list are onsemi, which are emitter, base, collector with the flat toward you, so the right-hand lead is the one that goes in the square. A Nexperia C-B-E part faces the other way. Match the bag, not a single flat-direction rule.
+
+DIP pin 1 is the red square. The DevKit USB end is pin 1 of each socket, which is the end nearer the connector edge. Fit the shunt on JP_REED pins 1-2 and leave the CAN publish jumper open. The coil holder gets the 250 mA fast cartridge. The controller holder gets 0217002.HXP, which is the fast-acting 217 series.
 
 ## Cost for one controller
 
-Prices were read on 24 November 2026. element14 Australia shows an ex-GST price and a GST-inclusive price in brackets. DigiKey Australia shows both. No currency was converted. Shipping is not included. Nothing was ordered.
+The manufacturing package, the quotes, and the line-by-line buy list are in `docs/home_purchase.md` and `docs/home_assembly_bom.csv`. Gerbers are in `fab/home/windlass_home_gerbers.zip`.
 
-| Part | Qty | GST-inclusive | Source |
-| --- | --- | --- | --- |
-| ESP32-S3-DevKitC-1-N16R8 | 1 | $30.95 listed | Phipps Electronics, in stock in Australia. The page does not say whether GST is included, and one bullet swaps the flash and PSRAM sizes. The body text says 16 MB flash and 8 MB PSRAM. Confirm the module is marked N16R8. The seller is a generic board, not an Espressif box. |
-| OKI-78SR-5/1.5-W36H-C | 1 | $10.252 | element14 Australia 2812636 |
-| MEJ2S0505SC | 1 | $16.929 | DigiKey Australia 811-2397-ND |
-| MEJ2S0503SC | 1 | $18.887 | element14 Australia 2429477 |
-| Finder 40.31.7.012.0000 | 2 | $40.502 | element14 Australia 1169158 |
-| IRLZ44NPBF | 3 | $8.778 | DigiKey Australia IRLZ44NPBF-ND |
-| IRF9540NPBF | 2 | $8.932 | DigiKey Australia IRF9540NPBF-ND |
-| MCP2562-E/P | 1 | $2.123 | DigiKey Australia MCP2562-E/P-ND |
-| 6N137, DIP-8, Everlight | 2 | $6.798 | DigiKey Australia 1080-1485-ND. Same JEDEC part: 5000 Vrms, 75 ns. |
-| CD74HCT14E | 1 | $1.430 | element14 Australia 3120225 |
-| SN74HC00N | 1 | $1.287 | element14 Australia 3120419 |
-| PC817X1J000F | 4 | $1.628 | element14 Australia 9707697 at $0.370 ex GST. The page rounded the GST bracket, so 10 percent was applied here. |
-| 0235.250HXP, 250 mA fast 5×20 | 1 | $2.409 | element14 Australia 1192542. Cartridge form of the 0235 series for the fuse holder. |
-
-Those lines add to **A$150.91** if the DevKit’s $30.95 already includes GST, or **A$119.96** without the DevKit. The full list, including the lines with no retrieved price, is `docs/home_assembly_bom.csv`.
-
-These parts are on the board and did not have an Australian price on the pages retrieved today. They are not free.
-
-- CD74HCT125E in DIP-14. element14 Australia has no listing for that exact part. Any 74HCT125 in DIP-14, run from 5 V, is the same function.
-- SN74HC08N in DIP-14. element14 Australia has no listing. Any 74HC08 in DIP-14 is the same function. It runs from the DevKit 3.3 V rail.
-- The 2 A time-lag 5×20 cartridge, Littelfuse 217 series, ordering code 0217002.HXP. The axial-lead twin is 0217002.MXP. The holder takes the cartridge.
-- Two 5×20 fuse holders, Schurter 0031.8201 or the same open horizontal holder.
-- BC547B (four) and BC557B (one).
-- 1N5817 (two), 1N5819 (three), 1N4148 (three), BAT46 (four), P6KE18A (two), BZX55C12 (two).
-- The axial resistors, the two 1 W resistors (51 Ω and 120 Ω), the disc capacitors, the radial electrolytics and the 2.2 µF film capacitor. Values are in the CSV.
-- One red and one green 5 mm LED.
-- Two 22-pin female socket strips at 2.54 mm.
-- The KF350 and JST XH headers on the board, and the mating housings used by the existing wiring schedule.
-- The bare board. Five two-layer boards of 100 mm by 100 mm or smaller have a published JLCPCB price that does not apply here, because both sides are over 100 mm. No quote was taken.
+The priced lines, including the five-board JLCPCB minimum delivered to Australia and the DigiKey delivery charge, add to **A$248.22**. One 220 nF disc, two 3.50 mm 4-pin terminals, the terminal housings and two JST 5-pin housings had no retrieved price and are not in that sum. Nothing was ordered.
 
 ## Before installation
 
-Time the watchdog dropout on the first board. Confirm the 250 mA fuse opens on a dead short without damaging the IRLZ44N. Confirm a clone DevKit does not back-feed the OKI through the 1N5817. The firmware and the v2 board stay as they are.
+Time the watchdog dropout on the first board. Confirm the 250 mA fuse opens on a dead short without damaging the IRLZ44N. Confirm the OKI starts on the fast 2 A fuse. Confirm a clone DevKit does not back-feed the OKI through the 1N5817. The firmware and the v2 board stay as they are.
