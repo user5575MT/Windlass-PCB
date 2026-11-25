@@ -1,0 +1,13 @@
+Qty,Part,DigiKey,Stock,Each ex GST,Each inc GST,Line inc GST,GST source,Note
+1,SparkFun Thing Plus ESP32-S3 DEV-24408,1568-24408-ND,577,41.44,45.584,45.584,page,"ESP32-S3-MINI-1-N4R2. 4 MB flash, 2 MB PSRAM, PCB antenna. Headers not listed in the page contents."
+2,Omron G2R-1-DC12,39-G2R-1DC12-ND,4468,8.92,9.812,19.624,page,"SPDT. 5 A at 30 VDC, L/R = 7 ms. Must operate 8.4 V. Coil 275 ohm, 43.6 mA."
+1,Traco TMR 0511,1951-2740-ND,674,25.46,28.006,28.006,computed 10 percent,"Regulated 5 V, 400 mA, 1.5 kV. CAN rail only."
+1,Recom RFM-0505S,945-3159-ND,19505,3.22,3.542,3.542,computed 10 percent,Unregulated. Reed-side LEDs only. Not the CAN rail.
+3,Infineon IRLZ44NPBF,IRLZ44NPBF-ND,40342,2.66,2.926,8.778,page,Series FET plus the two coil low-side FETs. 1+ price.
+2,Infineon IRF9540NPBF,IRF9540NPBF-ND,7268,4.06,4.466,8.932,page,One reverse-polarity FET per fused branch. 1+ price.
+1,Microchip MCP2562-E/P,MCP2562-E/P-ND,759,1.93,2.123,2.123,page,DIP-8. Recommended supply 4.5 V to 5.5 V.
+2,Everlight 6N137,1080-1485-ND,389,3.09,3.399,6.798,computed 10 percent,DIP-8. 389 in stock. Backorders not accepted on that page.
+1,ST L7812CV,497-1452-5-ND,14098,1.99,2.189,2.189,page,"Coil rail, after the ignition loop. 35 V max input. Dropout 2 V at 1 A typical."
+1,TI CD74HCT4538E,296-2125-5-ND,267,1.77,1.947,1.947,page,"DIP-16 watchdog. 470 kohm and 1 uF film are not priced yet."
+1,Littelfuse 0251.630MXL,F2312-ND,990,2.18,2.398,2.398,page,"Coil fuse. 630 mA, 125 VDC, 300 A DC interrupt. Nominal melting I2t 0.08."
+1,Littelfuse 0251002.MXL,F2314-ND,19677,1.83,2.013,2.013,page,"Controller fuse. 2 A, 125 VDC, 300 A DC interrupt. Nominal melting I2t 0.405."
