@@ -1,0 +1,44 @@
+Buy,Fit,Part,DigiKey,Stock,Each ex GST,Each inc GST,Line inc GST,GST source,Note
+2,2,Omron G2R-1-DC12,39-G2R-1DC12-ND,4468,8.92,9.812,19.624,page,"SPDT. 5 A at 30 VDC, L/R = 7 ms. Must-operate 8.4 V at 23 C."
+1,1,Traco TMR 0511,1951-2740-ND,674,25.46,28.006,28.006,computed 10 percent,"CAN rail. Regulated 5 V, 400 mA, no minimum load."
+1,1,Recom RFM-0505S,945-3159-ND,19505,3.22,3.542,3.542,computed 10 percent,Reed side only. Unregulated.
+3,3,Infineon IRLZ44NPBF,IRLZ44NPBF-ND,40342,2.66,2.926,8.778,page,Series FET and two low-side coil FETs.
+2,2,Infineon IRF9540NPBF,IRF9540NPBF-ND,7268,4.06,4.466,8.932,page,One reverse-polarity FET on each fuse.
+1,1,Microchip MCP2562-E/P,MCP2562-E/P-ND,759,1.93,2.123,2.123,page,DIP-8. Supply 4.5 V to 5.5 V.
+2,2,Everlight 6N137 DIP-8,1080-1485-ND,389,3.09,3.399,6.798,computed 10 percent,CAN isolators.
+1,1,ST L7812CV,497-1452-5-ND,14098,1.99,2.189,2.189,page,Coil rail after the ignition loop. 35 V max.
+1,1,Murata OKI-78SR-5/1.5-W36-C,811-2196-5-ND,46903,8.86,9.746,9.746,page,"5 V, 1.5 A, 7 V to 36 V, vertical SIP."
+1,1,TI CD74HCT4538E,296-2125-5-ND,267,1.77,1.947,1.947,page,DIP-16 watchdog.
+1,1,TI SN74HCT125N,296-8386-5-ND,686,1.36,1.496,1.496,page,HCT125 DIP-14. CD74HCT125E page was not returned.
+1,1,TI SN74HC00N,296-1563-5-ND,292,1.15,1.265,1.265,page,DIP-14 NAND.
+1,1,TI SN74HC08N,296-1570-5-ND,25799,1.17,1.287,1.287,page,DIP-14 AND. Page says it ships from Rochester.
+4,4,Lite-On LTV-817M,LTV-817M-ND,2413,0.61,0.671,2.684,page,DIP-4 phototransistor. PC817 pinout.
+3,3,Diotec BC547B,4878-BC547BCT-ND,20056,0.21,0.231,0.693,page,TO-92 NPN. Square pad is the collector.
+1,1,Diotec BC557B,4878-BC557BCT-ND,5889,0.22,0.242,0.242,page,TO-92 PNP.
+10,6,Diodes Inc 1N5819-T,1N5819DICT-ND,24540,0.529,0.5819,5.819,computed 10 percent,"Qty-10 price. Two flybacks, one DevKit diode, three former BAT46 positions."
+2,2,Vishay 1N4148-TAP,1N4148-TAPCT-ND,17619,0.38,0.418,0.836,page,Signal diodes.
+2,2,ST P6KE18A,497-11385-1-ND,764,1.42,1.562,3.124,page,"15.3 V standoff, 25.2 V clamp. In stock, not restocked after that."
+2,2,Good-Ark 1N4742A,4786-1N4742ACT-ND,5233,0.35,0.385,0.770,page,12 V 1 W gate clamps. DO-41.
+1,1,Littelfuse 0251.500NRT1L,F5998CT-ND,9333,2.35,2.585,2.585,page,"Coil fuse. 500 mA. 4 ms max at 5 A. Melting I2t 0.0598 is not clearing energy."
+1,1,Littelfuse 0251002.MXL,F2314-ND,19677,1.83,2.013,2.013,page,Controller fuse. 2 A. 300 A DC interrupt.
+2,2,Kemet R82DC4100DQ60J,399-5447-1-ND,185714,0.97,1.067,2.134,computed 10 percent,"1 uF 5 percent film. Stock and ex-GST price from the substitute table on the AA60J page. One timing, one 7812 input."
+20,12,Murata RDER71H104K0K1H03B,490-8814-ND,110259,0.47,0.517,10.340,computed 10 percent,100 nF 50 V. Qty-10 price. Buy 20.
+6,5,Wurth 860010472002,732-8625-1-ND,8317,0.15,0.165,0.990,page,10 uF 25 V. 5 V side.
+1,1,Wurth 860040674004,732-9187-1-ND,33044,0.52,0.572,0.572,page,100 uF 50 V. OKI input, ahead of the 25.2 V clamp.
+2,2,Sullins PPPC221LFBN-RC,S7055-ND,1583,2.08,2.288,4.576,page,22-pin sockets for the DevKitC-1.
+5,5,Phoenix 1984617,277-1721-ND,42142,0.86,0.946,4.730,page,One power pair and two 4-position screw connectors.
+1,1,JST B4B-XH-A,455-B4B-XH-A-ND,58887,0.25,0.275,0.275,page,Reed header. Mates with the existing XH plug.
+2,2,JST B5B-XH-A,455-B5B-XH-A-ND,72246,0.30,0.330,0.660,page,Sense and NMEA headers.
+1,1,Sullins PRPC040SAAN-RC,S1011EC-40-ND,65124,1.82,2.002,2.002,page,Breakaway for the two jumpers, and spare DevKit pins.
+10,2,Sullins QPC02SXGN-RC,S9337-ND,1737435,0.042,0.0462,0.462,computed 10 percent,Qty-10 price. Fit two shunts.
+1,1,Lite-On LTL-307EE,160-1701-ND,16944,0.28,0.308,0.308,page,Red 5 mm. The green 5 mm page was not returned.
+25,12,Yageo MFR-25FBF52-100K,series table,not opened per value,0.0508,0.05588,1.397,series table,"Qty-25 price from the opened 47 ohm and 402k pages."
+25,11,Yageo MFR-25FBF52-10K,series table,not opened per value,0.0508,0.05588,1.397,series table,Same table.
+10,5,Yageo MFR-25FBF52-4K7,series table,not opened per value,0.061,0.0671,0.671,series table,Same table. Qty 10.
+10,4,Yageo MFR-25FBF52-1K,series table,not opened per value,0.061,0.0671,0.671,series table,Includes the 7812 bleeder. 0.16 W at 12.6 V.
+10,3,Yageo MFR-25FBF52-470R,series table,not opened per value,0.061,0.0671,0.671,series table,Gate resistors.
+10,2,Yageo MFR-25FBF52-270R,series table,not opened per value,0.061,0.0671,0.671,series table,CAN series resistors.
+10,1,Yageo MFR-25FBF52-220R,series table,not opened per value,0.061,0.0671,0.671,series table,RFM preload. About 0.15 W at 5.75 V.
+10,2,Yageo MFR-25FBF52-47K,series table,not opened per value,0.061,0.0671,0.671,series table,Same table.
+10,2,Yageo MFR-25FBF52-680R,series table,not opened per value,0.061,0.0671,0.671,series table,LED resistors.
+10,1,Yageo MFR-25FBF52-470K,series table,not opened per value,0.061,0.0671,0.671,series table,Watchdog timing resistor. 1 percent.
