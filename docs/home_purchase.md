@@ -1,6 +1,26 @@
 # Manufacturing and purchasing package
 
-24 November 2026, Sydney time (AEDT, UTC+11). The copper, the outline and the footprints are unchanged. The coil-fuse value on the schematic is now SIBA 70-007-33/0.4A. Nothing was ordered. The firmware was not edited.
+24 November 2026, Sydney time (AEDT, UTC+11). The copper on this board is the checkpoint. A single-distributor cart inside A$150 to A$180 was not closed, and the watchdog was not replaced on the copper. Nothing was ordered. The firmware was not edited.
+
+## What was asked, and what is not being ordered
+
+The ask was two orders only: JLCPCB for the bare boards, and one of DigiKey, Mouser or element14 for every component, all of it in stock, delivered to Australia, inside A$150 to A$180 with the boards. That cart does not exist without giving up a limit the design already requires.
+
+DigiKey Australia does not list the ESP32-S3-DevKitC-1-N16R8. The DevKitC-1U-N8R8 listing is the wrong antenna and 8 MB of flash, and it was not in stock. Mouser Australia lists ESP32-S3-DevKitC-1-N32R16V at A$25.34. That is 32 MB of flash, not the 16 MB part this image is built for, and the page did not return a stock count. element14 was not shown to sell the board. None of the three can be the single supplier today.
+
+Omron G2R-1-DC12 does have a published inductive rating, 5 A at 30 VDC with L/R = 7 ms, which would cover the boat's 2.5 A control fuse. Its maximum coil voltage is 110 percent, 13.2 V. These coils have to operate at up to 18 V. It is not a substitute. No cheaper relay was found with both a maximum coil voltage of at least 18 V and a published DC inductive rating. The two Finder 40.31.7.012.0000 stay, A$40.50 including GST.
+
+Recom RFM-0505S is in stock at DigiKey, 19,505 pieces, A$3.542 including GST. It is 1 W, 200 mA, 1 kV, and the datasheet calls the insulation functional. Load regulation is ±15 percent from 10 percent to 100 percent load, so a 5 V output can be 5.75 V. The MCP2562 recommended maximum is 5.5 V. It is not fitted. The 3.3 V mate was not confirmed as its own in-stock line. The two Murata modules stay.
+
+Those four parts are why the total is not inside A$150 to A$180. Cutting them to hit the number would drop either the 18 V coil limit or the transceiver's recommended supply.
+
+The coil fuse stays the SIBA 70-007-33/0.4A. It is the 5×20 part with a published 1500 A interrupt at 250 VDC. element14 has one piece, in the UK, so it does not meet a rule of sufficient stock and no backorder. DigiKey's in-stock 5×20 parts at this current publish an AC interrupt only. IEC 60127's operating time is the pre-arcing time plus the arcing time. SIBA publishes the pre-arcing integral, 0.07 A²s, and does not publish a maximum operating time. A multiple of the pre-arcing integral is not that time, and avalanche energy is not the limit while the gate is held on. The forward safe operating area cannot be closed until a datasheet gives the operating time. The earlier twice-pre-arcing argument is withdrawn.
+
+The HCT14 timer still fails the original limit. The long corner is 705 ms and the limit is 475 ms. A 74HCT123 cannot hold the 80 ms heartbeat, because its retrigger gap is about 0.42 of the pulse. The part that does both is the TI CD74HCT4538E, DIP-16, DigiKey 296-2125-5-ND, 267 in stock, A$1.947 including GST. The pulse is 0.7 × RX × CX. At 470 kΩ, 1 percent, and 1 µF, 5 percent, the nominal pulse is 329 ms. TI's −55 °C to 125 °C window at the 10 kΩ / 0.1 µF test point is 0.850 to 1.150 of that formula. Applied here, the short corner is 263 ms and the long corner is 401 ms. That covers two 100 ms intervals and stays under 475 ms. Retrigger is microseconds to a few tens of microseconds, not a blanked fraction of the pulse. Power-up reset holds Q low. It is not on the board. A fresh route of the whole board leaves power nets open. Patching the DIP-16 onto this copper shorted a timing pin to +5 V and left clearance and unconnected errors. The checkpoint DRC is two track-width notes and no unconnected pads. The copper was put back.
+
+The priced list below is that checkpoint. It is A$220.63, it is more than one electronics distributor, and it is the list that matches the board.
+
+24 November 2026, Sydney time (AEDT, UTC+11). The copper, the outline and the footprints are unchanged. The coil-fuse value on the schematic is SIBA 70-007-33/0.4A. Nothing was ordered. The firmware was not edited.
 
 The priced lines add to **A$220.63 for one controller**. That figure pays for the five-board JLCPCB minimum, delivered, and for every component, including the lines that had no price last time. DigiKey delivery is A$0. Two sellers do not publish postage, and those two amounts are not in the A$220.63.
 
